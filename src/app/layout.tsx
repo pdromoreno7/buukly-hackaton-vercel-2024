@@ -1,11 +1,14 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { NextUIProvider } from '@nextui-org/react'
+import { ThemeProvider } from 'next-themes'
 import "./globals.css"
+import { Providers } from './providers'
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "KiwiBooks",
+  title: "Kiwibook",
   description: "A description..."
 }
 
@@ -16,7 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Providers>
+          <main className='flex flex-col min-h-screen py-2'>
+            {children}
+          </main>
+        </Providers>
+      </body>
     </html>
   )
 }
