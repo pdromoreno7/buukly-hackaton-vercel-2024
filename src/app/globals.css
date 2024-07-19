@@ -4,7 +4,7 @@
 
 html {
   overflow-y: scroll;
-  color-scheme: dark;
+  /* color-scheme: light; */
   scroll-behavior: smooth;
 }
 
@@ -15,6 +15,6 @@ body {
 
 body {
   @apply font-sans antialiased;
-  @apply bg-stone-100 dark:bg-dark;
-  @apply text-gray-800 dark:text-white/75;
+  /* @apply bg-stone-100 dark:bg-dark; */
+  /* @apply text-gray-800 dark:text-white/75; */
 }
