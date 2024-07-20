@@ -1,18 +1,18 @@
 import { nextui } from '@nextui-org/react'
-import type { Config } from "tailwindcss"
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        'dark': '#18181b',
-        'kiwi': {
+        dark: '#18181b',
+        kiwi: {
           '50': '#f5fee7',
           '100': '#e7fdca',
           '200': '#d1fa9c',
@@ -38,7 +38,7 @@ const config: Config = {
           '900': '#33362b',
           '950': '#161811',
         },
-      }
+      },
     },
   },
   darkMode: 'class',
