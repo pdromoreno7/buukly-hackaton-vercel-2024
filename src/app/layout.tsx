@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { NextUIProvider } from '@nextui-org/react'
-import { ThemeProvider } from 'next-themes'
+
 import './globals.css'
 import { Providers } from './providers'
 
