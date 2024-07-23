@@ -1,31 +1,38 @@
-import { SparklesIcon } from '@heroicons/react/24/outline'
-import { Button } from '@nextui-org/react'
-
+import ActionButton from '@/components/actionButton/ActionButton'
 import Wrapper from '@/components/layouts/Wrapper'
+import Steps from '@/components/steps/Steps'
 
 export default function Generate() {
   return (
     <Wrapper>
-      <h1 className='text-2xl font-extrabold text-center'>Playground</h1>
-      <div className='flex flex-col gap-4 mt-8'>
-        <input
-          placeholder='Un titulo corto para tu libro...'
-          className='bg-black/10 px-3 py-2 text-sm rounded-md outline-none focus:bg-black/25 transition'
-        />
-        <div className='relative'>
-          <textarea
-            placeholder='Escribe algo que describa tu libro de manera corta y precisa...'
-            rows={8}
-            className='bg-black/10 px-3 py-2 w-full text-sm rounded-md outline-none focus:bg-black/25 transition relative'
+      <div className='flex grow flex-col justify-between pb-2 pt-8'>
+        <div className='flex flex-col gap-4'>
+          <h1 className='text-center text-2xl font-extrabold leading-tight'>
+            ¿Qué libro quieres escribir hoy?
+          </h1>
+          <Steps />
+        </div>
+        <div className='mt-8 flex flex-col gap-4'>
+          <input
+            name='title'
+            placeholder='Un titulo corto para tu libro...'
+            className='rounded-md bg-white/5 px-3 py-2 text-sm outline-none transition focus:bg-white/10'
           />
-          <Button isIconOnly className='bg-honey-400 absolute z-10 bottom-3 right-3' radius='sm' size='sm'>
-            <SparklesIcon className='size-6 text-honey-600 fill-honey-600' />
-          </Button>
+          <div className='relative'>
+            <textarea
+              name='description'
+              placeholder='Escribe algo que describa tu libro de manera corta y precisa...'
+              rows={8}
+              className='relative w-full rounded-md bg-white/5 px-3 py-2 text-sm outline-none transition focus:bg-white/10'
+            />
+            <ActionButton />
+          </div>
         </div>
       </div>
-
-
-      <pre className='text-center text-sm mb-6 mt-auto'>Página en construcción...</pre>
+      <span className='pb-2 text-center text-xs text-gray-400'>
+        Al hacer uso de esta app, acepta nuestros Términos de servicio y
+        Política de privacidad.
+      </span>
     </Wrapper>
   )
-};
+}
