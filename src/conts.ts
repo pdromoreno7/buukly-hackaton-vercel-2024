@@ -12,8 +12,8 @@ export const MENU_ENTRIES = [
     href: '#',
   },
   {
-    label: 'Help & Feedback',
-    href: '#',
+    label: 'Preguntas Frecuentes',
+    href: '/faq',
   },
   {
     label: 'Log Out',
@@ -38,5 +38,23 @@ export const STEPS = [
     title: 'Paso 3',
     description: 'Agrega una portada a tu libro.',
     icon: 'SparklesIcon',
+  },
+]
+
+export const QUESTIONS = [
+  {
+    title: '¿Cómo puedo cambiar mi contraseña?',
+    content:
+      'Para cambiar tu contraseña, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar contraseña.',
+  },
+  {
+    title: '¿Cómo puedo cambiar mi nombre de usuario?',
+    content:
+      'Para cambiar tu nombre de usuario, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar nombre de usuario.',
+  },
+  {
+    title: '¿Cómo puedo cambiar mi foto de perfil?',
+    content:
+      'Para cambiar tu foto de perfil, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar foto de perfil.',
   },
 ]
