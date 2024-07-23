@@ -1,25 +1,29 @@
+import { Button, Link } from '@nextui-org/react'
+
+import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
-import { ThemeSwitcher } from '@/components/ThemeSwitcher'
+import Carousel from '@/components/slider/Carousel'
 
 export default function Home() {
   return (
     <Wrapper>
-      <ThemeSwitcher />
-      <h2 className='p-8 text-center [&>strong]:text-lime-500 [&>strong]:dark:text-lime-200'>
-        Hello <strong>Kiwibook</strong> 🥝
-      </h2>
-      <div className='flex flex-col gap-4 sm:flex-row'>
-        <textarea
-          placeholder='Some title of a book...'
-          className='w-full resize-y rounded bg-gray-700/5 px-4 py-3 text-sm outline-none dark:bg-white/5'
-          rows={4}
-        />
-        <textarea
-          disabled
-          placeholder='Ouput'
-          className='w-full resize-none rounded px-4 py-3 text-sm'
-          rows={4}
-        />
+      <div className='flex flex-col justify-evenly gap-4 pb-8 grow'>
+        <Section className='text-center'>
+          <h1 className='text-4xl font-extrabold'>Kiwibook</h1>
+          <p className='text-sm mt-1'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis doloribus voluptatem magni.
+          </p>
+        </Section>
+        <Section>
+          <Carousel />
+        </Section>
+        <Button
+          as={Link}
+          href='/generate'
+          className='mt-20 bg-honey-400 text-black font-semibold border-2 border-honey-700 hover:bg-honey-500 active:bg-honey-600 active:scale-95 transition-all w-fit mx-auto px-6 py-2 rounded-full'
+        >
+          Generate
+        </Button>
       </div>
     </Wrapper>
   )

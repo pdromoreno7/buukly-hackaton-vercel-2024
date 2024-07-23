@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Onest } from 'next/font/google'
 
-import './globals.css'
+import NavBar from '@/components/navbar/NavBar'
+
 import { Providers } from './providers'
+import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Kiwibook',
@@ -17,10 +19,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='es'>
-      <body className={inter.className}>
+    <html lang='es' className='dark'>
+      <body className={onest.className}>
         <Providers>
-          <main className='flex min-h-screen flex-col py-2'>{children}</main>
+          <NavBar />
+          <main>
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

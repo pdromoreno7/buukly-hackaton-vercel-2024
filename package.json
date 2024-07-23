@@ -13,6 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
     "@mozilla/readability": "^0.5.0",
     "@nextui-org/react": "^2.4.5",
     "@types/jsdom": "21.1.7",
