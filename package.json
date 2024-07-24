@@ -15,13 +15,17 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "@mozilla/readability": "^0.5.0",
-    "@nextui-org/react": "^2.4.5",
+    "@radix-ui/react-slot": "^1.1.0",
     "@types/jsdom": "21.1.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "jsdom": "24.1.0",
+    "lucide-react": "^0.414.0",
     "next": "14.2.5",
-    "next-themes": "^0.3.0",
     "react": "18",
-    "react-dom": "18"
+    "react-dom": "18",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx",
