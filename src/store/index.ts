@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 interface BookData {
   bookTitle: string
-  bookChapter: string[]
+  bookChapters: string[]
   bookKeyWords: string[]
 }
 
@@ -12,7 +12,7 @@ interface BookStore {
 }
 
 export const useBookStore = create<BookStore>(set => ({
-  dataEbook: { bookTitle: '', bookChapter: [], bookKeyWords: [] },
+  dataEbook: { bookTitle: '', bookChapters: [], bookKeyWords: [] },
   setBookData: (data: BookData) =>
     set(state => ({ dataEbook: { ...state.dataEbook, data } })),
 }))
