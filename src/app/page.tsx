@@ -1,27 +1,31 @@
 import Link from 'next/link'
 
-import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
+import Slider from '@/components/slider/Slider'
 import { Button } from '@/components/ui/button'
 
 export default function Home() {
   return (
     <Wrapper>
-      <Button variant='secondary'>Click me</Button>
-      <div className='flex grow flex-col justify-evenly gap-4 pb-8'>
-        <Section className='text-center'>
+      <section className='space-y-20 text-center'>
+        <div>
           <h1 className='text-4xl font-extrabold'>Kiwibook</h1>
           <p className='mt-1 text-sm'>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis
             doloribus voluptatem magni.
           </p>
-        </Section>
-        <Link
-          href='/generate'
-          className='bg-honey-400 border-honey-700 hover:bg-honey-500 active:bg-honey-600 mx-auto mt-20 w-fit rounded-full border-2 px-6 py-2 font-semibold text-black transition-all active:scale-95'
-        >
-          Generate
-        </Link>
+        </div>
+        <Slider />
+      </section>
+      <div className='mt-32 inline-flex w-full justify-center'>
+        <Button asChild className='mx-auto rounded-full'>
+          <Link
+            href='/generate'
+            className='bg-honey-400 border-honey-700 hover:bg-honey-500 active:bg-honey-600 mx-auto w-fit rounded-full border-2 px-6 py-2 font-semibold text-black transition-all active:scale-95'
+          >
+            Generate
+          </Link>
+        </Button>
       </div>
     </Wrapper>
   )
