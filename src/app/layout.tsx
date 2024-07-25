@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Onest } from 'next/font/google'
 
 import './globals.css'
+import Header from '@/components/header/Header'
 
 const onest = Onest({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang='es' className='dark'>
       <body className={onest.className}>
+        <Header />
         <main>{children}</main>
       </body>
     </html>

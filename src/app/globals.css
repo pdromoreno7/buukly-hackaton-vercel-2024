@@ -14,13 +14,13 @@ body {
 
 body {
   @apply font-sans antialiased;
+  @apply flex flex-col;
   @apply text-gray-800 dark:text-white/75;
+  @apply bg-white dark:bg-dark;
 }
 
 main {
-  @apply size-full;
-  @apply flex flex-col;
-  @apply min-h-[calc(100vh-4rem)];
+  @apply flex-1 py-10;
 }
 
 p {

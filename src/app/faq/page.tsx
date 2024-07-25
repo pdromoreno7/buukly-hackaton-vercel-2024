@@ -1,4 +1,3 @@
-'use client'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
 
