@@ -13,11 +13,13 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@ai-sdk/google": "^0.0.29",
     "@google/generative-ai": "^0.16.0",
     "@heroicons/react": "^2.1.5",
     "@mozilla/readability": "^0.5.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@types/jsdom": "21.1.7",
+    "ai": "^3.2.35",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "jsdom": "24.1.0",
