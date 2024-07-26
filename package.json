@@ -35,8 +35,12 @@
     "zustand": "^4.5.4"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --ext js,jsx",
-    "**/*": "prettier --write --ignore-unknown"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --ext js,jsx"
+    ],
+    "*": [
+      "prettier --write --ignore-unknown"
+    ]
   },
   "devDependencies": {
     "@types/node": "20",
