@@ -1,6 +1,6 @@
 'use client'
-// import { GoogleGenerativeAI } from '@google/generative-ai'
 import { runGeminiObject } from '@/actions/generateTextActions'
+import { useBookStore } from '@/store'
 import { useState, ChangeEvent } from 'react'
 
 import Wrapper from '@/components/layouts/Wrapper'
@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 
 export default function Generate() {
   const [bookTitle, setBookTitle] = useState<string>('')
+  const setBookData = useBookStore(state => state.setBookData)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
@@ -17,6 +18,7 @@ export default function Generate() {
 
   const submitGenerateBook = async () => {
     const result = await runGeminiObject(bookTitle)
+    setBookData(result?.recipe)
     console.log(result)
   }
 
