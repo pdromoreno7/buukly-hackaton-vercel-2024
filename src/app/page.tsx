@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 export default function Home() {
   return (
     <Wrapper>
-      <section className='space-y-20 text-center'>
+      <section className='space-y-20 text-center md:space-y-10'>
         <div>
           <h1 className='text-4xl font-extrabold'>Kiwibook</h1>
           <p className='mt-1 text-sm'>
@@ -16,8 +16,6 @@ export default function Home() {
           </p>
         </div>
         <Slider />
-      </section>
-      <div className='mt-32 inline-flex w-full justify-center'>
         <Button asChild className='mx-auto rounded-full'>
           <Link
             href='/generate'
@@ -26,7 +24,7 @@ export default function Home() {
             Generate
           </Link>
         </Button>
-      </div>
+      </section>
     </Wrapper>
   )
 }
