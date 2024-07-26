@@ -23,6 +23,7 @@
     "ai": "^3.2.35",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.1.7",
     "embla-carousel-react": "^8.1.7",
     "jsdom": "24.1.0",
     "lucide-react": "^0.414.0",
