@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
+'use client'
+import Autoplay from 'embla-carousel-autoplay'
+import useEmblaCarousel from 'embla-carousel-react'
+import { useCallback, useEffect, useRef } from 'react'
+import './embla.css'
 
-import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel'
-
-// componente de prueba, no borrar ni modificar.
 export interface Books {
   number: number
   title: string
@@ -15,19 +15,105 @@ export interface Books {
   index: number
 }
 
-export default async function Slider() {
-  const resp = await fetch('https://potterapi-fedeperin.vercel.app/es/books')
-  const data: Books[] = await resp.json()
+export default function Slider() {
+  const TWEEN_FACTOR_BASE = 0.52
+
+  const numberWithinRange = (
+    number: number,
+    min: number,
+    max: number,
+  ): number => Math.min(Math.max(number, min), max)
+  const BOOKS = [
+    'https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/covers/1.png',
+    'https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/covers/2.png',
+    'https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/covers/3.png',
+    'https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/covers/4.png',
+    'https://raw.githubusercontent.com/fedeperin/potterapi/main/public/images/covers/5.png',
+  ]
+  const options = { loop: true }
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+    Autoplay({ playOnInit: true, delay: 2000 }),
+  ])
+  const tweenFactor = useRef(0)
+  const tweenNodes = useRef<HTMLElement[]>([])
+  // const resp = fetch('https://potterapi-fedeperin.vercel.app/es/books').then((res) => res.json())
+  // const data = resp.then((data) => data.map((book: Books, index: number) => ({ ...book, index })))
+  const setTweenNodes = useCallback((emblaApi): void => {
+    tweenNodes.current = emblaApi.slideNodes().map(slideNode => {
+      return slideNode.querySelector('.carousel__slide__card') as HTMLElement
+    })
+  }, [])
+
+  const setTweenFactor = useCallback(emblaApi => {
+    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
+  }, [])
+
+  const tweenScale = useCallback((emblaApi, eventName?: EmblaEventType) => {
+    const engine = emblaApi.internalEngine()
+    const scrollProgress = emblaApi.scrollProgress()
+    const slidesInView = emblaApi.slidesInView()
+    const isScrollEvent = eventName === 'scroll'
+
+    emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+      let diffToTarget = scrollSnap - scrollProgress
+      const slidesInSnap = engine.slideRegistry[snapIndex]
+
+      slidesInSnap.forEach(slideIndex => {
+        if (isScrollEvent && !slidesInView.includes(slideIndex)) return
+
+        if (engine.options.loop) {
+          engine.slideLooper.loopPoints.forEach(loopItem => {
+            const target = loopItem.target()
+
+            if (slideIndex === loopItem.index && target !== 0) {
+              const sign = Math.sign(target)
+
+              if (sign === -1) {
+                diffToTarget = scrollSnap - (1 + scrollProgress)
+              }
+              if (sign === 1) {
+                diffToTarget = scrollSnap + (1 - scrollProgress)
+              }
+            }
+          })
+        }
+
+        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
+        const scale = numberWithinRange(tweenValue, 0, 1).toString()
+        const tweenNode = tweenNodes.current[slideIndex]
+        tweenNode.style.transform = `scale(${scale})`
+      })
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    setTweenNodes(emblaApi)
+    setTweenFactor(emblaApi)
+    tweenScale(emblaApi)
+
+    emblaApi
+      .on('reInit', setTweenNodes)
+      .on('reInit', setTweenFactor)
+      .on('reInit', tweenScale)
+      .on('scroll', tweenScale)
+      .on('slideFocus', tweenScale)
+  }, [emblaApi, tweenScale])
 
   return (
-    <Carousel className='w-full'>
-      <CarouselContent>
-        {data.map(book => (
-          <CarouselItem key={book.number} className='basis-1/3'>
-            <img src={book.cover} className='h-80 w-52 object-cover' />
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+    <div className='carousel_wrapper'>
+      <div className='carousel__viewport' ref={emblaRef}>
+        <div className='carousel__container'>
+          {BOOKS.map(book => (
+            <div className='carousel__slide' key={book}>
+              <div className='carousel__slide__card'>
+                <img src={book} alt='' className='h-full rounded-md' />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }

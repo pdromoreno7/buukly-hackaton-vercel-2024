@@ -1,5 +1,5 @@
-import Wrapper from '../layouts/Wrapper'
-import Menu from '../navbar/Menu'
+import Wrapper from '@components/layouts/Wrapper'
+import Menu from '@components/navbar/Menu'
 
 export default function Header() {
   return (

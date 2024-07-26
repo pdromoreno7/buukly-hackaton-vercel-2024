@@ -18,6 +18,9 @@ const config = {
     //   },
     // },
     extend: {
+      flex: {
+        'custom-carousel': '0 0 55%',
+      },
       colors: {
         dark: '#18181b',
         kiwi: {
