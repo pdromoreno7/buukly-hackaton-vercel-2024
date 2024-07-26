@@ -5,18 +5,13 @@
     "eslint-config-prettier",
     "prettier"
   ],
-  "plugins": [
-    "@typescript-eslint",
-    "eslint-plugin-import-helpers"
-  ],
+  "plugins": ["@typescript-eslint", "eslint-plugin-import-helpers"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module"
   },
-  "ignorePatterns": [
-    "/*.config.*"
-  ],
+  "ignorePatterns": ["/*.config.*"],
   "rules": {
     // Reglas personalizadas
     "import-helpers/order-imports": [
@@ -24,18 +19,11 @@
       {
         "newlinesBetween": "always",
         "groups": [
-          [
-            "/^next/",
-            "module"
-          ],
+          ["/^next/", "module"],
           "/^@/styles/",
           "/^@/components/",
           "/^@/lib/",
-          [
-            "parent",
-            "sibling",
-            "index"
-          ]
+          ["parent", "sibling", "index"]
         ],
         "alphabetize": {
           "order": "asc",
