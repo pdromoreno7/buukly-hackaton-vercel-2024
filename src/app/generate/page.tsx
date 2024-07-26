@@ -3,13 +3,14 @@ import { runGeminiObject } from '@/actions/generateTextActions'
 import { useBookStore } from '@/store'
 import { useState, ChangeEvent } from 'react'
 
+import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
 import Wrapper from '@/components/layouts/Wrapper'
 import Steps from '@/components/steps/Steps'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
 export default function Generate() {
   const [bookTitle, setBookTitle] = useState<string>('')
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const setBookData = useBookStore(state => state.setBookData)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -17,8 +18,10 @@ export default function Generate() {
   }
 
   const submitGenerateBook = async () => {
+    setIsLoading(true)
     const result = await runGeminiObject(bookTitle)
     setBookData(result?.recipe)
+    setIsLoading(false)
     console.log(result)
   }
 
@@ -39,18 +42,10 @@ export default function Generate() {
           />
 
           <div className='flex justify-center'>
-            <Button onClick={submitGenerateBook}>Generar</Button>
+            <ButtonLoading onClick={submitGenerateBook} isLoading={isLoading}>
+              Generar
+            </ButtonLoading>
           </div>
-
-          {/* <div className='relative'>
-            <textarea
-              name='description'
-              placeholder='Escribe algo que describa tu libro de manera corta y precisa...'
-              rows={8}
-              className='relative w-full rounded-md bg-white/5 px-3 py-2 text-sm outline-none transition focus:bg-white/10'
-            />
-            <ActionButton />
-          </div> */}
         </div>
       </div>
       <span className='pb-2 text-center text-xs text-gray-400'>
