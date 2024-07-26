@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='es'>
+    <html lang='es' className='light'>
       <body className={onest.className}>
         <Header />
         <main>{children}</main>
