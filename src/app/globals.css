@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  overflow-y: scroll;
+  overflow-y: hidden;
   scroll-behavior: smooth;
 }
 
@@ -15,12 +15,12 @@ body {
 body {
   @apply font-sans antialiased;
   @apply flex flex-col;
-  @apply text-gray-800 dark:text-white/75;
+  @apply text-gray-800 dark:text-white;
   @apply bg-white dark:bg-dark;
 }
 
 main {
-  @apply flex-1 py-10;
+  @apply flex-1;
 }
 
 p {
