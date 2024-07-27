@@ -1,6 +1,7 @@
 'use client'
 import { runGeminiObject } from '@/actions/generateTextActions'
 import { useBookStore } from '@/store'
+import { useRouter } from 'next/navigation'
 import { useState, ChangeEvent } from 'react'
 
 import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
@@ -9,6 +10,7 @@ import Steps from '@/components/steps/Steps'
 import { Input } from '@/components/ui/input'
 
 export default function Generate() {
+  const router = useRouter()
   const [bookTitle, setBookTitle] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const setBookData = useBookStore(state => state.setBookData)
@@ -22,6 +24,7 @@ export default function Generate() {
     const result = await runGeminiObject(bookTitle)
     setBookData(result?.recipe)
     setIsLoading(false)
+    router.push('/preview')
     console.log(result)
   }
 

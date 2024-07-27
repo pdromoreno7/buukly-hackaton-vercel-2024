@@ -20,7 +20,8 @@ body {
 }
 
 main {
-  @apply flex-1 py-10;
+  @apply flex-1;
+  /* @apply flex-1 py-10; */
 }
 
 p {

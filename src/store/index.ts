@@ -14,5 +14,5 @@ interface BookStore {
 export const useBookStore = create<BookStore>(set => ({
   dataEbook: { bookTitle: '', bookChapters: [], bookKeyWords: [] },
   setBookData: (data: BookData) =>
-    set(state => ({ dataEbook: { ...state.dataEbook, data } })),
+    set(state => ({ dataEbook: { ...state.dataEbook, ...data } })),
 }))

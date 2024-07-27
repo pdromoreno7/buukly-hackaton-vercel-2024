@@ -9,7 +9,7 @@ export default function Home() {
     <Wrapper>
       <section className='space-y-20 text-center md:space-y-10'>
         <div>
-          <h1 className='text-4xl font-extrabold'>Kiwibook</h1>
+          <h1 className='text-4xl font-extrabold'>Buukly</h1>
           <p className='mt-1 text-sm'>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis
             doloribus voluptatem magni.

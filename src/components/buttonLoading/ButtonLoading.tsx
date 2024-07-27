@@ -12,8 +12,6 @@ export function ButtonLoading({
   onClick,
   isLoading = false,
 }: ButtonLoadingProps) {
-  console.log('🚀 ~ isLoading:', isLoading)
-
   return (
     <Button disabled={isLoading} onClick={onClick}>
       {isLoading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
