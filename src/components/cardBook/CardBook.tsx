@@ -35,7 +35,7 @@ function CardBook({ bookTitle = 'title', bookDescription }: CardBookProps) {
     <Card className='w-10/12 md:max-w-96'>
       <CardHeader>
         <div
-          className={`flex h-56 w-full flex-col items-center justify-center rounded-lg bg-yellow-300 text-center`}
+          className={`flex h-40 w-full flex-col items-center justify-center rounded-lg bg-yellow-300 text-center`}
         >
           {coverImage.length > 0 ? (
             <img
@@ -51,7 +51,7 @@ function CardBook({ bookTitle = 'title', bookDescription }: CardBookProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <CardTitle className='text-xl'>{bookTitle}</CardTitle>
+        <CardTitle className='text-lg'>{bookTitle}</CardTitle>
         <CardDescription>{bookDescription}</CardDescription>
       </CardContent>
     </Card>

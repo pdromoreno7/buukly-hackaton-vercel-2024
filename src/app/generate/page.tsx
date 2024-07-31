@@ -1,9 +1,10 @@
 'use client'
 import { generateBookByTitle } from '@/actions/generateObjetcContent'
 import { useBookStore } from '@/store'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 import { useState, ChangeEvent } from 'react'
 
+import BookPreview from '@/components/bookPreview/BookPreview'
 import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
@@ -11,7 +12,8 @@ import Steps from '@/components/steps/Steps'
 import { Input } from '@/components/ui/input'
 
 export default function Generate() {
-  const router = useRouter()
+  // const router = useRouter()
+  const [showPreviewBook, setShowPreviewBook] = useState<boolean>(false)
   const [bookTitle, setBookTitle] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const setBookData = useBookStore(state => state.setBookData)
@@ -25,8 +27,16 @@ export default function Generate() {
     const result = await generateBookByTitle(bookTitle)
     setBookData(result?.recipe)
     setIsLoading(false)
-    router.push('/preview')
+    setShowPreviewBook(!showPreviewBook)
   }
+  if (!showPreviewBook)
+    return (
+      <BookPreview
+        setShowPreviewBook={setShowPreviewBook}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
+    )
 
   return (
     <Wrapper className='py-8 lg:py-16'>
