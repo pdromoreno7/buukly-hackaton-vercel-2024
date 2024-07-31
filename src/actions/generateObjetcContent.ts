@@ -13,7 +13,7 @@ import {
 
 import { getObjectByModelAi } from './aiGenerators'
 
-export async function generateBookByTitle(
+export async function generateDataBookByTitle(
   title: string,
 ): Promise<BookGenerationResponse> {
   return getObjectByModelAi(

@@ -1,5 +1,5 @@
 'use client'
-import { generateBookByTitle } from '@/actions/generateObjetcContent'
+import { generateDataBookByTitle } from '@/actions/generateObjetcContent'
 import { useBookStore } from '@/store'
 // import { useRouter } from 'next/navigation'
 import { useState, ChangeEvent } from 'react'
@@ -24,7 +24,7 @@ export default function Generate() {
 
   const submitGenerateBook = async () => {
     setIsLoading(true)
-    const result = await generateBookByTitle(bookTitle)
+    const result = await generateDataBookByTitle(bookTitle)
     setBookData(result?.recipe)
     setIsLoading(false)
     setShowPreviewBook(!showPreviewBook)
