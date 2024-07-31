@@ -1,7 +1,5 @@
 'use client'
-
-import { generateKeyWordByTitle } from '@/actions/generateObjetcContent'
-import axios from 'axios'
+import { getImageCover } from '@/actions/generateImagenCover'
 import { useEffect, useState } from 'react'
 
 import {
@@ -16,34 +14,15 @@ interface CardBookProps {
   bookTitle: string
   bookDescription?: string
 }
-const API_KEY = process.env.NEXT_PUBLIC_API_PEXELS_KEY
 
 function CardBook({ bookTitle = 'title', bookDescription }: CardBookProps) {
   const [coverImage, setCoverImage] = useState<string>('')
-  const getImageCover = async (title: string) => {
-    try {
-      const { recipe } = await generateKeyWordByTitle(title)
-      const { keyWordByTitle } = recipe
-      const response = await axios.get(
-        `https://api.pexels.com/v1/search?query=${keyWordByTitle}&per_page=1`,
-        {
-          headers: {
-            Authorization: API_KEY,
-          },
-        },
-      )
-      return response.data.photos
-    } catch (err) {
-      throw new Error('Failed to fetch images')
-    }
-  }
 
   useEffect(() => {
     if (!bookTitle) return
     const fetchImages = async () => {
       try {
-        const fetchedImages = await getImageCover(bookTitle)
-        const { portrait } = fetchedImages[0].src
+        const { portrait } = await getImageCover(bookTitle)
         setCoverImage(portrait)
       } catch (err) {
         throw new Error('Failed to fetch images')
