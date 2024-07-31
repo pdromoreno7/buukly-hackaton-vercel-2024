@@ -3,22 +3,19 @@ import { google } from '@ai-sdk/google'
 import { generateObject } from 'ai'
 import { z } from 'zod'
 
-import { generateBookTitleAndChaptersPrompt } from '@/lib/promps'
-export async function runGeminiObject(query: string): Promise<{
-  recipe: { bookTitle: string; bookChapters: string[]; bookKeyWords: string[] }
+import { generateKeyWordToCoverBookPrompt } from '@/lib/promps'
+export async function generateKeyWordToCoverBook(title: string): Promise<{
+  recipe: { keyWordByTitle: string }
 }> {
   try {
     const { object } = await generateObject({
       model: google('models/gemini-1.5-pro'),
       schema: z.object({
         recipe: z.object({
-          bookTitle: z.string(),
-          bookDescription: z.string(),
-          bookChapters: z.array(z.string()),
-          bookKeyWords: z.array(z.string()),
+          keyWordByTitle: z.string(),
         }),
       }),
-      prompt: generateBookTitleAndChaptersPrompt(query),
+      prompt: generateKeyWordToCoverBookPrompt(title),
     })
 
     return object
