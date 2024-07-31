@@ -1,7 +1,6 @@
 'use client'
 import { generateDataBookByTitle } from '@/actions/generateObjetcContent'
 import { useBookStore } from '@/store'
-// import { useRouter } from 'next/navigation'
 import { useState, ChangeEvent } from 'react'
 
 import BookPreview from '@/components/bookPreview/BookPreview'
@@ -12,7 +11,6 @@ import Steps from '@/components/steps/Steps'
 import { Input } from '@/components/ui/input'
 
 export default function Generate() {
-  // const router = useRouter()
   const [showPreviewBook, setShowPreviewBook] = useState<boolean>(false)
   const [bookTitle, setBookTitle] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
