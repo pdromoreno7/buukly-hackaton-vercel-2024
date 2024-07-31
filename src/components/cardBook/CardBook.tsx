@@ -1,5 +1,6 @@
 'use client'
-import { generateKeyWordToCoverBook } from '@/actions/generateKeyWordToCoverBook'
+
+import { generateKeyWordByTitle } from '@/actions/generateObjetcContent'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
@@ -7,7 +8,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  //   CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
@@ -22,7 +22,7 @@ function CardBook({ bookTitle = 'title', bookDescription }: CardBookProps) {
   const [coverImage, setCoverImage] = useState<string>('')
   const getImageCover = async (title: string) => {
     try {
-      const { recipe } = await generateKeyWordToCoverBook(title)
+      const { recipe } = await generateKeyWordByTitle(title)
       const { keyWordByTitle } = recipe
       const response = await axios.get(
         `https://api.pexels.com/v1/search?query=${keyWordByTitle}&per_page=1`,
@@ -53,7 +53,7 @@ function CardBook({ bookTitle = 'title', bookDescription }: CardBookProps) {
     fetchImages()
   }, [bookTitle])
   return (
-    <Card className='w-10/12'>
+    <Card className='w-10/12 md:max-w-96'>
       <CardHeader>
         <div
           className={`flex h-56 w-full flex-col items-center justify-center rounded-lg bg-yellow-300 text-center`}
@@ -75,9 +75,6 @@ function CardBook({ bookTitle = 'title', bookDescription }: CardBookProps) {
         <CardTitle className='text-xl'>{bookTitle}</CardTitle>
         <CardDescription>{bookDescription}</CardDescription>
       </CardContent>
-      {/* <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter> */}
     </Card>
   )
 }
