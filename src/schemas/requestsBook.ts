@@ -14,6 +14,12 @@ export const KeyWordGenerationSchema = z.object({
     keyWordByTitle: z.string(),
   }),
 })
+export const chapterBookSchema = z.object({
+  recipe: z.object({
+    chapterText: z.string(),
+  }),
+})
 
 export type BookGenerationResponse = z.infer<typeof BookGenerationSchema>
 export type KeyWordGenerationResponse = z.infer<typeof KeyWordGenerationSchema>
+export type ChapterBookResponse = z.infer<typeof chapterBookSchema>

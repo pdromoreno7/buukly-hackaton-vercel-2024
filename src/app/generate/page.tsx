@@ -22,12 +22,18 @@ export default function Generate() {
 
   const submitGenerateBook = async () => {
     setIsLoading(true)
-    const result = await generateDataBookByTitle(bookTitle)
-    setBookData(result?.recipe)
-    setIsLoading(false)
-    setShowPreviewBook(!showPreviewBook)
+    try {
+      const result = await generateDataBookByTitle(bookTitle)
+      setBookData(result?.recipe)
+      setIsLoading(false)
+      setShowPreviewBook(!showPreviewBook)
+    } catch (error) {
+      console.error('Error generando libro:', error)
+    } finally {
+      setIsLoading(false)
+    }
   }
-  if (!showPreviewBook)
+  if (showPreviewBook)
     return (
       <BookPreview
         setShowPreviewBook={setShowPreviewBook}

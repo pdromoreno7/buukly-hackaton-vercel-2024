@@ -2,12 +2,15 @@
 import {
   BookGenerationResponse,
   BookGenerationSchema,
+  ChapterBookResponse,
+  chapterBookSchema,
   KeyWordGenerationResponse,
   KeyWordGenerationSchema,
 } from '@/schemas/requestsBook'
 
 import {
   generateBookTitleAndChaptersPrompt,
+  generateChapterTextPrompt,
   generateKeyWordToCoverBookPrompt,
 } from '@/lib/promps'
 
@@ -28,5 +31,16 @@ export async function generateKeyWordByTitle(
   return getObjectByModelAi(
     KeyWordGenerationSchema,
     generateKeyWordToCoverBookPrompt(title),
+  )
+}
+
+export async function generateChapterText(
+  chapterTitle: string,
+  bookTitle: string,
+  keyWordsTitle: string,
+): Promise<ChapterBookResponse> {
+  return getObjectByModelAi(
+    chapterBookSchema,
+    generateChapterTextPrompt(chapterTitle, bookTitle, keyWordsTitle),
   )
 }

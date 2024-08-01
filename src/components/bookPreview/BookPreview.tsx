@@ -1,4 +1,5 @@
 'use client'
+import { generateAllChaptersContent } from '@/actions/generateChapterBook'
 import { useBookStore } from '@/store'
 
 import CardBook from '@/components/cardBook/CardBook'
@@ -21,8 +22,24 @@ function BookPreview({
 }: BookPreviewProps) {
   const dataEbook = useBookStore(state => state.dataEbook)
 
-  const submitGenerateBook = async () => {
+  const submitGenerateBookChapters = async () => {
     setIsLoading(true)
+    const keyWords = dataEbook.bookKeyWords.join(', ')
+    try {
+      const chaptersWithContent = await generateAllChaptersContent(
+        dataEbook.bookChapters,
+        dataEbook.bookTitle,
+        keyWords,
+      )
+      console.log(
+        '🚀 ~ submitGenerateBookChapters ~ chaptersWithContent:',
+        chaptersWithContent,
+      )
+    } catch (error) {
+      console.error('Error generando capítulos:', error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -50,7 +67,10 @@ function BookPreview({
         </ol>
       </ScrollArea>
       <div className='my-5 flex w-full flex-col items-center justify-center gap-2'>
-        <ButtonLoading onClick={submitGenerateBook} isLoading={isLoading}>
+        <ButtonLoading
+          onClick={submitGenerateBookChapters}
+          isLoading={isLoading}
+        >
           Generar libro
         </ButtonLoading>
         <Button
