@@ -6,15 +6,16 @@ export default function Hero() {
   return (
     <section className='space-y-16 text-center md:space-y-10'>
       <div>
-        <strong className='text-kiwi-300'>Kiwibook</strong>
-        <h1 className='mt-1 text-4xl font-extrabold lg:text-5xl'>
-          Crea eBooks con IA
-        </h1>
-        <p className='mt-1 text-sm text-gray-100/70 lg:text-base lg:font-medium'>
+        {/* <strong>Buukly</strong> */}
+        <strong className='mt-1 text-4xl font-extrabold lg:text-5xl'>
+          Buukly
+        </strong>
+        <p className='mt-1 text-sm lg:text-base lg:font-medium'>
           ¿Qué libro quieres crear hoy?
         </p>
       </div>
       <Slider />
+
       <Button
         asChild
         className='group cursor-pointer rounded-full p-0 font-semibold'
