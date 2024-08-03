@@ -15,11 +15,15 @@ interface UseGenerateChaptersResult {
   ) => Promise<Chapter[]>
   currentChapter: string
   progress: number
+  counterChapters: number
+  totalChapters: number
   error: string | null
 }
 
 export function useGenerateChapters(): UseGenerateChaptersResult {
   const [currentChapter, setCurrentChapter] = useState<string>('')
+  const [counterChapters, setCounterChapters] = useState<number>(0)
+  const [totalChapters, setTotalChapters] = useState<number>(0)
   const [progress, setProgress] = useState<number>(0)
   const [error, setError] = useState<string | null>(null)
 
@@ -31,8 +35,10 @@ export function useGenerateChapters(): UseGenerateChaptersResult {
     ): Promise<Chapter[]> => {
       const chaptersWithContent: Chapter[] = []
       const failedChapters: string[] = []
+      setTotalChapters(chapterTitles.length)
 
       for (let i = 0; i < chapterTitles.length; i++) {
+        setCounterChapters(i)
         const chapterTitle = chapterTitles[i]
         setCurrentChapter(chapterTitle)
         setProgress(Math.round((i / chapterTitles.length) * 100))
@@ -78,13 +84,20 @@ export function useGenerateChapters(): UseGenerateChaptersResult {
           )
         }
       }
-
+      setCounterChapters(chapterTitles.length)
       setProgress(100)
-      setCurrentChapter('')
+      setCurrentChapter('Capitulos generados')
       return chaptersWithContent
     },
     [],
   )
 
-  return { generateChapters, currentChapter, progress, error }
+  return {
+    generateChapters,
+    currentChapter,
+    progress,
+    counterChapters,
+    totalChapters,
+    error,
+  }
 }

@@ -1,5 +1,6 @@
 'use client'
 import { generateDataBookByTitle } from '@/actions/generateObjetcContent'
+import { useGenerateChapters } from '@/hooks/useGenerateChapters'
 import { useBookStore } from '@/store'
 import { useState, ChangeEvent } from 'react'
 
@@ -7,6 +8,7 @@ import BookPreview from '@/components/bookPreview/BookPreview'
 import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
+import LoadingChaptersCreation from '@/components/loadingChaptersCreation/LoadingChaptersCreation'
 import Steps from '@/components/steps/Steps'
 import { Input } from '@/components/ui/input'
 
@@ -14,7 +16,16 @@ export default function Generate() {
   const [showPreviewBook, setShowPreviewBook] = useState<boolean>(false)
   const [bookTitle, setBookTitle] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const {
+    generateChapters,
+    currentChapter,
+    progress,
+    counterChapters,
+    totalChapters,
+  } = useGenerateChapters()
+
   const setBookData = useBookStore(state => state.setBookData)
+  const dataEbook = useBookStore(state => state.dataEbook)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
@@ -33,12 +44,42 @@ export default function Generate() {
       setIsLoading(false)
     }
   }
+  const submitGenerateBookChapters = async () => {
+    setIsLoading(true)
+    const keyWords = dataEbook.bookKeyWords.join(', ')
+    try {
+      const chaptersWithContent = await generateChapters(
+        dataEbook.bookChapters,
+        dataEbook.bookTitle,
+        keyWords,
+      )
+      console.log(
+        '🚀 ~ submitGenerateBookChapters ~ chaptersWithContent:',
+        chaptersWithContent,
+      )
+    } catch (error) {
+      console.error('Error generando capítulos:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+  if (progress > 0)
+    return (
+      <LoadingChaptersCreation
+        currentChapter={currentChapter}
+        progress={progress}
+        setShowPreviewBook={setShowPreviewBook}
+        totalChapters={totalChapters}
+        counterChapters={counterChapters}
+      />
+    )
   if (showPreviewBook)
     return (
       <BookPreview
         setShowPreviewBook={setShowPreviewBook}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
+        submitGenerateBookChapters={submitGenerateBookChapters}
       />
     )
 

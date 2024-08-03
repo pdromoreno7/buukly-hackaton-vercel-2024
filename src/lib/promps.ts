@@ -37,9 +37,9 @@ del libro electrónico llamado ${bookTitle} con las palabras clave ${keyWordsBoo
 Responde con el capítulo completo, EXCLUYENDO el título. título del capítulo. 
 Proporciona solo el contenido del capítulo.
 
-estructura: { chapterText: "" }. 
+Crea un json que tenga la siguiete estructura: { chapterText: "" }. 
 En chapterText sera un string donde pondras el  capítulo largo. 
-`
+Solo responde con el JSON. Respodome solo con el JSON no respondas más nada, solo el JSON.`
 
   return PROMPT_GENERATE_TITLE_SHAPTERS_BOOK
 }
