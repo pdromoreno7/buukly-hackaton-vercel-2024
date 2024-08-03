@@ -1,5 +1,8 @@
 'use client'
-import { generateDataBookByTitle } from '@/actions/generateObjetcContent'
+import {
+  generateColorBook,
+  generateDataBookByTitle,
+} from '@/actions/generateObjetcContent'
 import { useGenerateChapters } from '@/hooks/useGenerateChapters'
 import { useBookStore } from '@/store'
 import { useState, ChangeEvent } from 'react'
@@ -26,6 +29,7 @@ export default function Generate() {
   } = useGenerateChapters()
 
   const [inputSteps, setInputSteps] = useState<string>('')
+  const [colorBook, setColorBook] = useState<string>('')
   console.log(inputSteps)
   const setBookData = useBookStore(state => state.setBookData)
   const dataEbook = useBookStore(state => state.dataEbook)
@@ -43,6 +47,8 @@ export default function Generate() {
     setIsLoading(true)
     try {
       const result = await generateDataBookByTitle(bookTitle)
+      const resultColorBook = await generateColorBook(bookTitle)
+      setColorBook(resultColorBook?.recipe?.colorBook)
       setBookData(result?.recipe)
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)
@@ -97,6 +103,8 @@ export default function Generate() {
         isLoading={isLoading}
         setIsLoading={setIsLoading}
         submitGenerateBookChapters={submitGenerateBookChapters}
+        colorBook={colorBook}
+        titleBook={bookTitle}
       />
     )
 
