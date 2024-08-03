@@ -3,6 +3,7 @@ import { generateDataBookByTitle } from '@/actions/generateObjetcContent'
 import { useGenerateChapters } from '@/hooks/useGenerateChapters'
 import { useBookStore } from '@/store'
 import { useState, ChangeEvent } from 'react'
+import { toast } from 'sonner'
 
 import BookPreview from '@/components/bookPreview/BookPreview'
 import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
@@ -25,7 +26,7 @@ export default function Generate() {
   } = useGenerateChapters()
 
   const [inputSteps, setInputSteps] = useState<string>('')
-  console.log('🚀 ~ Generate ~ inputSteps:', inputSteps)
+  console.log(inputSteps)
   const setBookData = useBookStore(state => state.setBookData)
   const dataEbook = useBookStore(state => state.dataEbook)
 
@@ -46,7 +47,11 @@ export default function Generate() {
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)
     } catch (error) {
-      console.error('Error generando libro:', error)
+      if (error instanceof Error) {
+        toast.error(error.message)
+      } else {
+        toast.error('An unknown error occurred')
+      }
     } finally {
       setIsLoading(false)
     }
@@ -65,7 +70,12 @@ export default function Generate() {
         chaptersWithContent,
       )
     } catch (error) {
-      console.error('Error generando capítulos:', error)
+      if (error instanceof Error) {
+        toast.error(error.message)
+      } else {
+        toast.error('An unknown error occurred')
+        // console.error('Error generando capítulos:', error)
+      }
     } finally {
       setIsLoading(false)
     }
