@@ -1,5 +1,5 @@
 'use client'
-import { generateAllChaptersContent } from '@/actions/generateChapterBook'
+
 import { useBookStore } from '@/store'
 
 import CardBook from '@/components/cardBook/CardBook'
@@ -13,34 +13,15 @@ interface BookPreviewProps {
   isLoading: boolean
   setShowPreviewBook: (value: boolean) => void
   setIsLoading: (value: boolean) => void
+  submitGenerateBookChapters: () => void
 }
 
 function BookPreview({
   isLoading,
   setShowPreviewBook,
-  setIsLoading,
+  submitGenerateBookChapters,
 }: BookPreviewProps) {
   const dataEbook = useBookStore(state => state.dataEbook)
-
-  const submitGenerateBookChapters = async () => {
-    setIsLoading(true)
-    const keyWords = dataEbook.bookKeyWords.join(', ')
-    try {
-      const chaptersWithContent = await generateAllChaptersContent(
-        dataEbook.bookChapters,
-        dataEbook.bookTitle,
-        keyWords,
-      )
-      console.log(
-        '🚀 ~ submitGenerateBookChapters ~ chaptersWithContent:',
-        chaptersWithContent,
-      )
-    } catch (error) {
-      console.error('Error generando capítulos:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   return (
     <Wrapper className='lg:py-16'>

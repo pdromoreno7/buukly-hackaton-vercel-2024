@@ -42,5 +42,8 @@ export async function generateChapterText(
   return getObjectByModelAi(
     chapterBookSchema,
     generateChapterTextPrompt(chapterTitle, bookTitle, keyWordsTitle),
+    {
+      maxRetries: 3,
+    },
   )
 }
