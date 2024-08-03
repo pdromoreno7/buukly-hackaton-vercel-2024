@@ -1,6 +1,7 @@
 'use client'
 import { getImageCover } from '@/actions/generateImagenCover'
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 import {
   Card,
@@ -24,8 +25,12 @@ function CardBook({ bookTitle = 'title', bookDescription }: CardBookProps) {
       try {
         const { portrait } = await getImageCover(bookTitle)
         setCoverImage(portrait)
-      } catch (err) {
-        throw new Error('Failed to fetch images')
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message)
+        } else {
+          toast.error('An unknown error occurred')
+        }
       }
     }
 
