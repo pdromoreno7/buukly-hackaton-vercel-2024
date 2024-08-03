@@ -24,11 +24,18 @@ export default function Generate() {
     totalChapters,
   } = useGenerateChapters()
 
+  const [inputSteps, setInputSteps] = useState<string>('')
+  console.log('🚀 ~ Generate ~ inputSteps:', inputSteps)
   const setBookData = useBookStore(state => state.setBookData)
   const dataEbook = useBookStore(state => state.dataEbook)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
+  }
+
+  const handleSetInputSteps = (value: string) => {
+    setInputSteps(value)
+    setBookTitle(value) // Actualiza el título del libro cuando se actualiza inputSteps
   }
 
   const submitGenerateBook = async () => {
@@ -90,7 +97,7 @@ export default function Generate() {
           <h1 className='text-center text-2xl font-extrabold leading-tight lg:text-3xl'>
             ¿Qué libro quieres escribir hoy?
           </h1>
-          <Steps />
+          <Steps handleSetInputSteps={handleSetInputSteps} />
         </div>
         <div className='mt-auto flex gap-2'>
           <Input
