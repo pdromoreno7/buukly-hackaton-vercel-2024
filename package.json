@@ -21,6 +21,7 @@
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-scroll-area": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@react-pdf/renderer": "^3.4.4",
     "@types/jsdom": "21.1.7",
     "ai": "^3.2.35",
     "axios": "^1.7.2",
