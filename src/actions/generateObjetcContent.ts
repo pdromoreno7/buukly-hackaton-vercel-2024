@@ -2,22 +2,18 @@
 import {
   BookGenerationResponse,
   BookGenerationSchema,
-  // ChapterBookResponse,
-  // chapterBookSchema,
-  ColorBookResponse,
-  colorBookSchema,
   KeyWordGenerationResponse,
   KeyWordGenerationSchema,
 } from '@/schemas/requestsBook'
 
 import {
   generateBookTitleAndChaptersPrompt,
-  // generateChapterTextPrompt,
   generateColorBookPrompt,
   generateKeyWordToCoverBookPrompt,
 } from '@/lib/promps'
 
 import { getObjectByModelAi } from './aiObjectGenerators'
+import { getTextByModelAi } from './aiTextGenerators'
 
 export async function generateDataBookByTitle(
   title: string,
@@ -49,8 +45,6 @@ export async function generateKeyWordByTitle(
 // }
 
 // genera un color basado en el titulo del libro
-export async function generateColorBook(
-  bookTitle: string,
-): Promise<ColorBookResponse> {
-  return getObjectByModelAi(colorBookSchema, generateColorBookPrompt(bookTitle))
+export async function generateColorBook(bookTitle: string): Promise<string> {
+  return getTextByModelAi(bookTitle, generateColorBookPrompt(bookTitle))
 }
