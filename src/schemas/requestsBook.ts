@@ -19,11 +19,7 @@ export const chapterBookSchema = z.object({
     chapterText: z.string(),
   }),
 })
-export const colorBookSchema = z.object({
-  recipe: z.object({
-    colorBook: z.string(),
-  }),
-})
+export const colorBookSchema = z.string()
 
 export type BookGenerationResponse = z.infer<typeof BookGenerationSchema>
 export type KeyWordGenerationResponse = z.infer<typeof KeyWordGenerationSchema>

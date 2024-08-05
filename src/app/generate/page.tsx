@@ -48,7 +48,7 @@ export default function Generate() {
     try {
       const result = await generateDataBookByTitle(bookTitle)
       const resultColorBook = await generateColorBook(bookTitle)
-      setColorBook(resultColorBook?.recipe?.colorBook)
+      setColorBook(resultColorBook)
       setBookData(result?.recipe)
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)

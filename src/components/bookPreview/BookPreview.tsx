@@ -5,8 +5,8 @@ import { useBookStore } from '@/store'
 import Wrapper from '@/components/layouts/Wrapper'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
-import BookFrontPage from '../bookFrontPage/BookFrontPage'
 import { ButtonLoading } from '../buttonLoading/ButtonLoading'
+import CoverBook from '../coverBook/CoverBook'
 import { Button } from '../ui/button'
 
 interface BookPreviewProps {
@@ -30,7 +30,7 @@ function BookPreview({
   return (
     <Wrapper className='lg:py-16'>
       <div className='mb-7 flex justify-center'>
-        <BookFrontPage color={colorBook} title={titleBook} />
+        <CoverBook color={colorBook} title={titleBook} />
       </div>
       <ScrollArea className='mx-auto h-[300px] w-[100%] rounded-md border p-4'>
         <h2 className='mb-4 text-lg font-bold'>Capitulos:</h2>

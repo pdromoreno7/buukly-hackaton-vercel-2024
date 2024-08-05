@@ -5,7 +5,7 @@ type Props = {
   title: string
 }
 
-export default function BookFrontPage({ color, title }: Props) {
+export default function CoverBook({ color, title }: Props) {
   const { patternStyle, patternColor } = useMemo(() => {
     const isWarmColor = (hex: string): boolean => {
       const r: number = parseInt(hex.slice(1, 3), 16)
@@ -54,7 +54,7 @@ export default function BookFrontPage({ color, title }: Props) {
         </h2>
       </div>
       <div
-        className='absolute bottom-4 left-4 right-4 top-4 border'
+        className='absolute bottom-4 left-4 right-4 top-4 rounded border'
         style={{ borderColor: patternColor }}
       ></div>
     </div>
