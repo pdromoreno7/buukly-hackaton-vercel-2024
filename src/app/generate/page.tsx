@@ -31,8 +31,9 @@ export default function Generate() {
   const [inputSteps, setInputSteps] = useState<string>('')
   const [colorBook, setColorBook] = useState<string>('')
   console.log(inputSteps)
-  const setBookData = useBookStore(state => state.setBookData)
-  const dataEbook = useBookStore(state => state.dataEbook)
+  const { dataEbook, setBookData, setChaptersWithContent } = useBookStore()
+  // const setBookData = useBookStore(state => state.setBookData)
+  // const dataEbook = useBookStore(state => state.dataEbook)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
@@ -66,14 +67,15 @@ export default function Generate() {
     setIsLoading(true)
     const keyWords = dataEbook.bookKeyWords.join(', ')
     try {
-      const chaptersWithContent = await generateChapters(
+      const chaptersWithContentResult = await generateChapters(
         dataEbook.bookChapters,
         dataEbook.bookTitle,
         keyWords,
       )
+      setChaptersWithContent(chaptersWithContentResult)
       console.log(
         '🚀 ~ submitGenerateBookChapters ~ chaptersWithContent:',
-        chaptersWithContent,
+        chaptersWithContentResult,
       )
     } catch (error) {
       if (error instanceof Error) {
