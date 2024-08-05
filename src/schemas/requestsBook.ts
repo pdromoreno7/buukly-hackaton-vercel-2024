@@ -14,6 +14,7 @@ export const KeyWordGenerationSchema = z.object({
     keyWordByTitle: z.string(),
   }),
 })
+
 export const chapterBookSchema = z.object({
   recipe: z.object({
     chapterText: z.string(),
