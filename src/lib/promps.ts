@@ -28,18 +28,11 @@ export const generateChapterTextPrompt = (
   keyWordsBook: string,
 ) => {
   const PROMPT_GENERATE_TITLE_SHAPTERS_BOOK = `
-Eres un escritor profesional de libros electrónicos con 20 años de experiencia. 
-Tu estilo es claro, conciso y mantiene un tono formal.
-Redactas títulos de libros electrónicos increíblemente convincentes: 
-
-Escribe un capítulo largo, detallado, muy atractivo e instructivo titulado ${chapterTitle}, 
+Escribe todo un capítulo, detallado, muy atractivo e instructivo titulado ${chapterTitle}, 
 del libro electrónico llamado ${bookTitle} con las palabras clave ${keyWordsBook}. 
 Responde con el capítulo completo, EXCLUYENDO el título. título del capítulo. 
 Proporciona solo el contenido del capítulo.
-
-Crea un json que tenga la siguiete estructura: { chapterText: "" }. 
-En chapterText sera un string donde pondras el  capítulo largo. 
-Solo responde con el JSON. Respodome solo con el JSON no respondas más nada, solo el JSON.`
+`
 
   return PROMPT_GENERATE_TITLE_SHAPTERS_BOOK
 }

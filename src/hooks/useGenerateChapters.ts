@@ -1,5 +1,5 @@
 'use client'
-import { generateChapterText } from '@/actions/generateObjetcContent'
+import { generateChapterText } from '@/actions/generateTextContent'
 import { useState, useCallback } from 'react'
 
 interface Chapter {
@@ -44,14 +44,14 @@ export function useGenerateChapters(): UseGenerateChaptersResult {
         setProgress(Math.round((i / chapterTitles.length) * 100))
 
         try {
-          const chapterResult = await generateChapterText(
+          const chapterTextResult = await generateChapterText(
             chapterTitle,
             bookTitle,
             keyWordsTitle,
           )
           chaptersWithContent.push({
             chapterTitle,
-            text: chapterResult.recipe.chapterText,
+            text: chapterTextResult,
           })
         } catch (err) {
           console.error(`Error generating chapter "${chapterTitle}":`, err)
@@ -64,14 +64,14 @@ export function useGenerateChapters(): UseGenerateChaptersResult {
       for (const failedChapter of failedChapters) {
         setCurrentChapter(`Reintentando: ${failedChapter}`)
         try {
-          const chapterResult = await generateChapterText(
+          const chapterTextResult = await generateChapterText(
             failedChapter,
             bookTitle,
             keyWordsTitle,
           )
           chaptersWithContent.push({
             chapterTitle: failedChapter,
-            text: chapterResult.recipe.chapterText,
+            text: chapterTextResult,
           })
           setError(null)
         } catch (err) {
