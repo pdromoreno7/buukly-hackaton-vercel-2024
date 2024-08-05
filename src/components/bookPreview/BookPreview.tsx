@@ -2,10 +2,10 @@
 
 import { useBookStore } from '@/store'
 
-import CardBook from '@/components/cardBook/CardBook'
 import Wrapper from '@/components/layouts/Wrapper'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
+import BookFrontPage from '../bookFrontPage/BookFrontPage'
 import { ButtonLoading } from '../buttonLoading/ButtonLoading'
 import { Button } from '../ui/button'
 
@@ -14,22 +14,23 @@ interface BookPreviewProps {
   setShowPreviewBook: (value: boolean) => void
   setIsLoading: (value: boolean) => void
   submitGenerateBookChapters: () => void
+  colorBook: string
+  titleBook: string
 }
 
 function BookPreview({
   isLoading,
   setShowPreviewBook,
   submitGenerateBookChapters,
+  colorBook,
+  titleBook,
 }: BookPreviewProps) {
   const dataEbook = useBookStore(state => state.dataEbook)
 
   return (
     <Wrapper className='lg:py-16'>
       <div className='mb-7 flex justify-center'>
-        <CardBook
-          bookTitle={dataEbook?.bookTitle}
-          bookDescription={dataEbook?.bookDescription}
-        />
+        <BookFrontPage color={colorBook} title={titleBook} />
       </div>
       <ScrollArea className='mx-auto h-[300px] w-[100%] rounded-md border p-4'>
         <h2 className='mb-4 text-lg font-bold'>Capitulos:</h2>

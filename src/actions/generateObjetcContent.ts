@@ -4,6 +4,8 @@ import {
   BookGenerationSchema,
   ChapterBookResponse,
   chapterBookSchema,
+  ColorBookResponse,
+  colorBookSchema,
   KeyWordGenerationResponse,
   KeyWordGenerationSchema,
 } from '@/schemas/requestsBook'
@@ -11,6 +13,7 @@ import {
 import {
   generateBookTitleAndChaptersPrompt,
   generateChapterTextPrompt,
+  generateColorBookPrompt,
   generateKeyWordToCoverBookPrompt,
 } from '@/lib/promps'
 
@@ -43,4 +46,11 @@ export async function generateChapterText(
     chapterBookSchema,
     generateChapterTextPrompt(chapterTitle, bookTitle, keyWordsTitle),
   )
+}
+
+// genera un color basado en el titulo del libro
+export async function generateColorBook(
+  bookTitle: string,
+): Promise<ColorBookResponse> {
+  return getObjectByModelAi(colorBookSchema, generateColorBookPrompt(bookTitle))
 }

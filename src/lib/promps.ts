@@ -43,3 +43,17 @@ Solo responde con el JSON. Respodome solo con el JSON no respondas más nada, so
 
   return PROMPT_GENERATE_TITLE_SHAPTERS_BOOK
 }
+export const generateColorBookPrompt = (bookTitle: string) => {
+  const PROMPT_GENERATE_COLOR_BOOK = `
+Eres un escritor profesional de libros electrónicos con 20 años de experiencia. 
+Tu estilo es claro, conciso y mantiene un tono formal.
+Redactas títulos de libros electrónicos increíblemente convincentes: 
+
+Genera un color en formato hexadecimal, basandote en el ${bookTitle}.
+
+Crea un json que tenga la siguiete estructura: { colorBook: "" }. 
+En colorBook sera un string donde pondras el color hexadecimal. 
+Solo responde con el JSON. Respodome solo con el JSON no respondas más nada, solo el JSON.`
+
+  return PROMPT_GENERATE_COLOR_BOOK
+}
