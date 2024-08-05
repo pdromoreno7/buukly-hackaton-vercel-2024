@@ -9,7 +9,9 @@ interface BookData {
 
 interface BookStore {
   dataEbook: BookData
+  bookCoverColor: string
   setBookData: (data: BookData) => void
+  setBookCoverColor: (color: string) => void
 }
 
 export const useBookStore = create<BookStore>(set => ({
@@ -19,6 +21,8 @@ export const useBookStore = create<BookStore>(set => ({
     bookChapters: [],
     bookKeyWords: [],
   },
+  bookCoverColor: '',
   setBookData: (data: BookData) =>
     set(state => ({ dataEbook: { ...state.dataEbook, ...data } })),
+  setBookCoverColor: color => set({ bookCoverColor: color }),
 }))

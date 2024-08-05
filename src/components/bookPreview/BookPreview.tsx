@@ -14,7 +14,6 @@ interface BookPreviewProps {
   setShowPreviewBook: (value: boolean) => void
   setIsLoading: (value: boolean) => void
   submitGenerateBookChapters: () => void
-  colorBook: string
   titleBook: string
 }
 
@@ -22,7 +21,6 @@ function BookPreview({
   isLoading,
   setShowPreviewBook,
   submitGenerateBookChapters,
-  colorBook,
   titleBook,
 }: BookPreviewProps) {
   const dataEbook = useBookStore(state => state.dataEbook)
@@ -30,10 +28,10 @@ function BookPreview({
   return (
     <Wrapper className='lg:py-16'>
       <div className='mb-7 flex justify-center'>
-        <CoverBook color={colorBook} title={titleBook} />
+        <CoverBook title={titleBook} />
       </div>
       <ScrollArea className='mx-auto h-[300px] w-[100%] rounded-md border p-4'>
-        <h2 className='mb-4 text-lg font-bold'>Capitulos:</h2>
+        <h2 className='text-lg mb-4 font-bold'>Capitulos:</h2>
         <ol className='list-inside space-y-3'>
           {dataEbook.bookChapters.map((chapter, index) => (
             <div key={index}>

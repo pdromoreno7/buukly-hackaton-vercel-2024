@@ -1,9 +1,12 @@
+import { useBookStore } from '@/store'
+
 type Props = {
-  color: string
   title: string
 }
 
-export default function CoverBook({ color, title }: Readonly<Props>) {
+export default function CoverBook({ title }: Readonly<Props>) {
+  const color = useBookStore(state => state.bookCoverColor)
+
   console.log(color, 'color')
   return (
     <div className='flex h-96 w-64 flex-col overflow-hidden rounded bg-white shadow-md'>
