@@ -23,25 +23,38 @@ export const MENU_ENTRIES = [
 
 export const STEPS = [
   {
-    title: 'Paso 1',
-    description:
-      'Escoge un titulo para tu libro, asegurate que no sea muy largo.',
+    title: 'Sugerencia 1',
+    description: 'Introducción a la programación web',
     icon: 'SparklesIcon',
   },
   {
     title: 'Paso 2',
-    description:
-      'Escribe algo que describa tu libro de manera corta y precisa.',
+    description: 'Fundamentos de diseño.',
     icon: 'SparklesIcon',
   },
   {
     title: 'Paso 3',
-    description: 'Agrega una portada a tu libro.',
+    description: '⁠Introducción a la computación en la nube.',
     icon: 'SparklesIcon',
   },
 ]
 
 export const QUESTIONS = [
+  {
+    title: '¿Cómo puedo generar un nuevo libro con Buukly?',
+    content:
+      'Para generar un nuevo libro, ve a la sección "Crear Libro" en tu dashboard. Allí podrás seleccionar el género, tema y longitud deseada. Luego, sigue las instrucciones para personalizar tu historia y la IA de Buukly generará tu libro único.',
+  },
+  {
+    title: '¿Puedo editar el contenido generado por la IA?',
+    content:
+      'Sí, puedes editar el contenido generado por la IA. Una vez que tu libro esté listo, tendrás acceso a un editor en línea donde podrás realizar cambios, añadir contenido adicional o refinar la historia según tus preferencias.',
+  },
+  {
+    title: '¿Cuánto tiempo tarda en generarse un libro?',
+    content:
+      'El tiempo de generación varía dependiendo de la longitud y complejidad del libro. Típicamente, un libro corto puede estar listo en unos 15-30 minutos, mientras que una novela más larga podría tardar entre 1-2 horas. Te notificaremos por correo electrónico cuando tu libro esté listo.',
+  },
   {
     title: '¿Cómo puedo cambiar mi contraseña?',
     content:
