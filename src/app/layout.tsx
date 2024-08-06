@@ -8,7 +8,7 @@ import Header from '@/components/header/Header'
 const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Kiwibook',
+  title: 'Buukly',
   description: 'A description...',
 }
 

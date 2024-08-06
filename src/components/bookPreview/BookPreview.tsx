@@ -29,7 +29,7 @@ function BookPreview({
       <div className='mb-7 flex justify-center'>
         <CoverBook />
       </div>
-      <ScrollArea className='mx-auto h-[300px] w-[100%] rounded-2xl bg-gray-100 p-4 dark:bg-white/5'>
+      <ScrollArea className='mx-auto h-[300px] w-[100%] rounded-2xl bg-gray-100 p-4 dark:bg-white/5 dark:text-gray-200'>
         <h2 className='mb-4 text-lg font-bold'>Capitulos:</h2>
         <ol className='list-inside space-y-3'>
           {dataEbook.bookChapters.map((chapter, index) => (
@@ -39,7 +39,7 @@ function BookPreview({
                 {chapter}
               </li>
               {index < dataEbook.bookChapters.length - 1 && (
-                <hr className='my-2 border-gray-100' />
+                <hr className='my-2 dark:border-white/15' />
               )}
             </div>
           ))}
