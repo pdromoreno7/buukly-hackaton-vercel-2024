@@ -117,7 +117,7 @@ export default function Generate() {
         </div>
         <div className='mt-auto flex gap-2'>
           <Input
-            className='rounded-full border-none bg-gray-100 px-5 transition-colors duration-200 focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-white/5 dark:hover:bg-white/10 dark:focus:bg-white/15'
+            className='rounded-full border-none bg-gray-100 px-5 transition-colors duration-200 focus:bg-gray-200 focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-white/5 dark:hover:bg-white/10 dark:focus:bg-white/15'
             placeholder='Un titulo corto para tu libro...'
             value={bookTitle}
             onChange={handleInputChange}
@@ -131,7 +131,7 @@ export default function Generate() {
             Generar
           </ButtonLoading>
         </div>
-        <span className='mt-3 text-center text-xs text-gray-100/80'>
+        <span className='mt-8 text-center text-xs text-gray-500 dark:text-white/80'>
           Al hacer uso de esta app, acepta nuestros Términos de servicio y
           Política de privacidad.
         </span>
