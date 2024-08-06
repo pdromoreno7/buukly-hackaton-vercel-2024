@@ -86,7 +86,8 @@ export default function Generate() {
       setIsLoading(false)
     }
   }
-  if (true) return <BookResult colorBook={colorBook} titleBook={bookTitle} />
+  if (progress === 100)
+    return <BookResult colorBook={colorBook} titleBook={bookTitle} />
   if (progress > 0)
     return (
       <LoadingChaptersCreation
