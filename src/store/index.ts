@@ -17,6 +17,8 @@ interface BookStore {
   dataEbook: BookData
   setBookData: (data: Partial<BookData>) => void
   setChaptersWithContent: (chapters: Chapter[]) => void
+  bookCoverColor: string
+  setBookCoverColor: (color: string) => void
 }
 
 export const useBookStore = create<BookStore>(set => ({
@@ -27,10 +29,12 @@ export const useBookStore = create<BookStore>(set => ({
     bookKeyWords: [],
     chaptersWithContent: [],
   },
+  bookCoverColor: '',
   setBookData: (data: Partial<BookData>) =>
     set(state => ({ dataEbook: { ...state.dataEbook, ...data } })),
   setChaptersWithContent: (chapters: Chapter[]) =>
     set(state => ({
       dataEbook: { ...state.dataEbook, chaptersWithContent: chapters },
     })),
+  setBookCoverColor: color => set({ bookCoverColor: color }),
 }))
