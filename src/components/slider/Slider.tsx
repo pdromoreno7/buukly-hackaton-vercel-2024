@@ -1,4 +1,5 @@
 'use client'
+import { EmblaCarouselType, EmblaEventType } from 'embla-carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 import { useCallback, useEffect, useRef } from 'react'
@@ -36,55 +37,56 @@ export default function Slider() {
   ])
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
-  // const resp = fetch('https://potterapi-fedeperin.vercel.app/es/books').then((res) => res.json())
-  // const data = resp.then((data) => data.map((book: Books, index: number) => ({ ...book, index })))
-  const setTweenNodes = useCallback((emblaApi): void => {
+  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
     tweenNodes.current = emblaApi.slideNodes().map(slideNode => {
       return slideNode.querySelector('.carousel__slide__card') as HTMLElement
     })
   }, [])
 
-  const setTweenFactor = useCallback(emblaApi => {
+  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
   }, [])
 
-  const tweenScale = useCallback((emblaApi, eventName?: EmblaEventType) => {
-    const engine = emblaApi.internalEngine()
-    const scrollProgress = emblaApi.scrollProgress()
-    const slidesInView = emblaApi.slidesInView()
-    const isScrollEvent = eventName === 'scroll'
+  const tweenScale = useCallback(
+    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
+      const engine = emblaApi.internalEngine()
+      const scrollProgress = emblaApi.scrollProgress()
+      const slidesInView = emblaApi.slidesInView()
+      const isScrollEvent = eventName === 'scroll'
 
-    emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-      let diffToTarget = scrollSnap - scrollProgress
-      const slidesInSnap = engine.slideRegistry[snapIndex]
+      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+        let diffToTarget = scrollSnap - scrollProgress
+        const slidesInSnap = engine.slideRegistry[snapIndex]
 
-      slidesInSnap.forEach(slideIndex => {
-        if (isScrollEvent && !slidesInView.includes(slideIndex)) return
+        slidesInSnap.forEach(slideIndex => {
+          if (isScrollEvent && !slidesInView.includes(slideIndex)) return
 
-        if (engine.options.loop) {
-          engine.slideLooper.loopPoints.forEach(loopItem => {
-            const target = loopItem.target()
+          if (engine.options.loop) {
+            engine.slideLooper.loopPoints.forEach(loopItem => {
+              const target = loopItem.target()
 
-            if (slideIndex === loopItem.index && target !== 0) {
-              const sign = Math.sign(target)
+              if (slideIndex === loopItem.index && target !== 0) {
+                const sign = Math.sign(target)
 
-              if (sign === -1) {
-                diffToTarget = scrollSnap - (1 + scrollProgress)
+                if (sign === -1) {
+                  diffToTarget = scrollSnap - (1 + scrollProgress)
+                }
+                if (sign === 1) {
+                  diffToTarget = scrollSnap + (1 - scrollProgress)
+                }
               }
-              if (sign === 1) {
-                diffToTarget = scrollSnap + (1 - scrollProgress)
-              }
-            }
-          })
-        }
+            })
+          }
 
-        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
-        const scale = numberWithinRange(tweenValue, 0, 1).toString()
-        const tweenNode = tweenNodes.current[slideIndex]
-        tweenNode.style.transform = `scale(${scale})`
+          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
+          const scale = numberWithinRange(tweenValue, 0, 1).toString()
+          const tweenNode = tweenNodes.current[slideIndex]
+          tweenNode.style.transform = `scale(${scale})`
+        })
       })
-    })
-  }, [])
+    },
+    [],
+  )
 
   useEffect(() => {
     if (!emblaApi) return
@@ -102,7 +104,7 @@ export default function Slider() {
   }, [emblaApi, tweenScale])
 
   return (
-    <div className='carousel_wrapper'>
+    <div className='carousel_wrapper lg:hidden'>
       <div className='carousel__viewport' ref={emblaRef}>
         <div className='carousel__container'>
           {BOOKS.map(book => (
