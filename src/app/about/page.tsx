@@ -57,6 +57,20 @@ export default function About() {
         </div>
       </Section>
 
+      <p className='mb-6 text-center text-xss'>
+        Prohibición de Venta y Reproducción: Está prohibida la venta,
+        distribución o reproducción no autorizada de los libros generados a
+        través de Buukly. Los libros deben usarse exclusivamente para fines
+        personales o educativos. Restricciones en la Creación de Libros: No está
+        permitido crear libros que incluyan contenido de otros autores sin su
+        autorización. Los usuarios deben asegurarse de que todo el contenido
+        generado no infrinja los derechos de propiedad intelectual de terceros.
+        Responsabilidad del Usuario: El usuario es responsable de garantizar que
+        el contenido de los libros generados cumpla con todas las leyes de
+        derechos de autor y propiedad intelectual. Buukly no asume
+        responsabilidad por el uso indebido del contenido creado.
+      </p>
+
       <footer className='mt-12 py-8 text-white'>
         <div className='mx-auto max-w-3xl text-center'>
           <h2 className='text-2xl mb-4 font-semibold'>Contacto</h2>

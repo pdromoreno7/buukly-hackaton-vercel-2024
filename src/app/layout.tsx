@@ -4,6 +4,7 @@ import { Toaster } from 'sonner'
 
 import './globals.css'
 import Header from '@/components/header/Header'
+import { ThemeProvider } from '@/components/theme-provider'
 
 const onest = Onest({ subsets: ['latin'] })
 
@@ -25,7 +26,14 @@ export default function RootLayout({
         </div> */}
         {/* <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div> */}
         <Header />
-        <main>{children}</main>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main>{children}</main>
+        </ThemeProvider>
         <Toaster position='top-center' richColors />
       </body>
     </html>
