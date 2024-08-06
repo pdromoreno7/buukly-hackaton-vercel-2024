@@ -17,9 +17,9 @@ const config = {
     //     "2xl": "1400px",
     //   },
     // },
-    fontSize: {
-      xss: '0.6rem',
-    },
+    // fontSize: {
+    //   xss: '0.6rem',
+    // },
     extend: {
       flex: {
         'custom-carousel': '0 0 55%',
