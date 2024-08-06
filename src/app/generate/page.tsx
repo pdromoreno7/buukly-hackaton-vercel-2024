@@ -29,10 +29,10 @@ export default function Generate() {
   } = useGenerateChapters()
 
   const [inputSteps, setInputSteps] = useState<string>('')
-  const [colorBook, setColorBook] = useState<string>('')
   console.log(inputSteps)
   const setBookData = useBookStore(state => state.setBookData)
   const dataEbook = useBookStore(state => state.dataEbook)
+  const setBookCoverColor = useBookStore(state => state.setBookCoverColor)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
@@ -48,7 +48,7 @@ export default function Generate() {
     try {
       const result = await generateDataBookByTitle(bookTitle)
       const resultColorBook = await generateColorBook(bookTitle)
-      setColorBook(resultColorBook?.recipe?.colorBook)
+      setBookCoverColor(resultColorBook)
       setBookData(result?.recipe)
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)
@@ -103,7 +103,6 @@ export default function Generate() {
         isLoading={isLoading}
         setIsLoading={setIsLoading}
         submitGenerateBookChapters={submitGenerateBookChapters}
-        colorBook={colorBook}
         titleBook={bookTitle}
       />
     )
@@ -112,7 +111,7 @@ export default function Generate() {
     <Wrapper className='py-8 lg:py-16'>
       <Section className='mx-auto flex h-full max-w-lg grow flex-col justify-between'>
         <div className='flex flex-col gap-5 lg:gap-6'>
-          <h1 className='text-center text-2xl font-extrabold leading-tight lg:text-3xl'>
+          <h1 className='text-2xl lg:text-3xl text-center font-extrabold leading-tight'>
             ¿Qué libro quieres escribir hoy?
           </h1>
           <Steps handleSetInputSteps={handleSetInputSteps} />
@@ -133,7 +132,7 @@ export default function Generate() {
             Generar
           </ButtonLoading>
         </div>
-        <span className='mt-3 text-center text-xs text-gray-100/80'>
+        <span className='text-xs mt-3 text-center text-gray-100/80'>
           Al hacer uso de esta app, acepta nuestros Términos de servicio y
           Política de privacidad.
         </span>

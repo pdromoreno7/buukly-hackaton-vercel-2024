@@ -44,9 +44,9 @@ Redactas títulos de libros electrónicos increíblemente convincentes:
 
 Genera un color en formato hexadecimal, basandote en el ${bookTitle}.
 
-Crea un json que tenga la siguiete estructura: { colorBook: "" }. 
+Crea un hexadecimal que tenga la siguiete estructura: colorBook: "" . 
 En colorBook sera un string donde pondras el color hexadecimal. 
-Solo responde con el JSON. Respodome solo con el JSON no respondas más nada, solo el JSON.`
+Solo responde con el hexadecimal. Respodome solo con el hexadecimal no respondas más nada, solo el hexadecimal.`
 
   return PROMPT_GENERATE_COLOR_BOOK
 }
