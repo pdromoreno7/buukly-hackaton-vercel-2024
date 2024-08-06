@@ -25,15 +25,15 @@ export const STEPS = [
   {
     title: 'Sugerencia 1',
     description: 'Introducción a la programación web',
-    icon: 'SparklesIcon',
+    icon: 'Code',
   },
   {
-    title: 'Paso 2',
+    title: 'Sugerencia 2',
     description: 'Fundamentos de diseño.',
     icon: 'SparklesIcon',
   },
   {
-    title: 'Paso 3',
+    title: 'Sugerencia 3',
     description: '⁠Introducción a la computación en la nube.',
     icon: 'SparklesIcon',
   },
