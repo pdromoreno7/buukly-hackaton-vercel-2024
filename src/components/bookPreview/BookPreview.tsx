@@ -21,17 +21,16 @@ function BookPreview({
   isLoading,
   setShowPreviewBook,
   submitGenerateBookChapters,
-  titleBook,
 }: BookPreviewProps) {
   const dataEbook = useBookStore(state => state.dataEbook)
 
   return (
     <Wrapper className='lg:py-16'>
       <div className='mb-7 flex justify-center'>
-        <CoverBook title={titleBook} />
+        <CoverBook />
       </div>
-      <ScrollArea className='mx-auto h-[300px] w-[100%] rounded-md border p-4'>
-        <h2 className='text-lg mb-4 font-bold'>Capitulos:</h2>
+      <ScrollArea className='mx-auto h-[300px] w-[100%] rounded-2xl bg-gray-100 p-4 dark:bg-white/5'>
+        <h2 className='mb-4 text-lg font-bold'>Capitulos:</h2>
         <ol className='list-inside space-y-3'>
           {dataEbook.bookChapters.map((chapter, index) => (
             <div key={index}>
