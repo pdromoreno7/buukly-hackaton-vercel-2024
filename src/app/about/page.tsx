@@ -10,10 +10,10 @@ export default function About() {
         </h1>
 
         <p className='text-lg mb-6 text-center'>
-          Buukly es una plataforma innovadora que utiliza inteligencia
-          artificial para generar libros personalizados. Fundada en 2024,
-          nuestra misión es revolucionar la creación de contenido literario y
-          ofrecer experiencias de lectura únicas.
+          Buukly utiliza inteligencia artificial para crear libros
+          personalizados diseñados específicamente para tu aprendizaje. Esto te
+          permite estudiar de manera más efectiva y mantener toda la información
+          que necesitas de forma clara y accesible.
         </p>
 
         <div className='bg mb-8 rounded-lg rounded-md border border-neutral-400/25 p-6 dark:border-white/10 dark:bg-white/5'>
