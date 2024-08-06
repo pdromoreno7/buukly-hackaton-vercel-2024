@@ -9,6 +9,7 @@ import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
 
 import BookPreview from '@/components/bookPreview/BookPreview'
+import BookResult from '@/components/bookResult/BookResult'
 import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
@@ -27,6 +28,7 @@ export default function Generate() {
     counterChapters,
     totalChapters,
   } = useGenerateChapters()
+  console.log('🚀 ~ Generate ~ progress:', progress)
 
   const [inputSteps, setInputSteps] = useState<string>('')
   const [colorBook, setColorBook] = useState<string>('')
@@ -73,10 +75,6 @@ export default function Generate() {
         keyWords,
       )
       setChaptersWithContent(chaptersWithContentResult)
-      console.log(
-        '🚀 ~ submitGenerateBookChapters ~ chaptersWithContent:',
-        chaptersWithContentResult,
-      )
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
@@ -88,6 +86,7 @@ export default function Generate() {
       setIsLoading(false)
     }
   }
+  if (true) return <BookResult colorBook={colorBook} titleBook={bookTitle} />
   if (progress > 0)
     return (
       <LoadingChaptersCreation
