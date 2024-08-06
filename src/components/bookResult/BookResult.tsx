@@ -2,15 +2,15 @@ import { useRouter } from 'next/navigation'
 
 import Wrapper from '@/components/layouts/Wrapper'
 
-import BookFrontPage from '../bookFrontPage/BookFrontPage'
+import CoverBook from '../coverBook/CoverBook'
 import { Button } from '../ui/button'
 
-interface BookResultProps {
-  colorBook: string
-  titleBook: string
-}
+// interface BookResultProps {
+//   colorBook: string
+//   titleBook: string
+// }
 
-function BookResult({ colorBook, titleBook }: BookResultProps) {
+function BookResult() {
   const router = useRouter()
   return (
     <Wrapper className='lg:py-16'>
@@ -20,13 +20,13 @@ function BookResult({ colorBook, titleBook }: BookResultProps) {
         </h1>
       </div>
       <div className='mb-7 flex justify-center'>
-        <BookFrontPage color={colorBook} title={titleBook} />
+        <CoverBook />
       </div>
 
       <div className='my-5 flex w-full flex-col items-center justify-center gap-2'>
         <Button
           className='w-fit rounded-full font-semibold'
-          onClick={() => router.push('/ebook')}
+          onClick={() => router.push('/read-ebook')}
         >
           Ver libro
         </Button>

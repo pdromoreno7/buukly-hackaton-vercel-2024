@@ -9,7 +9,7 @@ import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
 
 import BookPreview from '@/components/bookPreview/BookPreview'
-// import BookResult from '@/components/bookResult/BookResult'
+import BookResult from '@/components/bookResult/BookResult'
 import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
@@ -33,6 +33,7 @@ export default function Generate() {
   console.log(inputSteps)
   const { dataEbook, setBookData, setChaptersWithContent, setBookCoverColor } =
     useBookStore()
+  console.log('🚀 ~ Generate ~ dataEbook:', dataEbook)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
@@ -83,8 +84,7 @@ export default function Generate() {
       setIsLoading(false)
     }
   }
-  // if (progress === 100)
-  //   return <BookResult colorBook={colorBook} titleBook={bookTitle} />
+  if (progress === 100) return <BookResult />
   if (progress > 0)
     return (
       <LoadingChaptersCreation
@@ -110,7 +110,7 @@ export default function Generate() {
     <Wrapper className='py-8 lg:py-16'>
       <Section className='mx-auto flex h-full max-w-lg grow flex-col justify-between'>
         <div className='flex flex-col gap-5 lg:gap-6'>
-          <h1 className='text-2xl lg:text-3xl text-center font-extrabold leading-tight'>
+          <h1 className='text-center text-2xl font-extrabold leading-tight lg:text-3xl'>
             ¿Qué libro quieres escribir hoy?
           </h1>
           <Steps handleSetInputSteps={handleSetInputSteps} />
@@ -131,7 +131,7 @@ export default function Generate() {
             Generar
           </ButtonLoading>
         </div>
-        <span className='text-xs mt-3 text-center text-gray-100/80'>
+        <span className='mt-3 text-center text-xs text-gray-100/80'>
           Al hacer uso de esta app, acepta nuestros Términos de servicio y
           Política de privacidad.
         </span>
