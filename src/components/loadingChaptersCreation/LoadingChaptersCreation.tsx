@@ -1,7 +1,6 @@
 'use client'
 
 import Wrapper from '../layouts/Wrapper'
-import IllustrationAnimated from '../loadingAnimation/IllustrationAnimated'
 import { Progress } from '../ui/progress'
 
 interface LoadingChaptersCreationProps {
@@ -22,7 +21,6 @@ function LoadingChaptersCreation({
     <Wrapper className='lg:py-16'>
       <div className='mb-7 flex flex-col items-center justify-center'>
         <h1 className='text-center text-2xl font-bold'>{`Creando capítulo ${counterChapters}:`}</h1>
-        <IllustrationAnimated />
         <p>{currentChapter}</p>
         <span>
           {counterChapters}/{totalChapters}
