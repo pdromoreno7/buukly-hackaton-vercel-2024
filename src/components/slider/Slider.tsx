@@ -104,7 +104,7 @@ export default function Slider() {
   }, [emblaApi, tweenScale])
 
   return (
-    <div className='carousel_wrapper lg:hidden'>
+    <div className='carousel_wrapper'>
       <div className='carousel__viewport' ref={emblaRef}>
         <div className='carousel__container'>
           {BOOKS.map(book => (
