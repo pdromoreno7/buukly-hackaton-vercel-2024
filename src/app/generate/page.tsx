@@ -14,7 +14,7 @@ import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
 import LoadingChaptersCreation from '@/components/loadingChaptersCreation/LoadingChaptersCreation'
-import Steps from '@/components/steps/Steps'
+import Suggestions from '@/components/suggestions/Suggestions'
 import { Input } from '@/components/ui/input'
 
 export default function Generate() {
@@ -29,18 +29,14 @@ export default function Generate() {
     totalChapters,
   } = useGenerateChapters()
 
-  const [inputSteps, setInputSteps] = useState<string>('')
-  console.log(inputSteps)
   const { dataEbook, setBookData, setChaptersWithContent, setBookCoverColor } =
     useBookStore()
-  console.log('🚀 ~ Generate ~ dataEbook:', dataEbook)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
   }
 
   const handleSetInputSteps = (value: string) => {
-    setInputSteps(value)
     setBookTitle(value) // Actualiza el título del libro cuando se actualiza inputSteps
   }
 
@@ -113,7 +109,7 @@ export default function Generate() {
           <h1 className='text-center text-2xl font-extrabold leading-tight lg:text-3xl'>
             ¿Qué libro quieres escribir hoy?
           </h1>
-          <Steps handleSetInputSteps={handleSetInputSteps} />
+          <Suggestions handleSetInputSteps={handleSetInputSteps} />
         </div>
         <div className='mt-auto flex gap-2'>
           <Input

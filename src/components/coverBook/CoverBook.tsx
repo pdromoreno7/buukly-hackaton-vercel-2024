@@ -28,8 +28,8 @@ export default function CoverBook({ className }: CoverBookProps) {
               <hr className='mt-2 border-brownn-900' />
             </h1>
           </div>
-          <div className='text-xss mb-1 flex items-end justify-end text-right text-brownn-900'>
-            Creado por <span className='clor ml-1 font-extrabold'>Buucly</span>
+          <div className='mb-1 flex items-end justify-end text-right text-sm text-brownn-900'>
+            Generado por <span className='ml-1 font-bold'>Buukly</span>
           </div>
         </div>
       </div>

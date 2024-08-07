@@ -17,10 +17,10 @@ const config = {
     //     "2xl": "1400px",
     //   },
     // },
-    // fontSize: {
-    //   xss: '0.6rem',
-    // },
     extend: {
+      fontSize: {
+        xss: '0.6rem',
+      },
       flex: {
         'custom-carousel': '0 0 55%',
       },
