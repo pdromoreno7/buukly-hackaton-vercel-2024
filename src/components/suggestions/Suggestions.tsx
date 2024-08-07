@@ -5,7 +5,7 @@ type Props = {
   handleSetInputSteps: (value: string) => void
 }
 
-export default function Steps({ handleSetInputSteps }: Readonly<Props>) {
+export default function Suggestions({ handleSetInputSteps }: Readonly<Props>) {
   return (
     <div className='flex flex-col gap-3'>
       {STEPS.map(step => (
