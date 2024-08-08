@@ -1,3 +1,4 @@
+import { PATHNAMES } from '@/conts'
 import { Check } from 'lucide-react'
 import Link from 'next/link'
 
@@ -7,13 +8,14 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-export default function SignIn() {
+export default function SignUp() {
   const TIPS = [
     'Al menos 8 caracteres',
     'Una letra mayúscula',
@@ -24,9 +26,9 @@ export default function SignIn() {
 
   return (
     <Wrapper>
-      <section className='mx-auto flex h-full max-w-sm flex-col py-2 md:pb-4 md:pt-2'>
+      <section className='mx-auto flex h-full max-w-sm flex-col py-2 md:pb-4 md:pt-0'>
         <Card className='mx-auto max-w-sm border-none'>
-          <CardHeader className='px-0 pt-0 md:text-center'>
+          <CardHeader className='px-0 pb-3 pt-0 md:text-center'>
             <CardTitle className='text-2xl font-bold tracking-normal text-neutral-800 dark:text-neutral-200'>
               Regístrate
             </CardTitle>
@@ -35,7 +37,7 @@ export default function SignIn() {
               formato EPUB, listo para descargar.
             </CardDescription>
           </CardHeader>
-          <CardContent className='px-0'>
+          <CardContent className='px-0 pb-2'>
             <Button variant='outline' className='mb-2 w-full rounded-full'>
               Regístrate con Google <GoogleIcon />
             </Button>
@@ -55,7 +57,7 @@ export default function SignIn() {
                   type='email'
                   placeholder='m@example.com'
                   required
-                  className='rounded-full'
+                  className='h-fit rounded-full py-2'
                 />
               </div>
               <div className='grid gap-2'>
@@ -66,7 +68,7 @@ export default function SignIn() {
                   id='password'
                   type='password'
                   required
-                  className='rounded-full'
+                  className='h-fit rounded-full py-2'
                 />
               </div>
               <div className='space-y-2 rounded-lg border border-neutral-200 p-3 dark:border-neutral-800'>
@@ -86,21 +88,22 @@ export default function SignIn() {
               </div>
               <Button
                 type='submit'
-                className='w-full rounded-full bg-kiwi-500 font-semibold text-black transition-colors hover:bg-kiwi-600 focus:bg-kiwi-700'
+                className='w-full rounded-full font-semibold'
               >
                 Continuar con correo electrónico
               </Button>
             </form>
           </CardContent>
-          {/* <CardFooter>
-            <p className='text-center text-xs text-neutral-300'>
-              Al registrarte aceptas nuestros Términos de servicio y Política de privacidad.
+          <CardFooter>
+            <p className='text-center text-xs text-neutral-700 dark:text-neutral-400'>
+              Al registrarte aceptas nuestros Términos de servicio y Política de
+              privacidad.
             </p>
-          </CardFooter> */}
+          </CardFooter>
         </Card>
         <div className='mt-auto inline-flex justify-between text-sm'>
           ¿Ya tienes una cuenta?{' '}
-          <Link href='#' className='underline'>
+          <Link href={PATHNAMES['sign-in']} className='underline'>
             Inicia sesión
           </Link>
         </div>
