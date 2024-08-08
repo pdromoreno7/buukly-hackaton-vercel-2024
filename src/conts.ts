@@ -1,3 +1,8 @@
+export const PATHNAMES = {
+  'sign-in': '/sign-in',
+  'sign-up': '/sign-up',
+}
+
 export const MENU_ENTRIES = [
   {
     label: 'Inicio',

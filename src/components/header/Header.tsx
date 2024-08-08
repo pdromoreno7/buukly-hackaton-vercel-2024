@@ -1,16 +1,43 @@
+'use client'
+import { PATHNAMES } from '@/conts'
 import Wrapper from '@components/layouts/Wrapper'
 import Menu from '@components/navbar/Menu'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+import { cn } from '@/lib/utils'
 
 import ToggleTheme from '../provider/ToggleTheme'
+import { Button } from '../ui/button'
 
 export default function Header() {
+  const path = usePathname()
+  const renderGroupBtn = cn(
+    path === PATHNAMES['sign-in'] || path === PATHNAMES['sign-up']
+      ? 'inline-flex gap-2'
+      : 'hidden',
+  )
+
   return (
     <header>
       <Wrapper className='lg:max-w-full'>
-        <nav className='flex justify-between py-4 pb-2 lg:last:justify-end'>
-          {/* <h2 className='text-xl text-kiwi-400 font-extrabold'>Kiwibook</h2> */}
+        <nav className='flex items-center justify-between py-4 pb-2'>
           <Menu />
-          <ToggleTheme />
+          <h2 className='text-2xl font-extrabold'>Buukly</h2>
+          <div className='inline-flex gap-4'>
+            <div className={renderGroupBtn}>
+              <Button asChild variant='outline' className='rounded-full'>
+                <Link href='/sign-in'>Inicia sesión</Link>
+              </Button>
+              <Button
+                asChild
+                className='rounded-full bg-kiwi-500 font-semibold text-black transition-colors hover:bg-kiwi-600'
+              >
+                <Link href='/sign-up'>Registrate</Link>
+              </Button>
+            </div>
+            <ToggleTheme />
+          </div>
         </nav>
       </Wrapper>
     </header>
