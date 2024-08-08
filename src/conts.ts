@@ -1,6 +1,7 @@
 export const PATHNAMES = {
   'sign-in': '/sign-in',
   'sign-up': '/sign-up',
+  'reset-password': '/reset-password',
 }
 
 export const MENU_ENTRIES = [

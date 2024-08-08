@@ -1,51 +1,31 @@
 import { PATHNAMES } from '@/conts'
-// import { Check } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
 import Wrapper from '@/components/layouts/Wrapper'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 export const metadata: Metadata = {
-  title: 'Regístrarse | Buukly',
+  title: 'Iniciar sesión | Buukly',
   description: 'A description...',
 }
 
-export default function SignUp() {
-  const TIPS = [
-    'Al menos 8 caracteres',
-    'Una letra mayúscula',
-    'Una letra minúscula',
-    'Un número',
-    'Un carácter especial (!@#$%^&*.)',
-  ]
-
+export default function SignIn() {
   return (
     <Wrapper>
-      <section className='mx-auto flex h-full max-w-sm flex-col py-2 md:pb-4 md:pt-0'>
-        <Card className='mx-auto max-w-sm border-none shadow-none'>
+      <section className='mx-auto flex h-full max-w-sm flex-col py-4 md:pb-4 md:pt-6'>
+        <Card className='mx-auto min-w-full max-w-sm border-none shadow-none'>
           <CardHeader className='px-0 pb-3 pt-0 md:text-center'>
             <CardTitle className='text-2xl font-bold tracking-normal text-neutral-800 dark:text-neutral-200'>
-              Regístrate
+              Inicia sesión
             </CardTitle>
-            <CardDescription>
-              Solicita libros sobre cualquier tema y se generarán al instante en
-              formato EPUB, listo para descargar.
-            </CardDescription>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
             <Button variant='outline' className='mb-2 w-full rounded-full'>
-              Regístrate con Google <GoogleIcon />
+              Continuar con Google <GoogleIcon />
             </Button>
             <form className='grid gap-4'>
               <div className='flex items-center justify-center gap-2'>
@@ -77,38 +57,25 @@ export default function SignUp() {
                   className='h-fit rounded-full py-2'
                 />
               </div>
-              <div className='space-y-2 rounded-lg border border-neutral-200 p-3 dark:border-neutral-800'>
-                <span className='text-sm font-medium'>
-                  La contraseña debe contener
-                </span>
-                <ul>
-                  {TIPS.map((tip, index) => (
-                    <li key={index} className='list-inside list-disc text-xs'>
-                      {/* <Check className='h-4 w-3 text-kiwi-700' /> */}
-                      {tip}
-                    </li>
-                  ))}
-                </ul>
-              </div>
               <Button
                 type='submit'
                 className='w-full rounded-full font-semibold'
               >
                 Continuar con correo electrónico
               </Button>
+              <Link
+                href={PATHNAMES['reset-password']}
+                className='text-center text-xs font-medium'
+              >
+                Restablecer contraseña
+              </Link>
             </form>
           </CardContent>
-          <CardFooter>
-            <p className='text-center text-xs text-neutral-700 dark:text-neutral-400'>
-              Al registrarte aceptas nuestros Términos de servicio y Política de
-              privacidad.
-            </p>
-          </CardFooter>
         </Card>
-        <div className='mt-auto inline-flex justify-between text-sm'>
-          ¿Ya tienes una cuenta?{' '}
-          <Link href={PATHNAMES['sign-in']} className='underline'>
-            Inicia sesión
+        <div className='mt-auto inline-flex justify-between text-sm text-neutral-600'>
+          ¿Aún no tienes cuenta?{' '}
+          <Link href={PATHNAMES['sign-up']} className='underline'>
+            Regístrate
           </Link>
         </div>
       </section>
