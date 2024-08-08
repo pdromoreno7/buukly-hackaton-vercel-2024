@@ -10,9 +10,10 @@ export default function Hero() {
         <strong className='mt-1 text-4xl font-extrabold lg:text-5xl'>
           Buukly
         </strong>
-        <p className='mt-1 text-sm lg:text-base lg:font-medium'>
-          ¿Qué libro quieres crear hoy?
-        </p>
+        <div className='mt-4 [&>p]:text-sm [&>p]:font-medium [&>p]:leading-tight [&>p]:tracking-tight'>
+          <p>¿Qué Libro Vas a Crear Hoy?</p>
+          <p>Lo Hacemos Realidad con IA.</p>
+        </div>
       </div>
       <Slider />
 
@@ -26,7 +27,7 @@ export default function Hero() {
           </Link>
           <svg
             viewBox='0 0 24 24'
-            className='ml-1 mr-6 size-4 fill-none stroke-gray-500 stroke-2 opacity-50 transition-opacity duration-200 ease-in-out group-hover:stroke-black group-hover:opacity-100'
+            className='ml-1 mr-6 size-4 fill-none stroke-white stroke-2 opacity-50 transition-opacity duration-200 ease-in-out group-hover:opacity-100 dark:stroke-gray-500 dark:group-hover:stroke-black'
           >
             <line
               x1='5'

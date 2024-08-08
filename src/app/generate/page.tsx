@@ -74,7 +74,6 @@ export default function Generate() {
         toast.error(error.message)
       } else {
         toast.error('An unknown error occurred')
-        // console.error('Error generando capítulos:', error)
       }
     } finally {
       setIsLoading(false)
