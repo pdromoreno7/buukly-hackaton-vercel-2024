@@ -15,7 +15,7 @@ body {
 body {
   @apply font-sans antialiased;
   @apply flex flex-col;
-  @apply text-gray-800 dark:text-white;
+  @apply text-gray-800 dark:text-white/80;
   @apply bg-white dark:bg-dark;
 }
 

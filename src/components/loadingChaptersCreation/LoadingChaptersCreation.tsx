@@ -27,7 +27,7 @@ function LoadingChaptersCreation({
         </span>
       </div>
       <div className='mt-7 flex justify-center'>
-        <Progress value={progress} className='w-[60%]' />
+        <Progress value={progress} className='w-[60%] animate-pulse' />
       </div>
     </Wrapper>
   )
