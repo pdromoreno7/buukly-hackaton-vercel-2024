@@ -12,7 +12,7 @@ import {
 export default function Menu() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className='hidden cursor-pointer'>
+      <DropdownMenuTrigger asChild className='cursor-pointer lg:hidden'>
         <MenuIcon />
       </DropdownMenuTrigger>
       <DropdownMenuContent align='start' className='bg-slate-50'>
