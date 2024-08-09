@@ -28,6 +28,7 @@ export async function signUpAction(formData: UserType) {
   const supabase = createClientSSR()
 
   const data = {
+    name: formData.name,
     email: formData.email,
     password: formData.password,
   }
