@@ -3,7 +3,6 @@ import { signUpAction } from '@/actions/authAction'
 import { PATHNAMES } from '@/conts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Check, X } from 'lucide-react'
-// import { Metadata } from 'next'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -21,12 +20,8 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import Loading from '../loading'
 
-// const metadata: Metadata = {
-//   title: 'Regístrarse | Buukly',
-//   description: 'A description...',
-// }
+import Loading from '../loading'
 
 const RegisterSchema = z.object({
   name: z.string().min(1, { message: 'El nombre es requerido' }),
