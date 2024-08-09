@@ -1,4 +1,5 @@
 'use server'
+import { UserType } from '@/app/sign-up/page'
 import { PATHNAMES } from '@/conts'
 import { createClientSSR } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
@@ -23,12 +24,13 @@ export async function signInAction(formData: FormData) {
   redirect('/')
 }
 
-export async function signUpAction(formData: FormData) {
+export async function signUpAction(formData: UserType) {
   const supabase = createClientSSR()
 
   const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
+    name: formData.name,
+    email: formData.email,
+    password: formData.password,
   }
 
   const { error } = await supabase.auth.signUp(data)
