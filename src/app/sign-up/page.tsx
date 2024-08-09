@@ -1,8 +1,13 @@
+'use client'
 import { signUpAction } from '@/actions/authAction'
 import { PATHNAMES } from '@/conts'
-// import { Check } from 'lucide-react'
-import { Metadata } from 'next'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Check, X } from 'lucide-react'
+// import { Metadata } from 'next'
 import Link from 'next/link'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 import Wrapper from '@/components/layouts/Wrapper'
 import { Button } from '@/components/ui/button'
@@ -16,20 +21,65 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import Loading from '../loading'
 
-export const metadata: Metadata = {
-  title: 'Regístrarse | Buukly',
-  description: 'A description...',
-}
+// const metadata: Metadata = {
+//   title: 'Regístrarse | Buukly',
+//   description: 'A description...',
+// }
+
+const RegisterSchema = z.object({
+  name: z.string().min(1, { message: 'El nombre es requerido' }),
+  email: z.string().email({ message: 'Correo electrónico no válido' }),
+  password: z
+    .string()
+    .min(8, { message: 'La contraseña debe tener al menos 8 caracteres' })
+    .regex(/[A-Z]/, {
+      message: 'La contraseña debe contener al menos una letra mayúscula',
+    })
+    .regex(/[a-z]/, {
+      message: 'La contraseña debe contener al menos una letra minúscula',
+    })
+    .regex(/[0-9]/, {
+      message: 'La contraseña debe contener al menos un número',
+    })
+    .regex(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/, {
+      message:
+        'La contraseña debe contener al menos un carácter especial (!@#$%^&*.)',
+    }),
+})
+
+export type UserType = z.infer<typeof RegisterSchema>
 
 export default function SignUp() {
+  const [isPopoverOpen, setPopoverOpen] = useState(false)
   const TIPS = [
-    'Al menos 8 caracteres',
-    'Una letra mayúscula',
-    'Una letra minúscula',
-    'Un número',
-    'Un carácter especial (!@#$%^&*.)',
+    { text: 'Al menos 8 caracteres', regex: /.{8,}/ },
+    { text: 'Una letra mayúscula', regex: /[A-Z]/ },
+    { text: 'Una letra minúscula', regex: /[a-z]/ },
+    { text: 'Un número', regex: /[0-9]/ },
+    {
+      text: 'Un carácter especial (!@#$%^&*.)',
+      regex: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/,
+    },
   ]
+
+  // form
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { isSubmitting, isValid },
+  } = useForm<UserType>({
+    resolver: zodResolver(RegisterSchema),
+    mode: 'onChange',
+  })
+
+  const onSubmit = (data: UserType) => {
+    signUpAction(data)
+  }
+
+  const passwordValue = watch('password', '')
 
   return (
     <Wrapper>
@@ -48,7 +98,7 @@ export default function SignUp() {
             <Button variant='outline' className='mb-2 w-full rounded-full'>
               Regístrate con Google <GoogleIcon />
             </Button>
-            <form className='grid gap-3'>
+            <form className='grid gap-3' onSubmit={handleSubmit(onSubmit)}>
               <div className='flex items-center justify-center gap-2'>
                 <span className='w-full border-b dark:border-neutral-800' />
                 o
@@ -62,10 +112,10 @@ export default function SignUp() {
                 <Input
                   id='name'
                   type='text'
-                  name='name'
                   placeholder='John Doe'
                   required
                   className='h-fit rounded-full py-2'
+                  {...register('name')}
                 />
               </div>
               <div className='grid gap-2'>
@@ -75,11 +125,14 @@ export default function SignUp() {
                 <Input
                   id='email'
                   type='email'
-                  name='email'
                   placeholder='m@example.com'
                   required
                   className='h-fit rounded-full py-2'
+                  {...register('email')}
                 />
+                {/* {errors.email && (
+                  <p className="text-red-500 text-xs">{errors.email.message}</p>
+                )} */}
               </div>
               <div className='grid gap-2'>
                 <Label htmlFor='password' className='ml-2'>
@@ -88,29 +141,44 @@ export default function SignUp() {
                 <Input
                   id='password'
                   type='password'
-                  name='password'
                   required
                   className='h-fit rounded-full py-2'
+                  {...register('password')}
+                  onFocus={() => setPopoverOpen(true)}
+                  onBlur={() => setPopoverOpen(false)}
+                  autoComplete='new-password'
                 />
               </div>
-              <div className='space-y-2 rounded-lg border border-neutral-200 p-3 dark:border-neutral-800'>
-                <span className='text-sm font-medium'>
-                  La contraseña debe contener
-                </span>
-                <ul>
-                  {TIPS.map((tip, index) => (
-                    <li key={index} className='list-inside list-disc text-xs'>
-                      {/* <Check className='h-4 w-3 text-kiwi-700' /> */}
-                      {tip}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {isPopoverOpen && (
+                <div className='space-y-2 rounded-lg border border-neutral-200 p-3 dark:border-neutral-800'>
+                  <span className='text-sm font-medium'>
+                    La contraseña debe contener
+                  </span>
+                  <ul>
+                    {TIPS.map((tip, index) => (
+                      <div key={index} className='flex items-center text-xs'>
+                        {/* <Check className='h-4 w-3 text-kiwi-700' /> */}
+                        {tip.regex.test(passwordValue) ? (
+                          <Check className='mr-2 h-4 w-4 text-green-600' />
+                        ) : (
+                          <X className='mr-2 h-4 w-4 text-red-600' />
+                        )}
+                        <span>{tip.text}</span>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <Button
                 className='w-full rounded-full font-semibold'
-                formAction={signUpAction}
+                disabled={!isValid}
+                // formAction={signUpAction}
               >
-                Continuar con correo electrónico
+                {isSubmitting ? (
+                  <Loading />
+                ) : (
+                  'Continuar con correo electrónico'
+                )}
               </Button>
             </form>
           </CardContent>
