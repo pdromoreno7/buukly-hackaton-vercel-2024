@@ -1,3 +1,4 @@
+import { signUpAction } from '@/actions/authAction'
 import { PATHNAMES } from '@/conts'
 // import { Check } from 'lucide-react'
 import { Metadata } from 'next'
@@ -32,7 +33,7 @@ export default function SignUp() {
 
   return (
     <Wrapper>
-      <section className='mx-auto flex h-full max-w-sm flex-col py-2 md:pb-4 md:pt-0'>
+      <section className='mx-auto flex h-full max-w-sm flex-col pb-2 pt-0 md:pb-4 md:pt-0'>
         <Card className='mx-auto max-w-sm border-none shadow-none'>
           <CardHeader className='px-0 pb-3 pt-0 md:text-center'>
             <CardTitle className='text-2xl font-bold tracking-normal text-neutral-800 dark:text-neutral-200'>
@@ -47,7 +48,7 @@ export default function SignUp() {
             <Button variant='outline' className='mb-2 w-full rounded-full'>
               Regístrate con Google <GoogleIcon />
             </Button>
-            <form className='grid gap-4'>
+            <form className='grid gap-3'>
               <div className='flex items-center justify-center gap-2'>
                 <span className='w-full border-b dark:border-neutral-800' />
                 o
@@ -55,12 +56,26 @@ export default function SignUp() {
               </div>
 
               <div className='grid gap-2'>
+                <Label htmlFor='name' className='ml-2'>
+                  Nombre o apodo
+                </Label>
+                <Input
+                  id='name'
+                  type='text'
+                  name='name'
+                  placeholder='John Doe'
+                  required
+                  className='h-fit rounded-full py-2'
+                />
+              </div>
+              <div className='grid gap-2'>
                 <Label htmlFor='email' className='ml-2'>
                   Correo electrónico
                 </Label>
                 <Input
                   id='email'
                   type='email'
+                  name='email'
                   placeholder='m@example.com'
                   required
                   className='h-fit rounded-full py-2'
@@ -73,6 +88,7 @@ export default function SignUp() {
                 <Input
                   id='password'
                   type='password'
+                  name='password'
                   required
                   className='h-fit rounded-full py-2'
                 />
@@ -91,8 +107,8 @@ export default function SignUp() {
                 </ul>
               </div>
               <Button
-                type='submit'
                 className='w-full rounded-full font-semibold'
+                formAction={signUpAction}
               >
                 Continuar con correo electrónico
               </Button>

@@ -1,3 +1,4 @@
+import { signInAction } from '@/actions/authAction'
 import { PATHNAMES } from '@/conts'
 import { Metadata } from 'next'
 import Link from 'next/link'
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description: 'A description...',
 }
 
-export default function SignIn() {
+export default async function SignIn() {
   return (
     <Wrapper>
       <section className='mx-auto flex h-full max-w-sm flex-col py-4 md:pb-4 md:pt-6'>
@@ -41,6 +42,7 @@ export default function SignIn() {
                 <Input
                   id='email'
                   type='email'
+                  name='email'
                   placeholder='m@example.com'
                   required
                   className='h-fit rounded-full py-2'
@@ -53,13 +55,14 @@ export default function SignIn() {
                 <Input
                   id='password'
                   type='password'
+                  name='password'
                   required
                   className='h-fit rounded-full py-2'
                 />
               </div>
               <Button
-                type='submit'
                 className='w-full rounded-full font-semibold'
+                formAction={signInAction}
               >
                 Continuar con correo electrónico
               </Button>
@@ -72,7 +75,7 @@ export default function SignIn() {
             </form>
           </CardContent>
         </Card>
-        <div className='mt-auto inline-flex justify-between text-sm text-neutral-600'>
+        <div className='mt-auto inline-flex justify-between text-sm text-neutral-700 dark:text-neutral-400'>
           ¿Aún no tienes cuenta?{' '}
           <Link href={PATHNAMES['sign-up']} className='underline'>
             Regístrate

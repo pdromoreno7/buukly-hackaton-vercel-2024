@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 export const metadata: Metadata = {
-  title: 'Iniciar sesión | Buukly',
+  title: 'Reestablecer contraseña | Buukly',
   description: 'A description...',
 }
 
@@ -18,7 +18,7 @@ export default function ResetPassword() {
     <Wrapper>
       <section className='mx-auto flex h-full max-w-sm flex-col py-4 md:pb-4 md:pt-6'>
         <Card className='mx-auto min-w-full max-w-sm border-none shadow-none'>
-          <CardHeader className='px-0 pb-3 pt-0 md:text-center'>
+          <CardHeader className='px-0 pb-6 pt-0 md:text-center'>
             <CardTitle className='text-2xl font-bold tracking-normal text-neutral-800 dark:text-neutral-200'>
               Reestablecer contraseña
             </CardTitle>
@@ -53,7 +53,7 @@ export default function ResetPassword() {
             </form>
           </CardContent>
         </Card>
-        <div className='mt-auto inline-flex justify-between text-sm text-neutral-600'>
+        <div className='mt-auto inline-flex justify-between text-sm text-neutral-700 dark:text-neutral-400'>
           ¿Aún no tienes cuenta?{' '}
           <Link href={PATHNAMES['sign-up']} className='underline'>
             Regístrate

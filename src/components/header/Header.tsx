@@ -1,7 +1,8 @@
 'use client'
 import { PATHNAMES } from '@/conts'
+import signOut from '@/utils/session/signOut'
 import Wrapper from '@components/layouts/Wrapper'
-import Menu from '@components/navbar/Menu'
+import { LogOut } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -13,27 +14,39 @@ export default function Header() {
   const isAvailablePaths =
     path === PATHNAMES['sign-in'] ||
     path === PATHNAMES['sign-up'] ||
-    path === PATHNAMES['reset-password']
+    path === PATHNAMES['reset-password'] ||
+    path === PATHNAMES['success-register']
   const renderGroupBtn = isAvailablePaths ? 'inline-flex gap-2' : 'hidden'
 
   return (
     <header>
       <Wrapper className='lg:max-w-full'>
         <nav className='flex items-center justify-between py-3 pb-2'>
-          {!isAvailablePaths && <Menu />}
-          <Link href='/'>
+          {isAvailablePaths && (
             <h2 className='text-2xl font-extrabold'>Buukly</h2>
-          </Link>
-          <div className='inline-flex gap-4'>
+          )}
+          <div className='inline-flex w-full justify-end gap-4'>
             <div className={renderGroupBtn}>
               <Button asChild variant='outline' className='rounded-full'>
-                <Link href='/sign-in'>Inicia sesión</Link>
+                <Link href={PATHNAMES['sign-in']}>Inicia sesión</Link>
               </Button>
               <Button asChild className='rounded-full font-semibold'>
-                <Link href='/sign-up'>Registrate</Link>
+                <Link href={PATHNAMES['sign-up']}>Registrate</Link>
               </Button>
             </div>
-            {!isAvailablePaths && <ToggleTheme />}
+            <div className='inline-flex gap-3'>
+              {!isAvailablePaths && <ToggleTheme />}
+              {!isAvailablePaths && (
+                <Button
+                  variant='outline'
+                  size='icon'
+                  title='Cerrar sesión'
+                  onClick={signOut}
+                >
+                  <LogOut className='h-[1.2rem] w-[1.2rem]' />
+                </Button>
+              )}
+            </div>
           </div>
         </nav>
       </Wrapper>
