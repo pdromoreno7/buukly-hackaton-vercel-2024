@@ -1,5 +1,5 @@
 'use client'
-import { useBookStore } from '@/store'
+import { useBookListStore } from '@/store'
 import { useState, useMemo } from 'react'
 
 import BookPagination from '@/components/bookPagination/BookPagination'
@@ -7,12 +7,16 @@ import ChapterContent from '@/components/readEbook/ChapterContent'
 import CoverPage from '@/components/readEbook/CoverPage'
 import TableOfContents from '@/components/readEbook/TableOfContent'
 
-export default function BookView() {
+export default function BookView({ params }: { params: { eBook: string } }) {
+  const { eBook } = params
+  const bookTitle = decodeURIComponent(eBook)
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const dataEbook = useBookStore(state => state.dataEbook)
+  const { booksList } = useBookListStore()
+
+  const dataEbook = booksList.find(book => book.bookTitle === bookTitle)
 
   const totalPages = useMemo(
-    () => dataEbook?.chaptersWithContent?.length ?? 0 + 2 + 2,
+    () => dataEbook?.chaptersWithContent?.length ?? 0 + 2,
     [dataEbook],
   )
 
@@ -25,15 +29,15 @@ export default function BookView() {
       case 1:
         return (
           <CoverPage
-            description={dataEbook.bookDescription}
-            title={dataEbook.bookTitle}
+            description={dataEbook?.bookDescription ?? ''}
+            title={dataEbook?.bookTitle ?? ''}
           />
         )
       case 2:
         return (
           <TableOfContents
-            title={dataEbook.bookTitle}
-            chapters={dataEbook.bookChapters}
+            title={dataEbook?.bookTitle ?? ''}
+            chapters={dataEbook?.bookChapters ?? []}
           />
         )
       default:

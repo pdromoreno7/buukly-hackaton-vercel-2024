@@ -1,6 +1,8 @@
 export const PATHNAMES = {
   'sign-in': '/sign-in',
   'sign-up': '/sign-up',
+  'reset-password': '/reset-password',
+  'success-register': '/success-register',
 }
 
 export const MENU_ENTRIES = [

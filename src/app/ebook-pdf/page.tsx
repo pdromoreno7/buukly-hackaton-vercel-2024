@@ -1,10 +1,10 @@
 'use client'
 import { useBookStore } from '@/store'
-import { PDFViewer } from '@react-pdf/renderer'
-import { useEffect, useState } from 'react'
+// import { PDFViewer } from '@react-pdf/renderer'
+// import { useEffect, useState } from 'react'
 
 import Wrapper from '@/components/layouts/Wrapper'
-import { MyDocument } from '@/components/pdf/Document'
+// import { MyDocument } from '@/components/pdf/Document'
 
 // const CONTENT = [
 //    {
@@ -18,21 +18,21 @@ import { MyDocument } from '@/components/pdf/Document'
 // ]
 
 export default function PDFView() {
-  const [client, setClient] = useState(false)
+  // const [client, setClient] = useState(false)
   const { dataEbook } = useBookStore()
   console.log('🚀 ~ PDFView ~ dataEbook:', dataEbook)
 
-  useEffect(() => {
-    setClient(true)
-  }, [])
+  // useEffect(() => {
+  //   setClient(true)
+  // }, [])
 
   return (
     <Wrapper>
-      {client && (
+      {/* {client && (
         <PDFViewer className='h-full w-full'>
           <MyDocument content={dataEbook?.chaptersWithContent} />
         </PDFViewer>
-      )}
+      )} */}
     </Wrapper>
   )
 }
