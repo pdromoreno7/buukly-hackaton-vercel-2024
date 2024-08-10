@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface Chapter {
   chapterTitle: string
@@ -10,7 +11,7 @@ interface BookData {
   bookDescription: string
   bookChapters: string[]
   bookKeyWords: string[]
-  chaptersWithContent: Chapter[]
+  chaptersWithContent?: Chapter[]
 }
 
 interface BookStore {
@@ -38,3 +39,39 @@ export const useBookStore = create<BookStore>(set => ({
     })),
   setBookCoverColor: color => set({ bookCoverColor: color }),
 }))
+
+// interface BookData {
+//   bookTitle: string
+//   bookDescription: string
+//   bookChapters: string[]
+//   bookKeyWords: string[]
+//   chaptersWithContent: { chapterTitle: string; text: string }[]
+// }
+
+interface BookListStore {
+  booksList: BookData[]
+  addBookToList: (book: BookData) => void
+  updateBookInList: (bookTitle: string, updatedBook: Partial<BookData>) => void
+}
+
+export const useBookListStore = create(
+  persist<BookListStore>(
+    set => ({
+      booksList: [],
+      addBookToList: (book: BookData) =>
+        set(state => ({
+          booksList: [...state.booksList, book],
+        })),
+      updateBookInList: (bookTitle: string, updatedBook: Partial<BookData>) =>
+        set(state => ({
+          booksList: state.booksList.map(book =>
+            book.bookTitle === bookTitle ? { ...book, ...updatedBook } : book,
+          ),
+        })),
+    }),
+    {
+      name: 'book-list-storage',
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+)

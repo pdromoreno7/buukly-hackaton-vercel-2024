@@ -6,6 +6,7 @@ import { LogOut } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { LibraryButton } from '../commons/libraryButton/LibraryButton'
 import ToggleTheme from '../provider/ToggleTheme'
 import { Button } from '../ui/button'
 
@@ -22,9 +23,13 @@ export default function Header() {
     <header>
       <Wrapper className='lg:max-w-full'>
         <nav className='flex items-center justify-between py-3 pb-2'>
-          {isAvailablePaths && (
+          {/* {isAvailablePaths && (
             <h2 className='text-2xl font-extrabold'>Buukly</h2>
-          )}
+          )} */}
+          <Link href='/'>
+            <h2 className='text-2xl font-extrabold'>Buukly</h2>
+          </Link>
+
           <div className='inline-flex w-full justify-end gap-4'>
             <div className={renderGroupBtn}>
               <Button asChild variant='outline' className='rounded-full'>
@@ -35,6 +40,7 @@ export default function Header() {
               </Button>
             </div>
             <div className='inline-flex gap-3'>
+              {!isAvailablePaths && <LibraryButton>Biblioteca</LibraryButton>}
               {!isAvailablePaths && <ToggleTheme />}
               {!isAvailablePaths && (
                 <Button
