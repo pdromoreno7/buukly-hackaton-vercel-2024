@@ -5,7 +5,7 @@ import { useBookStore } from '@/store'
 import Wrapper from '@/components/layouts/Wrapper'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
-import { ButtonLoading } from '../buttonLoading/ButtonLoading'
+import { ButtonLoading } from '../commons/buttonLoading/ButtonLoading'
 import CoverBook from '../readEbook/CoverBook'
 import { Button } from '../ui/button'
 

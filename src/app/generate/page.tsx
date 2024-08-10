@@ -4,13 +4,13 @@ import {
   generateDataBookByTitle,
 } from '@/actions/generateObjetcContent'
 import { useGenerateChapters } from '@/hooks/useGenerateChapters'
-import { useBookStore } from '@/store'
+import { useBookListStore, useBookStore } from '@/store'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
 
 import BookPreview from '@/components/bookPreview/BookPreview'
 import BookResult from '@/components/bookResult/BookResult'
-import { ButtonLoading } from '@/components/buttonLoading/ButtonLoading'
+import { ButtonLoading } from '@/components/commons/buttonLoading/ButtonLoading'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
 import LoadingChaptersCreation from '@/components/loadingChaptersCreation/LoadingChaptersCreation'
@@ -28,7 +28,7 @@ export default function Generate() {
     counterChapters,
     totalChapters,
   } = useGenerateChapters()
-
+  const { addBookToList } = useBookListStore()
   const { dataEbook, setBookData, setChaptersWithContent, setBookCoverColor } =
     useBookStore()
 
@@ -69,6 +69,13 @@ export default function Generate() {
         keyWords,
       )
       setChaptersWithContent(chaptersWithContentResult)
+
+      const completeBook = {
+        ...dataEbook,
+        chaptersWithContent: chaptersWithContentResult,
+      }
+      // Añadir el libro completo a la lista
+      addBookToList(completeBook)
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
