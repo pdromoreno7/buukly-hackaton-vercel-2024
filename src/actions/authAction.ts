@@ -22,7 +22,7 @@ export async function signInAction(formData: UserLoginType) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/generate')
   return { error: null }
 }
 

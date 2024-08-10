@@ -1,4 +1,4 @@
-import { STEPS } from '@/conts'
+import { SUGGESTIONS } from '@/conts'
 import { Code, Palette, Cloud } from 'lucide-react'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 export default function Suggestions({ handleSetInputSteps }: Readonly<Props>) {
   return (
     <div className='flex flex-col gap-3'>
-      {STEPS.map(step => (
+      {SUGGESTIONS.map(step => (
         <div
           key={step.title}
           onClick={() => handleSetInputSteps(step.description)}
