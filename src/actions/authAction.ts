@@ -9,7 +9,6 @@ export async function signInAction(formData: FormData) {
   const supabase = createClientSSR()
 
   const data = {
-    name: formData.get('name') as string,
     email: formData.get('email') as string,
     password: formData.get('password') as string,
   }
@@ -21,7 +20,7 @@ export async function signInAction(formData: FormData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/generate')
 }
 
 export async function signUpAction(formData: UserType) {
