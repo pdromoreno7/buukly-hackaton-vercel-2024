@@ -69,8 +69,13 @@ export default function Generate() {
         keyWords,
       )
       setChaptersWithContent(chaptersWithContentResult)
+
+      const completeBook = {
+        ...dataEbook,
+        chaptersWithContent: chaptersWithContentResult,
+      }
       // Añadir el libro completo a la lista
-      addBookToList(dataEbook)
+      addBookToList(completeBook)
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
