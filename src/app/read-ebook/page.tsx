@@ -12,7 +12,7 @@ export default function BookView() {
   const dataEbook = useBookStore(state => state.dataEbook)
 
   const totalPages = useMemo(
-    () => dataEbook.chaptersWithContent.length + 2,
+    () => dataEbook?.chaptersWithContent?.length ?? 0 + 2 + 2,
     [dataEbook],
   )
 
@@ -38,11 +38,12 @@ export default function BookView() {
         )
       default:
         const chapterIndex = currentPage - 3
+        if (!dataEbook?.chaptersWithContent) return null
         return (
           <ChapterContent
-            chapter={dataEbook.chaptersWithContent[chapterIndex]}
+            chapter={dataEbook?.chaptersWithContent[chapterIndex] ?? {}}
             chapterIndex={chapterIndex}
-            totalChapters={dataEbook.chaptersWithContent.length}
+            totalChapters={dataEbook?.chaptersWithContent?.length ?? 0}
           />
         )
     }
