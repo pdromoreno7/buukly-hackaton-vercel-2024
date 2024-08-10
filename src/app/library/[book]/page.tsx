@@ -10,14 +10,10 @@ import { Button } from '@/components/ui/button'
 function EBook({ params }: { params: { book: string } }) {
   const router = useRouter()
   const { book } = params
+  const bookTitle = decodeURIComponent(book)
 
   const { booksList } = useBookListStore()
-  console.log('🚀 ~ EBook ~ book:', book)
-  console.log('🚀 ~ EBook ~ book:', decodeURIComponent(book))
-  const bookTitle = decodeURIComponent(book)
-  const dataEbook = booksList.find(
-    book => book.bookTitle === decodeURIComponent(bookTitle),
-  )
+  const dataEbook = booksList.find(book => book.bookTitle === bookTitle)
   return (
     <Wrapper className='py-10 lg:py-16'>
       <div className='mb-7 flex justify-center'>
@@ -32,7 +28,9 @@ function EBook({ params }: { params: { book: string } }) {
       <div className='mt-10 flex w-full flex-col items-center justify-center gap-2 md:mt-auto'>
         <Button
           className='w-fit rounded-full font-semibold'
-          onClick={() => router.push('/read-ebook')}
+          onClick={() =>
+            router.push(`/read-ebook/${encodeURIComponent(bookTitle)}`)
+          }
         >
           Ver libro
         </Button>
