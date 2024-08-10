@@ -18,13 +18,20 @@ function BookResult() {
         </h1>
       </div>
       <div className='mx-auto h-[420px] max-w-72'>
-        <CoverBook title={dataEbook.bookTitle} />
+        <CoverBook
+          title={dataEbook.bookTitle}
+          color={dataEbook.colorCoverBook}
+        />
       </div>
 
       <div className='mt-10 flex w-full flex-col items-center justify-center gap-2 md:mt-auto'>
         <Button
           className='w-fit rounded-full font-semibold'
-          onClick={() => router.push('/read-ebook')}
+          onClick={() =>
+            router.push(
+              `/read-ebook/${encodeURIComponent(dataEbook.bookTitle)}`,
+            )
+          }
         >
           Ver libro
         </Button>

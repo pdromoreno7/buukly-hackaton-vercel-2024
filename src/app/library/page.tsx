@@ -19,7 +19,11 @@ function LibraryPage() {
               key={index}
             >
               <div key={index}>
-                <CoverBook title={book.bookTitle} className='max-w-80' />
+                <CoverBook
+                  title={book.bookTitle}
+                  color={book.colorCoverBook}
+                  className='max-w-80'
+                />
               </div>
             </Link>
           ))}

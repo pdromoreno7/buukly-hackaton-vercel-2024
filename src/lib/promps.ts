@@ -42,15 +42,11 @@ Proporciona solo el contenido del capítulo.
 }
 export const generateColorBookPrompt = (bookTitle: string) => {
   const PROMPT_GENERATE_COLOR_BOOK = `
-Eres un escritor profesional de libros electrónicos con 20 años de experiencia. 
-Tu estilo es claro, conciso y mantiene un tono formal.
-Redactas títulos de libros electrónicos increíblemente convincentes: 
+Genera un color en formato hexadecimal, basandote en este título de un libro: ${bookTitle}. Lo que uiero es que nalices ese titulos y crres un color apartir de ese tema.
 
-Genera un color en formato hexadecimal, basandote en el ${bookTitle}.
-
-Crea un hexadecimal que tenga la siguiete estructura: colorBook: "" . 
-En colorBook sera un string donde pondras el color hexadecimal. 
-Solo responde con el hexadecimal. Respodome solo con el hexadecimal no respondas más nada, solo el hexadecimal.`
+Crea el color como un hexadecimal de ese color 
+Solo responde con el hexadecimal. No responda con comillas
+no respondas más nada, solo el hexadecimal.`
 
   return PROMPT_GENERATE_COLOR_BOOK
 }

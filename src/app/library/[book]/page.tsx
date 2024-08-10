@@ -20,7 +20,10 @@ function EBook({ params }: { params: { book: string } }) {
         <h1 className='text-center text-2xl font-bold'>{bookTitle}</h1>
       </div>
       <div className='mx-auto h-[420px] max-w-72'>
-        <CoverBook title={dataEbook?.bookTitle ?? ''} />
+        <CoverBook
+          title={dataEbook?.bookTitle ?? ''}
+          color={dataEbook?.colorCoverBook}
+        />
       </div>
       <div className='mx-auto mt-6 rounded-2xl bg-gray-100 p-4 text-center dark:bg-white/5 dark:text-gray-200 md:my-6 md:max-w-xs'>
         {dataEbook?.bookDescription}
