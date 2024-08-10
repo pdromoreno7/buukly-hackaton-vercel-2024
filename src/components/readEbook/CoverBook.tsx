@@ -1,10 +1,6 @@
-import { useBookStore } from '@/store'
-
 import { cn } from '@/lib/utils'
 
-export default function CoverBook({ className, title }: CoverBookProps) {
-  const color = useBookStore(state => state.bookCoverColor)
-
+export default function CoverBook({ className, title, color }: CoverBookProps) {
   return (
     <div
       className={cn(
@@ -36,4 +32,5 @@ export default function CoverBook({ className, title }: CoverBookProps) {
 interface CoverBookProps {
   title: string
   className?: string
+  color?: string
 }

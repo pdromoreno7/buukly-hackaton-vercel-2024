@@ -1,5 +1,6 @@
 'use server'
 import { google } from '@ai-sdk/google'
+// import { openai } from '@ai-sdk/openai'
 import { generateText } from 'ai'
 
 export async function getTextByModelAi(
@@ -9,6 +10,7 @@ export async function getTextByModelAi(
   try {
     const { text } = await generateText({
       model: google('models/gemini-1.5-pro'),
+      // model: openai('gpt-3.5-turbo'),
       system,
       prompt,
     })

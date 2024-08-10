@@ -12,6 +12,7 @@ interface BookData {
   bookChapters: string[]
   bookKeyWords: string[]
   chaptersWithContent?: Chapter[]
+  colorCoverBook?: string
 }
 
 interface BookStore {
@@ -29,6 +30,7 @@ export const useBookStore = create<BookStore>(set => ({
     bookChapters: [],
     bookKeyWords: [],
     chaptersWithContent: [],
+    colorCoverBook: '',
   },
   bookCoverColor: '',
   setBookData: (data: Partial<BookData>) =>
@@ -39,14 +41,6 @@ export const useBookStore = create<BookStore>(set => ({
     })),
   setBookCoverColor: color => set({ bookCoverColor: color }),
 }))
-
-// interface BookData {
-//   bookTitle: string
-//   bookDescription: string
-//   bookChapters: string[]
-//   bookKeyWords: string[]
-//   chaptersWithContent: { chapterTitle: string; text: string }[]
-// }
 
 interface BookListStore {
   booksList: BookData[]

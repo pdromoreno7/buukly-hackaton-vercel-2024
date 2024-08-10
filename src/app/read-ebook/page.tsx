@@ -12,7 +12,7 @@ export default function BookView() {
   const dataEbook = useBookStore(state => state.dataEbook)
 
   const totalPages = useMemo(
-    () => dataEbook?.chaptersWithContent?.length ?? 0 + 2 + 2,
+    () => (dataEbook?.chaptersWithContent?.length ?? 0) + 2,
     [dataEbook],
   )
 
@@ -27,6 +27,7 @@ export default function BookView() {
           <CoverPage
             description={dataEbook.bookDescription}
             title={dataEbook.bookTitle}
+            colorBookCover={dataEbook?.colorCoverBook ?? ''}
           />
         )
       case 2:

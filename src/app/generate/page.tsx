@@ -29,8 +29,7 @@ export default function Generate() {
     totalChapters,
   } = useGenerateChapters()
   const { addBookToList } = useBookListStore()
-  const { dataEbook, setBookData, setChaptersWithContent, setBookCoverColor } =
-    useBookStore()
+  const { dataEbook, setBookData, setChaptersWithContent } = useBookStore()
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setBookTitle(event.target.value)
@@ -45,8 +44,12 @@ export default function Generate() {
     try {
       const result = await generateDataBookByTitle(bookTitle)
       const resultColorBook = await generateColorBook(bookTitle)
-      setBookCoverColor(resultColorBook)
-      setBookData(result?.recipe)
+      const trimmedColorBook = resultColorBook.trim()
+
+      setBookData({
+        ...result?.recipe,
+        colorCoverBook: trimmedColorBook,
+      })
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)
     } catch (error) {
