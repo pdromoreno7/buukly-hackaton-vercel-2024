@@ -28,7 +28,7 @@ export default function Generate() {
     counterChapters,
     totalChapters,
   } = useGenerateChapters()
-  const { addBookToList, updateBookInList } = useBookListStore()
+  const { addBookToList } = useBookListStore()
   const { dataEbook, setBookData, setChaptersWithContent, setBookCoverColor } =
     useBookStore()
 
@@ -47,7 +47,6 @@ export default function Generate() {
       const resultColorBook = await generateColorBook(bookTitle)
       setBookCoverColor(resultColorBook)
       setBookData(result?.recipe)
-      addBookToList(result?.recipe)
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)
     } catch (error) {
@@ -70,9 +69,8 @@ export default function Generate() {
         keyWords,
       )
       setChaptersWithContent(chaptersWithContentResult)
-      updateBookInList(dataEbook.bookTitle, {
-        chaptersWithContent: chaptersWithContentResult,
-      })
+      // Añadir el libro completo a la lista
+      addBookToList(dataEbook)
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
