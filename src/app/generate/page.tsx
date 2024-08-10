@@ -28,8 +28,7 @@ export default function Generate() {
     counterChapters,
     totalChapters,
   } = useGenerateChapters()
-  const { booksList, addBookToList, updateBookInList } = useBookListStore()
-  console.log('🚀 ~ Generate ~ booksList:', booksList)
+  const { addBookToList, updateBookInList } = useBookListStore()
   const { dataEbook, setBookData, setChaptersWithContent, setBookCoverColor } =
     useBookStore()
 

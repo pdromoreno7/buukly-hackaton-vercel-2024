@@ -40,7 +40,11 @@ export default function Header() {
               </Button>
             </div>
             <div className='inline-flex gap-3'>
-              {!isAvailablePaths && <LibraryButton>Biblioteca</LibraryButton>}
+              {!isAvailablePaths && (
+                <LibraryButton>
+                  <Link href='/library'>Biblioteca</Link>
+                </LibraryButton>
+              )}
               {!isAvailablePaths && <ToggleTheme />}
               {!isAvailablePaths && (
                 <Button
