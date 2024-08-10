@@ -2,7 +2,7 @@
 import { signUpAction } from '@/actions/authAction'
 import { PATHNAMES } from '@/conts'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Check, X } from 'lucide-react'
+import { Check, EyeIcon, EyeOffIcon, X } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -48,6 +48,8 @@ export type UserType = z.infer<typeof RegisterSchema>
 
 export default function SignUp() {
   const [isPopoverOpen, setPopoverOpen] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+
   const TIPS = [
     { text: 'Al menos 8 caracteres', regex: /.{8,}/ },
     { text: 'Una letra mayúscula', regex: /[A-Z]/ },
@@ -133,16 +135,29 @@ export default function SignUp() {
                 <Label htmlFor='password' className='ml-2'>
                   Contraseña
                 </Label>
-                <Input
-                  id='password'
-                  type='password'
-                  required
-                  className='h-fit rounded-full py-2'
-                  {...register('password')}
-                  onFocus={() => setPopoverOpen(true)}
-                  onBlur={() => setPopoverOpen(false)}
-                  autoComplete='new-password'
-                />
+                <div className='relative'>
+                  <Input
+                    id='password'
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    className='h-fit rounded-full py-2 pr-10'
+                    {...register('password')}
+                    onFocus={() => setPopoverOpen(true)}
+                    onBlur={() => setPopoverOpen(false)}
+                    autoComplete='new-password'
+                  />
+                  <button
+                    type='button'
+                    onClick={() => setShowPassword(!showPassword)}
+                    className='absolute right-3 top-1/2 -translate-y-1/2 transform'
+                  >
+                    {showPassword ? (
+                      <EyeOffIcon className='h-5 w-5 text-neutral-700 dark:text-neutral-300' />
+                    ) : (
+                      <EyeIcon className='h-5 w-5 text-neutral-700 dark:text-neutral-300' />
+                    )}
+                  </button>
+                </div>
               </div>
               {isPopoverOpen && (
                 <div className='space-y-2 rounded-lg border border-neutral-200 p-3 dark:border-neutral-800'>
