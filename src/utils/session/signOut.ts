@@ -4,12 +4,8 @@ import { redirect } from 'next/navigation'
 import { createClientSR } from '../supabase/client'
 
 export default async function signOut() {
-  const { error } = await createClientSR().auth.signOut()
-
-  if (error) {
-    redirect('/error')
-  }
+  await createClientSR().auth.signOut()
 
   revalidatePath('/', 'layout')
-  redirect('/generate')
+  redirect('/')
 }

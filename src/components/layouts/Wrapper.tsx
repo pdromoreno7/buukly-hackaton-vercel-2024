@@ -7,7 +7,7 @@ const Wrapper = React.forwardRef<
 >(({ className, children }, ref) => (
   <div
     ref={ref}
-    className={cn('container mx-auto h-full max-w-screen-lg px-4', className)}
+    className={cn('container mx-auto h-full max-w-screen-lg px-5', className)}
   >
     {children}
   </div>
