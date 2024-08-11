@@ -17,7 +17,7 @@ export async function signInAction(formData: UserLoginType) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    redirect('/error')
+    // redirect('/error')
     return { error: error?.message }
   }
 
