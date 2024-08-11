@@ -1,4 +1,3 @@
-import { PATHNAMES } from '@/conts'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
@@ -40,31 +39,31 @@ export async function updateSession(request: NextRequest) {
   // Redireccion basada en la sesion del usuario.
   // Esto se evalua obteniendo, como recomienda Supabase, la sesion del usuario
   // por medio de supabase.auth.getUser()
-  if (
-    (user && request.nextUrl.pathname.startsWith('/sign')) ||
-    request.nextUrl.pathname.startsWith('/reset')
-  ) {
-    return NextResponse.redirect(new URL('/', request.url))
+  if (!user) {
+    // Si no hay usuario, permite el acceso solo a las rutas que
+    // comiencen con /sign, /reset, /success, o que sean exactamente '/'
+    if (
+      !request.nextUrl.pathname.startsWith('/sign') &&
+      !request.nextUrl.pathname.startsWith('/reset') &&
+      !request.nextUrl.pathname.startsWith('/success') &&
+      !request.nextUrl.pathname.startsWith('/about') &&
+      !request.nextUrl.pathname.startsWith('/faq') &&
+      request.nextUrl.pathname !== '/'
+    ) {
+      return NextResponse.redirect(new URL('/sign-in', request.url))
+    }
+  } else {
+    // Si hay usuario, bloquea acceso a las rutas que
+    // comiencen con /sign, /reset, /success, o que sean exactamente '/'
+    if (
+      request.nextUrl.pathname.startsWith('/sign') ||
+      request.nextUrl.pathname.startsWith('/reset') ||
+      request.nextUrl.pathname.startsWith('/success') ||
+      request.nextUrl.pathname === '/'
+    ) {
+      return NextResponse.redirect(new URL('/generate', request.url))
+    }
   }
-
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith('/sign') &&
-    !request.nextUrl.pathname.startsWith('/reset')
-  ) {
-    return NextResponse.redirect(new URL(PATHNAMES['sign-in'], request.url))
-  }
-
-  /* if (
-    !user &&
-    !request.nextUrl.pathname.startsWith('/sign') &&
-    !request.nextUrl.pathname.startsWith('/reset')
-
-  ) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/sign-in'
-    return NextResponse.redirect(url)
-  } */
 
   /* IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
   creating a new response object with NextResponse.next() make sure to:
