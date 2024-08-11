@@ -25,9 +25,9 @@ export default function Home() {
         <span className='text-sm text-gray-600'>
           Política de privacidad, términos y condiciones{' '}
         </span>
-        <span className='text-sm text-gray-600'>
+        {/* <span className='text-sm text-gray-600'>
           Diseñado y Desarrollado por “Bollo Limpio Dev” 💚️
-        </span>
+        </span> */}
       </footer>
     </Wrapper>
   )
