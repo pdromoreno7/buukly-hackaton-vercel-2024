@@ -9,7 +9,7 @@ import './globals.css'
 const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Buucly',
+  title: 'Buukly',
   description: 'A description...',
 }
 

@@ -112,7 +112,7 @@ export default function Generate() {
     )
 
   return (
-    <Wrapper className='py-8 lg:py-6'>
+    <Wrapper className='py-8 lg:py-16'>
       <Section className='mx-auto flex h-full max-w-lg grow flex-col justify-between'>
         <div className='flex flex-col gap-5 lg:gap-6'>
           <h1 className='text-center text-2xl font-extrabold leading-tight lg:text-3xl'>
@@ -133,7 +133,7 @@ export default function Generate() {
             isLoading={isLoading}
             isDisabled={!bookTitle}
           >
-            ✨ Enviar
+            Generar
           </ButtonLoading>
         </div>
         <span className='mt-8 text-center text-xs text-gray-500 dark:text-white/80'>

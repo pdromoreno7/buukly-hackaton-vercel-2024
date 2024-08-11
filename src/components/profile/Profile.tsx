@@ -1,61 +1,43 @@
-'use client'
-import { MENU_ENTRIES } from '@/conts'
 import { getUserSSR } from '@/utils/session/getUser'
-import signOut from '@/utils/session/signOut'
+import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from '@components/ui/dropdown-menu'
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar'
-import { User } from '@supabase/supabase-js'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+} from '@radix-ui/react-dropdown-menu'
 
 import { Button } from '../ui/button'
 
-export default function Profile() {
-  const [userData, setUserData] = useState<User>()
-  useEffect(() => {
-    getUserSSR().then(data => setUserData(data))
-  }, [])
+export default async function Profile() {
+  const user = await getUserSSR()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='ghost'
+          variant='outline'
           size='icon'
           className='overflow-hidden rounded-full'
         >
-          <Avatar>
+          <Avatar className='size-8'>
             <AvatarImage
-              src={userData?.user_metadata?.avatar_url}
-              className='size-8 snap-center rounded-full'
+              src={user.user_metadata.avatar_url}
+              className='rounded-full'
             />
-            <AvatarFallback>{userData?.email![0].toUpperCase()}</AvatarFallback>
+            <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' className='text-sm'>
-        {MENU_ENTRIES.map((entry, index) => (
-          <DropdownMenuItem key={index}>
-            <Link href={entry.href} className='w-full'>
-              {entry.label}
-            </Link>
-          </DropdownMenuItem>
-        ))}
+      <DropdownMenuContent align='end'>
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <button
-            className='w-full px-0 text-left text-red-500 hover:text-red-600'
-            onClick={signOut}
-          >
-            Cerrar sesión
-          </button>
-        </DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem>Support</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
