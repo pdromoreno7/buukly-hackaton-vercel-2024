@@ -3,32 +3,31 @@ export const PATHNAMES = {
   'sign-up': '/sign-up',
   'reset-password': '/reset-password',
   'success-register': '/success-register',
+  generate: '/generate',
+  faq: '/faq',
+  about: '/about',
 }
 
 export const MENU_ENTRIES = [
   {
-    label: 'Inicio',
-    href: '/',
-  },
-  {
-    label: 'Dashboard',
+    label: 'Mi cuenta',
     href: '#',
   },
   {
-    label: 'My Settings',
-    href: '#',
+    label: 'Generar libro',
+    href: PATHNAMES.generate,
   },
   {
-    label: 'Preguntas Frecuentes',
-    href: '/faq',
+    label: 'Preguntas frecuentes',
+    href: PATHNAMES.faq,
   },
   {
-    label: 'Log Out',
-    href: '#',
+    label: 'Acerca de',
+    href: PATHNAMES.about,
   },
 ]
 
-export const STEPS = [
+export const SUGGESTIONS = [
   {
     title: 'Sugerencia 1',
     description: 'Introducción a la programación web',
@@ -77,4 +76,33 @@ export const QUESTIONS = [
     content:
       'Para cambiar tu foto de perfil, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar foto de perfil.',
   },
+]
+
+export const HOW_TO = [
+  {
+    step: 'Paso #1',
+    title: 'Piensa en el tema que necesitas',
+    description:
+      'Una vez tengas claro lo que quieres leer, redacta el promt adecuado para generar el libro.',
+  },
+  {
+    step: 'Paso #2',
+    title: 'Verifica el contenido',
+    description:
+      'Tendrás una vista previa del contenido de los capítulos de tu libro para verificar que el contenido sea de tu agrado.',
+  },
+  {
+    step: 'Paso #3',
+    title: 'Lee en donde prefieras',
+    description:
+      'Disfruta de tu libro directamente en la app o descárgalo y úsalo en tu lector digital favorito.',
+  },
+]
+
+export const HOW_IT_WORK = [
+  'Algoritmos de IA avanzados para generar tramas y personajes.',
+  'Personalización basada en preferencias del usuario.',
+  'Generación de ilustraciones únicas para cada libro.',
+  'Edición y refinamiento asistido por IA.',
+  'Opciones de publicación digital y física bajo demanda.',
 ]

@@ -1,62 +1,65 @@
 'use client'
 import { PATHNAMES } from '@/conts'
-import signOut from '@/utils/session/signOut'
 import Wrapper from '@components/layouts/Wrapper'
-import { LogOut } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import { LibraryButton } from '../commons/libraryButton/LibraryButton'
+import Profile from '../profile/Profile'
 import ToggleTheme from '../provider/ToggleTheme'
 import { Button } from '../ui/button'
 
 export default function Header() {
+  const { theme, systemTheme } = useTheme()
+  console.log('🚀 ~ Header ~ theme:', theme)
+  const [logoSrc, setLogoSrc] = useState('/resources/full-logo.svg')
   const path = usePathname()
-  const isAvailablePaths =
-    path === PATHNAMES['sign-in'] ||
-    path === PATHNAMES['sign-up'] ||
-    path === PATHNAMES['reset-password'] ||
-    path === PATHNAMES['success-register']
-  const renderGroupBtn = isAvailablePaths ? 'inline-flex gap-2' : 'hidden'
+  const renderAuthBtn =
+    path.startsWith('/sign') ||
+    path.startsWith('/reset') ||
+    path.startsWith('/faq') ||
+    path.startsWith('/about') ||
+    path === '/'
+
+  useEffect(() => {
+    // Verificar el tema actual
+    const currentTheme = theme === 'system' ? systemTheme : theme
+    setLogoSrc(
+      currentTheme === 'dark'
+        ? '/resources/full-logo-white.svg'
+        : '/resources/full-logo.svg',
+    )
+  }, [theme, systemTheme])
 
   return (
     <header>
       <Wrapper className='lg:max-w-full'>
-        <nav className='flex items-center justify-between py-3 pb-2'>
-          {/* {isAvailablePaths && (
-            <h2 className='text-2xl font-extrabold'>Buukly</h2>
-          )} */}
+        <nav className='flex flex-row items-center justify-between py-3'>
           <Link href='/'>
-            <h2 className='text-2xl font-extrabold'>Buukly</h2>
+            <img
+              src={logoSrc}
+              alt='Buucly Logo'
+              title='Buucly Logo'
+              className='h-8'
+            />
           </Link>
+          <div className={renderAuthBtn ? 'inline-flex gap-2' : 'hidden'}>
+            <Button asChild variant='outline' className='rounded-full'>
+              <Link href={PATHNAMES['sign-in']}>Inicia sesión</Link>
+            </Button>
+            <Button asChild className='rounded-full font-semibold'>
+              <Link href={PATHNAMES['sign-up']}>Registrate</Link>
+            </Button>
+          </div>
 
-          <div className='inline-flex w-full justify-end gap-4'>
-            <div className={renderGroupBtn}>
-              <Button asChild variant='outline' className='rounded-full'>
-                <Link href={PATHNAMES['sign-in']}>Inicia sesión</Link>
-              </Button>
-              <Button asChild className='rounded-full font-semibold'>
-                <Link href={PATHNAMES['sign-up']}>Registrate</Link>
-              </Button>
-            </div>
-            <div className='inline-flex gap-3'>
-              {!isAvailablePaths && (
-                <LibraryButton>
-                  <Link href='/library'>Biblioteca</Link>
-                </LibraryButton>
-              )}
-              {!isAvailablePaths && <ToggleTheme />}
-              {!isAvailablePaths && (
-                <Button
-                  variant='outline'
-                  size='icon'
-                  title='Cerrar sesión'
-                  onClick={signOut}
-                >
-                  <LogOut className='h-[1.2rem] w-[1.2rem]' />
-                </Button>
-              )}
-            </div>
+          <div className={!renderAuthBtn ? 'inline-flex gap-3' : 'hidden'}>
+            <LibraryButton>
+              <Link href='/library'>Biblioteca</Link>
+            </LibraryButton>
+            <ToggleTheme />
+            <Profile />
           </div>
         </nav>
       </Wrapper>
