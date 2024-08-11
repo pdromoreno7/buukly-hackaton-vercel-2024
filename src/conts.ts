@@ -6,6 +6,7 @@ export const PATHNAMES = {
   generate: '/generate',
   faq: '/faq',
   about: '/about',
+  'terms-privacy': '/legal/terms-privacy',
 }
 
 export const MENU_ENTRIES = [
@@ -24,6 +25,10 @@ export const MENU_ENTRIES = [
   {
     label: 'Acerca de',
     href: PATHNAMES.about,
+  },
+  {
+    label: 'Uso legal',
+    href: PATHNAMES['terms-privacy'],
   },
 ]
 
@@ -47,9 +52,9 @@ export const SUGGESTIONS = [
 
 export const QUESTIONS = [
   {
-    title: '¿Cómo puedo generar un nuevo libro con Buukly?',
+    title: '¿Cómo puedo generar un nuevo libro con Buucly?',
     content:
-      'Para generar un nuevo libro, ve a la sección "Crear Libro" en tu dashboard. Allí podrás seleccionar el género, tema y longitud deseada. Luego, sigue las instrucciones para personalizar tu historia y la IA de Buukly generará tu libro único.',
+      'Para generar un nuevo libro, ve a la sección "Crear Libro" en tu dashboard. Allí podrás seleccionar el género, tema y longitud deseada. Luego, sigue las instrucciones para personalizar tu historia y la IA de Buucly generará tu libro único.',
   },
   {
     title: '¿Puedo editar el contenido generado por la IA?',
@@ -105,4 +110,22 @@ export const HOW_IT_WORK = [
   'Generación de ilustraciones únicas para cada libro.',
   'Edición y refinamiento asistido por IA.',
   'Opciones de publicación digital y física bajo demanda.',
+]
+
+export const TERMS = [
+  {
+    title: 'Prohibición de Venta y Reproducción',
+    description:
+      'Está prohibida la venta, distribución o reproducción no autorizada de los libros generados a través de Buucly. Los libros deben usarse exclusivamente para fines personales o educativos.',
+  },
+  {
+    title: 'Restricciones en la Creación de Libros',
+    description:
+      'No está permitido crear libros que incluyan contenido de otros autores sin su autorización. Los usuarios deben asegurarse de que todo el contenido generado no infrinja los derechos de propiedad intelectual de terceros.',
+  },
+  {
+    title: 'Responsabilidad del Usuario',
+    description:
+      'El usuario es responsable de garantizar que el contenido de los libros generados cumpla con todas las leyes de derechos de autor y propiedad intelectual. Buucly no asume responsabilidad por el uso indebido del contenido creado.',
+  },
 ]

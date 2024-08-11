@@ -1,3 +1,4 @@
+import { BuuclyLogoShortVariant } from '@/components/buuclyLogo/BuuclyLogo'
 import Wrapper from '@/components/layouts/Wrapper'
 
 import { HOW_IT_WORK } from '../../conts'
@@ -12,7 +13,7 @@ export default function About() {
           </h1>
 
           <p className='tracking-tight'>
-            Buukly utiliza inteligencia artificial para crear libros
+            Buucly utiliza inteligencia artificial para crear libros
             personalizados diseñados específicamente para tu aprendizaje. Esto
             te permite estudiar de manera más efectiva y mantener toda la
             información que necesitas de forma clara y accesible.
@@ -34,7 +35,7 @@ export default function About() {
         <div className='grid grid-flow-row grid-cols-2'>
           <h2 className='text-2xl font-bold tracking-tight'>Nuestro Impacto</h2>
           <p className='tracking-tight'>
-            Desde nuestro lanzamiento, Buukly ha generado más de 100,000 libros
+            Desde nuestro lanzamiento, Buucly ha generado más de 100,000 libros
             únicos, colaborado con 500 autores humanos, y ha sido utilizado en
             30 países para proyectos educativos y creativos.
           </p>
@@ -42,7 +43,7 @@ export default function About() {
 
         <div className='grid grid-flow-row grid-cols-2'>
           <h2 className='text-2xl font-bold tracking-tight'>
-            El Equipo Buukly
+            El Equipo Buucly
           </h2>
           <p className='tracking-tight'>
             Somos un equipo diverso de expertos en IA, desarrolladores,
@@ -64,11 +65,9 @@ export default function About() {
           </span>
         </div>
       </section>
-      <img
-        className='mx-auto pb-6'
-        src='/resources/logo.svg'
-        alt='Buucly Logo'
-      />
+      <div className='inline-flex w-full justify-center pb-6'>
+        <BuuclyLogoShortVariant />
+      </div>
     </Wrapper>
   )
 }

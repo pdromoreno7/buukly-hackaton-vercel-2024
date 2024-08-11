@@ -3,8 +3,10 @@ import {
   generateColorBook,
   generateDataBookByTitle,
 } from '@/actions/generateObjetcContent'
+import { PATHNAMES } from '@/conts'
 import { useGenerateChapters } from '@/hooks/useGenerateChapters'
 import { useBookListStore, useBookStore } from '@/store'
+import Link from 'next/link'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
 
@@ -115,9 +117,14 @@ export default function Generate() {
     <Wrapper className='py-8 lg:py-6'>
       <Section className='mx-auto flex h-full max-w-lg grow flex-col justify-between'>
         <div className='flex flex-col gap-5 lg:gap-6'>
-          <h1 className='text-center text-2xl font-extrabold leading-tight lg:text-3xl'>
-            ¿Qué libro quieres escribir hoy?
-          </h1>
+          <div className='space-y-1'>
+            <h1 className='text-center text-2xl font-extrabold leading-tight lg:text-3xl'>
+              ¿Qué quieres leer hoy?
+            </h1>
+            <p className='text-center text-sm text-neutral-600 dark:text-neutral-300'>
+              Genera tu libro ahora con los temas recomendados.
+            </p>
+          </div>
           <Suggestions handleSetInputSteps={handleSetInputSteps} />
         </div>
         <div className='mt-auto flex gap-2'>
@@ -136,9 +143,14 @@ export default function Generate() {
             ✨ Enviar
           </ButtonLoading>
         </div>
-        <span className='mt-8 text-center text-xs text-gray-500 dark:text-white/80'>
-          Al hacer uso de esta app, acepta nuestros Términos de servicio y
-          Política de privacidad.
+        <span className='mt-3 text-center text-xs text-gray-500 dark:text-white/80'>
+          Al hacer uso de esta app, acepta nuestros{' '}
+          <Link
+            href={PATHNAMES['terms-privacy']}
+            className='transition-colors hover:text-black hover:underline'
+          >
+            Términos de Servicio y Políticas de Privacidad.
+          </Link>
         </span>
       </Section>
     </Wrapper>
