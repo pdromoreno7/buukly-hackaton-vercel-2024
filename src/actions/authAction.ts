@@ -1,10 +1,21 @@
 'use server'
-import { UserType } from '@/app/sign-up/page'
-import { UserType as UserLoginType } from '@/app/sign-in/page'
+// import { UserType as UserLoginType } from '@/app/sign-in/page'
+// import { UserType } from '@/app/sign-up/page'
 import { PATHNAMES } from '@/conts'
 import { createClientSSR } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+
+type UserLoginType = {
+  email: string
+  password: string
+}
+
+type UserType = {
+  name: string
+  email: string
+  password: string
+}
 
 export async function signInAction(formData: UserLoginType) {
   const supabase = createClientSSR()

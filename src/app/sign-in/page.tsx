@@ -2,7 +2,8 @@
 import { signInAction } from '@/actions/authAction'
 import { PATHNAMES } from '@/conts'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { EyeIcon, EyeOffIcon } from 'lucide-react'
+import clsx from 'clsx'
+import { EyeIcon, EyeOffIcon, Loader2 } from 'lucide-react'
 // import { revalidatePath } from 'next/cache'
 // import { redirect } from 'next/dist/server/api-utils'
 import Link from 'next/link'
@@ -10,7 +11,6 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import clsx from 'clsx'
 
 import Wrapper from '@/components/layouts/Wrapper'
 import { Button } from '@/components/ui/button'
@@ -18,14 +18,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-import Loading from '../loading'
+// TODO: arrglar error de hidratacion en el cliente por lis inputs
+
+// import Loading from '../loading'
 
 // login eschema
 const LoginSchema = z.object({
   email: z.string().email({ message: 'Correo electrónico no válido' }),
   password: z
     .string()
-    .min(8, { message: 'La contraseña debe tener al menos 8 caracteres' }),
+    .min(6, { message: 'La contraseña debe tener al menos 8 caracteres' }),
 })
 
 export type UserType = z.infer<typeof LoginSchema>
@@ -124,7 +126,7 @@ export default function SignIn() {
                 disabled={!isValid}
               >
                 {isSubmitting ? (
-                  <Loading />
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                 ) : (
                   'Continuar con correo electrónico'
                 )}
