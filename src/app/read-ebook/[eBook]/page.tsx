@@ -14,9 +14,10 @@ export default function BookView({ params }: { params: { eBook: string } }) {
   const { booksList } = useBookListStore()
 
   const dataEbook = booksList.find(book => book.bookTitle === bookTitle)
+  console.log('🚀 ~ BookView ~ dataEbook:', dataEbook)
 
   const totalPages = useMemo(
-    () => dataEbook?.chaptersWithContent?.length ?? 0 + 2,
+    () => (dataEbook?.chaptersWithContent?.length ?? 0) + 2,
     [dataEbook],
   )
 
@@ -31,6 +32,7 @@ export default function BookView({ params }: { params: { eBook: string } }) {
           <CoverPage
             description={dataEbook?.bookDescription ?? ''}
             title={dataEbook?.bookTitle ?? ''}
+            colorBookCover={dataEbook?.colorCoverBook ?? ''}
           />
         )
       case 2:
