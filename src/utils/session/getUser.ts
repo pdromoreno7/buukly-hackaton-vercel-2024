@@ -1,17 +1,14 @@
-import { PATHNAMES } from '@/conts'
-import { redirect } from 'next/navigation'
-
-import { createClientSSR } from '../supabase/server'
+import { createClientSR } from '../supabase/client'
 
 export async function getUserSSR() {
-  const supabase = createClientSSR()
+  const supabase = createClientSR()
   const {
     data: { user },
-    error,
   } = await supabase.auth.getUser()
-  if (error || !user) {
-    redirect(PATHNAMES['sign-in'])
+
+  if (!user) {
+    console.log('No user found')
   }
 
-  return user
+  if (user) return user
 }
