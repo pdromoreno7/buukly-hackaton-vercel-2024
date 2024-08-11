@@ -11,7 +11,7 @@ import {
 export function Questions() {
   return (
     <section className='mx-auto flex w-full flex-col gap-8 rounded-lg border border-neutral-200 p-6 lg:max-w-screen-md'>
-      <h2 className='text-center text-3xl font-semibold md:text-5xl'>
+      <h2 className='text-center text-3xl font-semibold tracking-tight md:text-5xl'>
         Preguntas frecuentes
       </h2>
 

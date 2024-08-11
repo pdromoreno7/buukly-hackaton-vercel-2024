@@ -1,7 +1,7 @@
-import { createClientSR } from '../supabase/client'
+import { createClientSSR } from '../supabase/server'
 
 export async function getUserSSR() {
-  const supabase = createClientSR()
+  const supabase = createClientSSR()
   const {
     data: { user },
   } = await supabase.auth.getUser()
