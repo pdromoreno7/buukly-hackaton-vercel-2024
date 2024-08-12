@@ -33,8 +33,7 @@ export async function signInAction(formData: UserLoginType) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
-  return { error: null }
+  redirect(PATHNAMES.generate)
 }
 
 export async function signUpAction(formData: UserType) {

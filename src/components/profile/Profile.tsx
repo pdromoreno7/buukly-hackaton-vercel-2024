@@ -1,43 +1,64 @@
-import { getUserSSR } from '@/utils/session/getUser'
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar'
+// 'use client'
+import signOut from '@/actions/signOut'
+import { MENU_ENTRIES } from '@/conts'
+// import { getUserSSR } from '@/utils/session/getUser'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from '@radix-ui/react-dropdown-menu'
+} from '@components/ui/dropdown-menu'
+import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar'
+import { User } from '@supabase/supabase-js'
+import Link from 'next/link'
+// import { useEffect, useState } from 'react'
 
 import { Button } from '../ui/button'
 
-export default async function Profile() {
-  const user = await getUserSSR()
+export default function Profile({ userData }: { userData: User }) {
+  // const [userData, setUserData] = useState<User>()
+  // useEffect(() => {
+  //   getUserSSR().then(data => setUserData(data))
+  // }, [])
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='outline'
+          variant='ghost'
           size='icon'
           className='overflow-hidden rounded-full'
         >
-          <Avatar className='size-8'>
+          <Avatar>
             <AvatarImage
-              src={user.user_metadata.avatar_url}
-              className='rounded-full'
+              src={userData?.user_metadata?.avatar_url}
+              className='size-8 snap-center rounded-full'
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>{userData?.email![0].toUpperCase()}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuContent align='end' className='text-sm'>
+        {MENU_ENTRIES.map((entry, index) => (
+          <DropdownMenuItem key={index}>
+            <Link href={entry.href} className='w-full'>
+              {entry.label}
+            </Link>
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem>
+          <form>
+            <button
+              className='w-full px-0 text-left text-red-500 hover:text-red-600'
+              // onClick={signOut}
+              formAction={signOut}
+            >
+              Cerrar sesión
+            </button>
+          </form>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
