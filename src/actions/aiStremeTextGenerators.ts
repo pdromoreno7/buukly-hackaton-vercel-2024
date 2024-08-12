@@ -3,14 +3,11 @@
 import { openai } from '@ai-sdk/openai'
 import { streamText } from 'ai'
 
-interface StreamTextResult {
-  textStream: AsyncIterable<string>
-}
-
 export async function getStreamTextByModelAi(
   system: string,
   prompt: string,
-): Promise<StreamTextResult> {
+): Promise<string> {
+  let fullText = ''
   try {
     const result = await streamText({
       // model: google('models/gemini-1.5-pro'),
@@ -18,7 +15,10 @@ export async function getStreamTextByModelAi(
       system,
       prompt,
     })
-    return result
+    for await (const textPart of result.textStream) {
+      fullText += textPart
+    }
+    return fullText
   } catch (error) {
     throw new Error(`Error inesperado en getObjectByModelAi: ${error}`)
   }
