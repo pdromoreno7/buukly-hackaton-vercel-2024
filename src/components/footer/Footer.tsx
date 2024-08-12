@@ -28,9 +28,6 @@ export default function Footer() {
       >
         Políticas de privacidad, Términos y Condiciones
       </Link>
-      <span className='text-sm text-neutral-600 dark:text-neutral-300'>
-        Diseñado y Desarrollado por “Bollo Limpio Dev” 💚️
-      </span>
     </footer>
   )
 }
