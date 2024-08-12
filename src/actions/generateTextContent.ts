@@ -3,14 +3,14 @@
 import { generateChapterTextPrompt } from '@/lib/promps'
 import { FORMAL_EBOOK_SYSTEM_PROMPT } from '@/lib/systems_promps'
 
-import { getTextByModelAi } from './aiTextGenerators'
+import { getStreamTextByModelAi } from './aiStremeTextGenerators'
 
 export async function generateChapterText(
   chapterTitle: string,
   bookTitle: string,
   keyWordsTitle: string,
 ): Promise<string> {
-  return getTextByModelAi(
+  return getStreamTextByModelAi(
     FORMAL_EBOOK_SYSTEM_PROMPT,
     generateChapterTextPrompt(chapterTitle, bookTitle, keyWordsTitle),
   )
