@@ -1,6 +1,7 @@
 export const PATHNAMES = {
   'sign-in': '/sign-in',
   'sign-up': '/sign-up',
+  'forgot-password': '/forgot-password',
   'reset-password': '/reset-password',
   'success-register': '/success-register',
   generate: '/generate',

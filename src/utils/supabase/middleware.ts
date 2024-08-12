@@ -41,24 +41,26 @@ export async function updateSession(request: NextRequest) {
   // por medio de supabase.auth.getUser()
   if (!user) {
     // Si no hay usuario, permite el acceso solo a las rutas que
-    // comiencen con /sign, /reset, /success, o que sean exactamente '/'
+    // comiencen con /sign, /reset, /success, etc, o que sean exactamente '/'
     if (
       !request.nextUrl.pathname.startsWith('/sign') &&
       !request.nextUrl.pathname.startsWith('/reset') &&
       !request.nextUrl.pathname.startsWith('/about') &&
       !request.nextUrl.pathname.startsWith('/faq') &&
       !request.nextUrl.pathname.startsWith('/legal') &&
+      !request.nextUrl.pathname.startsWith('/forgot') &&
       request.nextUrl.pathname !== '/'
     ) {
       return NextResponse.redirect(new URL('/sign-in', request.url))
     }
   } else {
     // Si hay usuario, bloquea acceso a las rutas que
-    // comiencen con /sign, /reset, /success, o que sean exactamente '/'
+    // comiencen con /sign, /reset, /success, etc, o que sean exactamente '/'
     if (
       request.nextUrl.pathname.startsWith('/sign') ||
       request.nextUrl.pathname.startsWith('/reset') ||
       request.nextUrl.pathname.startsWith('/success') ||
+      request.nextUrl.pathname.startsWith('/forgot') ||
       request.nextUrl.pathname === '/'
     ) {
       return NextResponse.redirect(new URL('/generate', request.url))
