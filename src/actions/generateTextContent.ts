@@ -5,11 +5,15 @@ import { FORMAL_EBOOK_SYSTEM_PROMPT } from '@/lib/systems_promps'
 
 import { getStreamTextByModelAi } from './aiStremeTextGenerators'
 
+interface StreamTextResult {
+  textStream: AsyncIterable<string>
+}
+
 export async function generateChapterText(
   chapterTitle: string,
   bookTitle: string,
   keyWordsTitle: string,
-): Promise<string> {
+): Promise<StreamTextResult> {
   return getStreamTextByModelAi(
     FORMAL_EBOOK_SYSTEM_PROMPT,
     generateChapterTextPrompt(chapterTitle, bookTitle, keyWordsTitle),

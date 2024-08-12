@@ -44,14 +44,18 @@ export function useGenerateChapters(): UseGenerateChaptersResult {
         setProgress(Math.round((i / chapterTitles.length) * 100))
 
         try {
+          let fullText = ''
           const chapterTextResult = await generateChapterText(
             chapterTitle,
             bookTitle,
             keyWordsTitle,
           )
+          for await (const textPart of chapterTextResult?.textStream) {
+            fullText += textPart
+          }
           chaptersWithContent.push({
             chapterTitle,
-            text: chapterTextResult,
+            text: fullText,
           })
         } catch (err) {
           console.error(`Error generating chapter "${chapterTitle}":`, err)
@@ -64,14 +68,18 @@ export function useGenerateChapters(): UseGenerateChaptersResult {
       for (const failedChapter of failedChapters) {
         setCurrentChapter(`Reintentando: ${failedChapter}`)
         try {
+          let fullText = ''
           const chapterTextResult = await generateChapterText(
             failedChapter,
             bookTitle,
             keyWordsTitle,
           )
+          for await (const textPart of chapterTextResult?.textStream) {
+            fullText += textPart
+          }
           chaptersWithContent.push({
             chapterTitle: failedChapter,
-            text: chapterTextResult,
+            text: fullText,
           })
           setError(null)
         } catch (err) {
