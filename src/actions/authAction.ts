@@ -2,6 +2,7 @@
 // import { UserType as UserLoginType } from '@/app/sign-in/page'
 // import { UserType } from '@/app/sign-up/page'
 import { PATHNAMES } from '@/conts'
+import { createClientSR } from '@/utils/supabase/client'
 import { createClientSSR } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -48,9 +49,30 @@ export async function signUpAction(formData: UserType) {
   const { error } = await supabase.auth.signUp(data)
 
   if (error) {
-    redirect('/error')
+    // redirect('/error')
+    return { error: error?.message }
   }
 
   revalidatePath('/', 'layout')
   redirect(PATHNAMES['success-register'])
+}
+export async function signInWithGoogle() {
+  const supabase = createClientSR()
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      queryParams: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+        access_type: 'offline',
+        prompt: 'consent',
+      },
+    },
+  })
+  console.log('🚀 ~ signInWithGoogle ~ data:', data)
+
+  if (error) {
+    // redirect('/error')
+    return { error: error?.message }
+  }
+  redirect(data?.url)
 }

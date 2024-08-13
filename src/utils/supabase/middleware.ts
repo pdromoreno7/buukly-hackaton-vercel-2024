@@ -48,7 +48,7 @@ export async function updateSession(request: NextRequest) {
       !request.nextUrl.pathname.startsWith('/about') &&
       !request.nextUrl.pathname.startsWith('/faq') &&
       !request.nextUrl.pathname.startsWith('/legal') &&
-      request.nextUrl.pathname !== '/'
+      request.nextUrl.pathname === '/'
     ) {
       return NextResponse.redirect(new URL('/sign-in', request.url))
     }
@@ -58,8 +58,7 @@ export async function updateSession(request: NextRequest) {
     if (
       request.nextUrl.pathname.startsWith('/sign') ||
       request.nextUrl.pathname.startsWith('/reset') ||
-      request.nextUrl.pathname.startsWith('/success') ||
-      request.nextUrl.pathname === '/'
+      request.nextUrl.pathname.startsWith('/success')
     ) {
       return NextResponse.redirect(new URL('/generate', request.url))
     }
