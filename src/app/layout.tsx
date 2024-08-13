@@ -12,6 +12,9 @@ const onest = Onest({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Buucly',
   description: 'Crea un libro con el tema exacto que necesites con IA',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({

@@ -79,38 +79,6 @@ export default function About() {
             </a>
           ))}
         </div>
-        {/* 
-        <div className='grid grid-flow-row grid-cols-2'>
-          <h2 className='text-2xl font-bold tracking-tight'>¿Cómo funciona?</h2>
-
-          <ul>
-            {HOW_IT_WORK.map((item, index) => (
-              <li key={index} className='text-pretty'>
-                ⁕ {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className='grid grid-flow-row grid-cols-2'>
-          <h2 className='text-2xl font-bold tracking-tight'>Nuestro Impacto</h2>
-          <p className='tracking-tight'>
-            Desde nuestro lanzamiento, Buucly ha generado más de 100,000 libros
-            únicos, colaborado con 500 autores humanos, y ha sido utilizado en
-            30 países para proyectos educativos y creativos.
-          </p>
-        </div>
-
-        <div className='grid grid-flow-row grid-cols-2'>
-          <h2 className='text-2xl font-bold tracking-tight'>
-            El Equipo Buucly
-          </h2>
-          <p className='tracking-tight'>
-            Somos un equipo diverso de expertos en IA, desarrolladores,
-            lingüistas y amantes de la literatura, unidos por la pasión de
-            redefinir la creación literaria en la era digital.
-          </p>
-        </div> */}
 
         <div className='grid grid-flow-row grid-cols-2'>
           <h2 className='row-span-2 text-2xl font-bold tracking-tight'>
