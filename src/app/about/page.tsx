@@ -39,23 +39,21 @@ export default function About() {
   return (
     <Wrapper>
       <section className='mx-auto max-w-screen-md space-y-9 pb-16 pt-6'>
-        <h2 className='mb-4 text-4xl font-bold text-gray-900'>Acerca de</h2>
-        <p className='mb-8 text-lg text-gray-700'>
+        <h2 className='mb-4 text-4xl font-bold'>Acerca de</h2>
+        <p className='mb-8 text-lg'>
           Buucly te permite crear libros personalizados al instante. Solo tienes
           que indicar el tema que deseas, y nuestra IA genera un libro completo,
           listo para leer. ¡Explora nuevas ideas con Buucly!
         </p>
 
-        <h3 className='mb-4 text-2xl font-semibold text-gray-900'>
-          ¿Cómo funciona?
-        </h3>
-        <p className='mb-8 text-lg text-gray-700'>
+        <h3 className='mb-4 text-2xl font-semibold'>¿Cómo funciona?</h3>
+        <p className='mb-8 text-lg'>
           Utilizando los modelos de inteligencia artificial de OpenAI GPT-4o,
           generamos libros a petición, permitiendo a los usuarios gestionar una
           biblioteca virtual completa con todos sus libros personalizados.
         </p>
 
-        <h3 className='mb-4 text-2xl font-semibold text-gray-900'>
+        <h3 className='mb-4 text-2xl font-semibold'>
           El Equipo detrás de Buucly
         </h3>
         <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4'>
@@ -72,7 +70,7 @@ export default function About() {
                 src={member.imageUrl}
                 alt={member.name}
               />
-              <h4 className='mt-4 text-lg font-medium text-gray-900'>
+              <h4 className='mt-4 text-lg font-medium dark:text-black'>
                 {member.name}
               </h4>
               <p className='text-sm text-gray-500'>{member.role}</p>
