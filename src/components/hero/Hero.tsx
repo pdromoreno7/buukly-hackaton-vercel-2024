@@ -59,10 +59,9 @@ export default function Hero() {
         asChild
         className='group w-full cursor-pointer rounded-full bg-kiwi-500 p-0 font-semibold text-black hover:bg-kiwi-600 sm:w-fit'
       >
-        <div>
-          <Link href={PATHNAMES['sign-in']} className='py-2 pl-6'>
-            Comenzar
-          </Link>
+        <Link href={PATHNAMES['sign-in']}>
+          <div className='py-2 pl-6'>Comenzar</div>
+
           <svg
             viewBox='0 0 24 24'
             className='ml-2 mr-6 size-4 fill-none stroke-black stroke-2 opacity-50 transition-opacity duration-200 ease-in-out group-hover:opacity-100 dark:stroke-gray-500 dark:group-hover:stroke-black'
@@ -79,7 +78,7 @@ export default function Hero() {
               className='-translate-x-2 transition-transform duration-200 ease-in-out group-hover:translate-x-0'
             ></polyline>
           </svg>
-        </div>
+        </Link>
       </Button>
     </section>
   )
