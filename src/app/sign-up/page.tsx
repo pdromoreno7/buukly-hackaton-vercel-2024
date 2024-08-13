@@ -2,7 +2,7 @@
 import { signUpAction } from '@/actions/authAction'
 import { PATHNAMES } from '@/conts'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Check, EyeIcon, EyeOffIcon, X } from 'lucide-react'
+import { Check, EyeIcon, EyeOffIcon, Loader2, X } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -20,8 +20,6 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-
-import Loading from '../loading'
 
 const RegisterSchema = z.object({
   name: z.string().min(1, { message: 'El nombre es requerido' }),
@@ -185,7 +183,7 @@ export default function SignUp() {
                 // formAction={signUpAction}
               >
                 {isSubmitting ? (
-                  <Loading />
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                 ) : (
                   'Continuar con correo electrónico'
                 )}
