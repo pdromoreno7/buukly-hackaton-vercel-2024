@@ -48,9 +48,9 @@ export async function updateSession(request: NextRequest) {
       !request.nextUrl.pathname.startsWith('/about') &&
       !request.nextUrl.pathname.startsWith('/faq') &&
       !request.nextUrl.pathname.startsWith('/legal') &&
-      !request.nextUrl.pathname.startsWith('/')
+      request.nextUrl.pathname !== '/'
     ) {
-      const absoluteUrl = new URL(new URL('/', request.nextUrl.origin))
+      const absoluteUrl = new URL(new URL('/sign-in', request.nextUrl.origin))
       return NextResponse.redirect(absoluteUrl.toString())
     }
   } else {
