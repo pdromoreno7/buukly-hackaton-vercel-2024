@@ -41,6 +41,7 @@ export async function updateSession(request: NextRequest) {
   // por medio de supabase.auth.getUser()
   const publicRoutes = ['/', '/sign-in', '/sign-up']
   const restrictedRoutes = ['/generate', 'library', 'read-book']
+
   if (!user && restrictedRoutes.includes(request.nextUrl.pathname)) {
     const absoluteUrl = new URL(new URL('/sign-in', request.nextUrl.origin))
     return NextResponse.redirect(absoluteUrl.toString())
