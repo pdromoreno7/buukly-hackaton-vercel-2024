@@ -54,17 +54,17 @@ export const QUESTIONS = [
   {
     title: '¿Cómo puedo generar un nuevo libro con Buucly?',
     content:
-      'Para generar un nuevo libro, ve a la sección "Crear Libro" en tu dashboard. Allí podrás seleccionar el género, tema y longitud deseada. Luego, sigue las instrucciones para personalizar tu historia y la IA de Buucly generará tu libro único.',
+      'Inicia sesión para pedir a Buccly que genere un libro sobre cualquier tema de tu interés. Luego de tu petición, podrás ver una vista previa del contenido y decidir si cambiar el tema o continuar para generar el libro final.',
   },
   {
     title: '¿Puedo editar el contenido generado por la IA?',
     content:
-      'Sí, puedes editar el contenido generado por la IA. Una vez que tu libro esté listo, tendrás acceso a un editor en línea donde podrás realizar cambios, añadir contenido adicional o refinar la historia según tus preferencias.',
+      'Buucly está diseñada para ser rápida y eficiente, generando libros de hasta en solo unos minutos. Esto significa que podrás disfrutar de tu libro personalizado casi de inmediato, sin largas esperas.',
   },
   {
     title: '¿Cuánto tiempo tarda en generarse un libro?',
     content:
-      'El tiempo de generación varía dependiendo de la longitud y complejidad del libro. Típicamente, un libro corto puede estar listo en unos 15-30 minutos, mientras que una novela más larga podría tardar entre 1-2 horas. Te notificaremos por correo electrónico cuando tu libro esté listo.',
+      'Puedes revisar el contenido de tu libro antes de generarlo para asegurarte de que cumpla con tus expectativas y editar la petición si es necesario.',
   },
   {
     title: '¿Cómo puedo cambiar mi contraseña?',
