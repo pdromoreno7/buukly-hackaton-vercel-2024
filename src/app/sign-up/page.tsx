@@ -92,7 +92,7 @@ export default function SignUp() {
             </CardTitle>
             <CardDescription>
               Solicita libros sobre cualquier tema y se generarán al instante en
-              formato EPUB, listo para descargar.
+              formato EPUB.
             </CardDescription>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
