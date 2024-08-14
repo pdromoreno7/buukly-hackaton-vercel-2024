@@ -31,9 +31,11 @@ export default function ForgotPassword({
   searchParams: SearchParams
 }) {
   const showNotification = searchParams['success'] as string
+  const searchParamsMessage = searchParams['message'] as string
+  const statusMessage = `Código: ${decodeURIComponent(searchParamsMessage).toUpperCase()}`
   const notificationMessage = {
-    succcess: 'Correo enviado con éxito, revisa tu bandeja de entrada.',
-    error: 'Ha ocurrido un error, por favor intentalo nuevamente.',
+    success: 'Correo enviado con éxito, revisa tu bandeja de entrada.',
+    error: `Ha ocurrido un error, por favor intentalo nuevamente. ${searchParamsMessage ? statusMessage : ''}`,
   }
   const dinamicNotificationBG =
     showNotification === 'true'
@@ -54,7 +56,7 @@ export default function ForgotPassword({
             </CardDescription>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
-            <form className='grid gap-4' action={forgotPassword}>
+            <form className='grid gap-4'>
               <div className='flex flex-col gap-2'>
                 <Label htmlFor='email' className='ml-2'>
                   Correo electrónico
@@ -70,6 +72,7 @@ export default function ForgotPassword({
               </div>
               <Button
                 type='submit'
+                formAction={forgotPassword}
                 className='w-full rounded-full font-semibold'
               >
                 Envíar correo de reestablecimiento
@@ -93,7 +96,7 @@ export default function ForgotPassword({
           >
             <span>
               {showNotification === 'true'
-                ? notificationMessage.succcess
+                ? notificationMessage.success
                 : notificationMessage.error}
             </span>
           </div>

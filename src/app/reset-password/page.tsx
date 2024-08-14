@@ -14,22 +14,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-type SearchParams = { [key: string]: string | string[] | undefined }
-
-export default function ResetPassword({
-  searchParams,
-}: {
-  searchParams: SearchParams
-}) {
-  const codeQueryParam = searchParams['code'] as string
-
-  const confirmResetPassword = async (formData: FormData) => {
-    'use server'
-    if (!codeQueryParam) return
-    const { password } = { password: formData.get('password') as string }
-    resetPassword(codeQueryParam, password)
-  }
-
+export default function ResetPassword() {
   return (
     <Wrapper>
       <section className='mx-auto flex h-full max-w-sm flex-col py-4 md:pb-4 md:pt-6'>
@@ -44,7 +29,7 @@ export default function ResetPassword({
             </CardDescription>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
-            <form className='grid gap-4' action={confirmResetPassword}>
+            <form className='grid gap-4' action={resetPassword}>
               <div className='flex flex-col gap-2'>
                 <Label htmlFor='password' className='ml-2'>
                   Contraseña

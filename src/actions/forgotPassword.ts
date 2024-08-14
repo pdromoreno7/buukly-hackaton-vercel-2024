@@ -13,6 +13,7 @@ export default async function forgotPassword(formData: FormData) {
     redirectTo: `${origin}${PATHNAMES['reset-password']}`,
   })
 
+  console.log(error)
   if (error) {
     redirect(`${PATHNAMES['forgot-password']}?success=false`)
   }
