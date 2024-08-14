@@ -2,7 +2,7 @@ import { Book } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-interface ButtonLoadingProps {
+interface LibraryButtonProps {
   children: React.ReactNode
   onClick?: () => void
 
@@ -14,7 +14,7 @@ export function LibraryButton({
   onClick,
 
   isDisabled = false,
-}: ButtonLoadingProps) {
+}: LibraryButtonProps) {
   return (
     <Button
       disabled={isDisabled}
