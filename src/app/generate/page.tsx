@@ -13,6 +13,7 @@ import { toast } from 'sonner'
 import BookPreview from '@/components/bookPreview/BookPreview'
 import BookResult from '@/components/bookResult/BookResult'
 import { ButtonLoading } from '@/components/commons/buttonLoading/ButtonLoading'
+import { GithubButton } from '@/components/commons/githubButton/GithubButton'
 import Section from '@/components/layouts/Section'
 import Wrapper from '@/components/layouts/Wrapper'
 import LoadingChaptersCreation from '@/components/loadingChaptersCreation/LoadingChaptersCreation'
@@ -143,15 +144,20 @@ export default function Generate() {
             ✨ Enviar
           </ButtonLoading>
         </div>
-        <span className='mt-3 text-center text-xs text-gray-500 dark:text-white/80'>
-          Al hacer uso de esta app, acepta nuestros{' '}
-          <Link
-            href={PATHNAMES['terms-privacy']}
-            className='transition-colors hover:text-black hover:underline'
-          >
-            Términos de Servicio y Políticas de Privacidad.
-          </Link>
-        </span>
+        <div className='flex flex-col gap-2 text-center'>
+          <span className='mt-3 text-center text-xs text-neutral-600 dark:text-neutral-300'>
+            Al hacer uso de esta app, acepta nuestros{' '}
+            <Link
+              href={PATHNAMES['terms-privacy']}
+              className='transition-colors hover:text-black hover:underline dark:hover:text-neutral-50'
+            >
+              Términos de Servicio y Políticas de Privacidad.
+            </Link>
+          </span>
+          <div className='sm:hidden'>
+            <GithubButton link />
+          </div>
+        </div>
       </Section>
     </Wrapper>
   )

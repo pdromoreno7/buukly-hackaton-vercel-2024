@@ -44,7 +44,8 @@ function LibraryPage() {
               <Link href={`/library/${encodeURIComponent(book.bookTitle)}`}>
                 <div
                   className={cn(
-                    'flex min-h-56 max-w-44 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 bg-gradient-to-b from-[#B6F1EA] to-[#7ADAA9] pt-3',
+                    'flex h-full max-w-44 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 pt-3',
+                    book.colorCoverBook,
                   )}
                 >
                   <h4 className='truncate text-pretty px-3 pb-4 font-semibold leading-snug dark:text-neutral-900'>
@@ -61,8 +62,10 @@ function LibraryPage() {
         </div>
 
         <div className='mx-auto flex flex-col gap-2 py-4'>
-          <Button className='w-full bg-kiwi-600 font-semibold text-black transition-colors hover:bg-kiwi-700 md:min-w-96'>
-            <Link href='/generate'>Crea un libro nuevo</Link>
+          <Button className='w-full bg-kiwi-600 px-0 font-semibold text-black transition-colors hover:bg-kiwi-700 md:min-w-96'>
+            <Link href='/generate' className='w-full'>
+              Crea un libro nuevo
+            </Link>
           </Button>
           <span className='text-center text-sm text-neutral-600 dark:text-neutral-300'>
             Al hacer uso de esta app acepta nuestros Términos de servicio y
