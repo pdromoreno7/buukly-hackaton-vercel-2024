@@ -132,7 +132,7 @@ export default function SignIn() {
                 )}
               </Button>
               <Link
-                href={PATHNAMES['reset-password']}
+                href={PATHNAMES['forgot-password']}
                 className='text-center text-xs font-medium'
               >
                 Restablecer contraseña

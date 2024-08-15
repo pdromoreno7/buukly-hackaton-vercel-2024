@@ -145,11 +145,11 @@ export default function Generate() {
           </ButtonLoading>
         </div>
         <div className='flex flex-col gap-2 text-center'>
-          <span className='mt-3 text-center text-xs text-gray-500 dark:text-white/80'>
+          <span className='mt-3 text-center text-xs text-neutral-600 dark:text-neutral-300'>
             Al hacer uso de esta app, acepta nuestros{' '}
             <Link
               href={PATHNAMES['terms-privacy']}
-              className='transition-colors hover:text-black hover:underline'
+              className='transition-colors hover:text-black hover:underline dark:hover:text-neutral-50'
             >
               Términos de Servicio y Políticas de Privacidad.
             </Link>

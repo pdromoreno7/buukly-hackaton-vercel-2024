@@ -10,7 +10,7 @@ import {
 
 export function Questions() {
   return (
-    <section className='mx-auto flex w-full flex-col gap-8 rounded-lg border border-neutral-200 p-6 lg:max-w-screen-md'>
+    <section className='mx-auto flex w-full flex-col gap-8 p-6 lg:max-w-screen-md'>
       <h2 className='text-center text-3xl font-semibold tracking-tight md:text-5xl'>
         Preguntas frecuentes
       </h2>
@@ -24,7 +24,7 @@ export function Questions() {
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className='rounded-lg border px-3'
+            className='rounded-lg border-none bg-neutral-50/80 px-3 dark:bg-neutral-900'
           >
             <AccordionTrigger className='hover:no-underline'>
               {question.title}

@@ -1,7 +1,5 @@
-// 'use client'
 import signOut from '@/actions/signOut'
 import { MENU_ENTRIES } from '@/conts'
-// import { getUserSSR } from '@/utils/session/getUser'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -12,16 +10,10 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar'
 import { User } from '@supabase/supabase-js'
 import Link from 'next/link'
-// import { useEffect, useState } from 'react'
 
 import { Button } from '../ui/button'
 
 export default function Profile({ userData }: { userData: User }) {
-  // const [userData, setUserData] = useState<User>()
-  // useEffect(() => {
-  //   getUserSSR().then(data => setUserData(data))
-  // }, [])
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -49,10 +41,9 @@ export default function Profile({ userData }: { userData: User }) {
         ))}
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <form>
+          <form className='w-full'>
             <button
               className='w-full px-0 text-left text-red-500 hover:text-red-600'
-              // onClick={signOut}
               formAction={signOut}
             >
               Cerrar sesión
