@@ -13,7 +13,7 @@ type UserLoginType = {
 }
 
 type UserType = {
-  name: string
+  full_name: string
   email: string
   password: string
 }
@@ -41,12 +41,20 @@ export async function signUpAction(formData: UserType) {
   const supabase = createClientSSR()
 
   const data = {
-    name: formData.name,
+    full_name: formData.full_name,
     email: formData.email,
     password: formData.password,
   }
 
-  const { error } = await supabase.auth.signUp(data)
+  const { error } = await supabase.auth.signUp({
+    email: data.email,
+    password: data.password,
+    options: {
+      data: {
+        name: data.full_name,
+      },
+    },
+  })
 
   if (error) {
     // redirect('/error')

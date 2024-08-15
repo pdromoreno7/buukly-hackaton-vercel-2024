@@ -50,7 +50,9 @@ export default function Showcase() {
               />
             </div>
             <h4 className='pt-4 text-xl font-semibold'>{book.label}</h4>
-            <p className='text-gray-600'>{book.description}</p>
+            <p className='text-neutral-600 dark:text-neutral-400'>
+              {book.description}
+            </p>
           </div>
         ))}
       </div>

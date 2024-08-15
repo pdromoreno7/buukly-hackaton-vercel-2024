@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang='es' suppressHydrationWarning>
       <body className={onest.className}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
           <Header />
           <main>{children}</main>
           <Footer />
