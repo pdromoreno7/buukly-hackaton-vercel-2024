@@ -1,30 +1,30 @@
 import { cn } from '@/lib/utils'
 
-export default function CoverBook({ className, title, color }: CoverBookProps) {
+export default function CoverBook({
+  className,
+  title,
+  color,
+  size,
+}: CoverBookProps) {
   return (
     <div
       className={cn(
-        'flex h-[420px] flex-col overflow-hidden rounded-2xl bg-white shadow-md md:h-5/6',
+        `flex h-[420px] flex-col justify-between overflow-hidden rounded-tl-sm rounded-tr-xl border-l-4 border-emerald-600 pt-7 shadow-md md:h-5/6`,
         className,
       )}
+      style={{
+        background: `linear-gradient(145deg, #f6fbfc, ${color})`,
+        borderLeft: `15px solid ${color}`,
+      }}
     >
-      <div className='flex h-full'>
-        <div className='w-8' style={{ backgroundColor: color }}></div>
-        <div className='w-2 bg-gray-700'></div>
-        <div className='flex flex-1 flex-col justify-between px-4'>
-          <div className='flex h-full flex-col justify-center'>
-            <h1 className='text-1xl mb-4 overflow-hidden break-words text-left font-bold'>
-              <span className='inline-block text-pretty font-black text-brownn-900'>
-                {title?.toUpperCase()}
-              </span>
-              <hr className='mt-2 border-brownn-900' />
-            </h1>
-          </div>
-          <div className='mb-1 flex items-end justify-end text-right text-sm text-brownn-900'>
-            Generado por <span className='ml-1 font-bold'>Buucly</span>
-          </div>
-        </div>
-      </div>
+      <h4
+        className={`truncate text-pretty px-3 pb-4 text-2xl font-semibold leading-snug dark:text-neutral-900 ${size === 'big' ? 'md:text-2xl' : 'md:text-lg'} `}
+      >
+        {title}
+      </h4>
+      <span className='bg-white pb-3 pt-8 text-center text-sm dark:bg-neutral-800/80'>
+        Generado por <strong>Buucly</strong>
+      </span>
     </div>
   )
 }
@@ -33,4 +33,5 @@ interface CoverBookProps {
   title: string
   className?: string
   color?: string
+  size?: string
 }

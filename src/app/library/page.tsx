@@ -41,12 +41,13 @@ function LibraryPage() {
               key={index}
               className='relative inline-flex min-h-60 w-full justify-center rounded-lg bg-slate-50 pt-6 dark:bg-neutral-900'
             >
-              <Link href={`/library/${encodeURIComponent(book.bookTitle)}`}>
+              <Link href={`/read-ebook/${encodeURIComponent(book.bookTitle)}`}>
                 <div
-                  className={cn(
-                    'flex h-full max-w-44 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 pt-3',
-                    book.colorCoverBook,
-                  )}
+                  className={`flex h-full max-w-44 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 pt-3 shadow`}
+                  style={{
+                    background: `linear-gradient(145deg, #f6fbfc, ${book.colorCoverBook})`,
+                    borderLeft: `8px solid ${book.colorCoverBook}`,
+                  }}
                 >
                   <h4 className='truncate text-pretty px-3 pb-4 font-semibold leading-snug dark:text-neutral-900'>
                     {book.bookTitle}
