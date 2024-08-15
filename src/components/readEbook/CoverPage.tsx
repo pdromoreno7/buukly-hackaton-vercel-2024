@@ -12,7 +12,6 @@ export default function CoverPage({
         className='max-w-80 md:w-1/2'
         title={title}
         color={colorBookCover}
-        size='big'
       />
       <DescriptionPage
         className='w-full space-y-4 md:w-1/2'
