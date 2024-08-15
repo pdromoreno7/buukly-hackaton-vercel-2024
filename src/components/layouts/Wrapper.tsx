@@ -1,8 +1,17 @@
+import { cn } from '@lib/utils'
+import React from 'react'
 
-export default function Wrapper({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <div className='container mx-auto max-w-screen-lg px-4'>
-      {children}
-    </div>
-  )
-};
+const Wrapper = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, children }, ref) => (
+  <div
+    ref={ref}
+    className={cn('container mx-auto h-full max-w-screen-lg px-4', className)}
+  >
+    {children}
+  </div>
+))
+Wrapper.displayName = 'Wrapper'
+
+export default Wrapper

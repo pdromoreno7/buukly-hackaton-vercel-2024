@@ -1,0 +1,29 @@
+.carousel_wrapper {
+  max-width: 22rem;
+  margin: auto;
+  --slide-height: 20rem;
+  --slide-size: 55%;
+}
+
+.carousel__viewport {
+  overflow: hidden;
+}
+
+.carousel__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+
+.carousel__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+}
+
+.carousel__slide__card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--slide-height);
+  user-select: none;
+}

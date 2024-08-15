@@ -1,15 +1,20 @@
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { NextUIProvider } from '@nextui-org/react'
-import { ThemeProvider } from 'next-themes'
-import "./globals.css"
-import { Providers } from './providers'
+import type { Metadata } from 'next'
+import { Onest } from 'next/font/google'
+import { Toaster } from 'sonner'
 
-const inter = Inter({ subsets: ["latin"] })
+import Footer from '@/components/footer/Footer'
+import Header from '@/components/header/Header'
+import { ThemeProvider } from '@/components/provider/ThemeProvider'
+import './globals.css'
+
+const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Kiwibook",
-  description: "A description..."
+  title: 'Buucly',
+  description: 'Crea un libro con el tema exacto que necesites con IA',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
@@ -18,13 +23,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
-      <body className={inter.className}>
-        <Providers>
-          <main className='flex flex-col min-h-screen py-2'>
-            {children}
-          </main>
-        </Providers>
+    <html lang='es' suppressHydrationWarning>
+      <body className={onest.className}>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <Toaster position='top-center' richColors />
+        </ThemeProvider>
       </body>
     </html>
   )
