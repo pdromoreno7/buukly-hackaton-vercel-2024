@@ -4,6 +4,7 @@ import Wrapper from '@components/layouts/Wrapper'
 import Link from 'next/link'
 
 import { BuuclyLogo } from '../buuclyLogo/BuuclyLogo'
+import { GithubButton } from '../commons/githubButton/GithubButton'
 import { LibraryButton } from '../commons/libraryButton/LibraryButton'
 import Profile from '../profile/Profile'
 import ToggleTheme from '../provider/ToggleTheme'
@@ -21,6 +22,9 @@ export default async function Header() {
             <BuuclyLogo />
           </Link>
           <div className={!renderAuthBtn ? 'inline-flex gap-2' : 'hidden'}>
+            <div className='hidden sm:block'>
+              <GithubButton />
+            </div>
             <Button asChild variant='outline' className='rounded-full'>
               <Link href={PATHNAMES['sign-in']}>Inicia sesión</Link>
             </Button>
@@ -30,9 +34,13 @@ export default async function Header() {
           </div>
 
           <div className={renderAuthBtn ? 'inline-flex gap-3' : 'hidden'}>
-            <LibraryButton>
-              <Link href='/library'>Biblioteca</Link>
-            </LibraryButton>
+            <div className='hidden sm:block'>
+              <GithubButton />
+            </div>
+            <Link href='/library'>
+              <LibraryButton>Biblioteca</LibraryButton>
+            </Link>
+
             <ToggleTheme />
             <Profile userData={userData!} />
           </div>
