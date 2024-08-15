@@ -1,6 +1,11 @@
 import { cn } from '@/lib/utils'
 
-export default function CoverBook({ className, title, color }: CoverBookProps) {
+export default function CoverBook({
+  className,
+  title,
+  color,
+  size,
+}: CoverBookProps) {
   return (
     <div
       className={cn(
@@ -13,7 +18,7 @@ export default function CoverBook({ className, title, color }: CoverBookProps) {
       }}
     >
       <h4
-        className={`truncate text-pretty px-3 pb-4 text-2xl font-semibold leading-snug dark:text-neutral-900 md:text-lg`}
+        className={`truncate text-pretty px-3 pb-4 text-2xl font-semibold leading-snug dark:text-neutral-900 ${size === 'big' ? 'md:text-2xl' : 'md:text-lg'} `}
       >
         {title}
       </h4>
