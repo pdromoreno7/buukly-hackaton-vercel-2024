@@ -27,7 +27,7 @@ function BookPreview({
   return (
     <Wrapper className='flex flex-col py-4 md:py-16'>
       <div className='flex max-h-[820px] flex-col justify-center gap-12 md:max-h-96 md:flex-row'>
-        <div className='mx-auto max-w-60 md:mx-0'>
+        <div className='mx-auto max-w-80 md:mx-0 md:max-w-60'>
           <CoverBook
             title={dataEbook.bookTitle}
             color={dataEbook.colorCoverBook}
