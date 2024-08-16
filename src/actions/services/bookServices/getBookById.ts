@@ -1,8 +1,8 @@
-'use client'
-import { createClientSR } from '@/utils/supabase/client'
+'use server'
+import { createClientSSR } from '@/utils/supabase/server'
 
 export async function getBookById(bookID: string) {
-  const supabase = createClientSR()
+  const supabase = createClientSSR()
   try {
     const resultBook = await supabase
       .from('user_books')
