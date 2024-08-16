@@ -1,37 +1,43 @@
+import resetPassword from '@/actions/resetPassword'
 import { PATHNAMES } from '@/conts'
-import { Metadata } from 'next'
 import Link from 'next/link'
 
 import Wrapper from '@/components/layouts/Wrapper'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-
-export const metadata: Metadata = {
-  title: 'Reestablecer contraseña | Buucly',
-  description: 'A description...',
-}
 
 export default function ResetPassword() {
   return (
     <Wrapper>
       <section className='mx-auto flex h-full max-w-sm flex-col py-4 md:pb-4 md:pt-6'>
         <Card className='mx-auto min-w-full max-w-sm border-none shadow-none'>
-          <CardHeader className='px-0 pb-6 pt-0 md:text-center'>
+          <CardHeader className='px-0 pb-8 pt-0 md:text-center'>
             <CardTitle className='text-2xl font-bold tracking-normal text-neutral-800 dark:text-neutral-200'>
               Reestablecer contraseña
             </CardTitle>
+            <CardDescription>
+              Escriba una nueva contraseña segura y presione guardar para
+              actualizar su contraseña
+            </CardDescription>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
-            <form className='grid gap-4'>
+            <form className='grid gap-4' action={resetPassword}>
               <div className='flex flex-col gap-2'>
-                <Label htmlFor='email' className='ml-2'>
-                  Correo electrónico
+                <Label htmlFor='password' className='ml-2'>
+                  Contraseña
                 </Label>
                 <Input
-                  id='email'
-                  type='email'
+                  id='password'
+                  type='password'
+                  name='password'
                   placeholder='m@example.com'
                   required
                   className='h-fit rounded-full py-2'
@@ -41,7 +47,7 @@ export default function ResetPassword() {
                 type='submit'
                 className='w-full rounded-full font-semibold'
               >
-                Envíar código
+                Guardar nueva contraseña
               </Button>
               <Button
                 asChild

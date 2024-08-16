@@ -42,10 +42,10 @@ Proporciona solo el contenido del capítulo.
 }
 export const generateColorBookPrompt = (bookTitle: string) => {
   const PROMPT_GENERATE_COLOR_BOOK = `
-Genera un color en formato hexadecimal, basandote en este título de un libro: ${bookTitle}. Lo que uiero es que nalices ese titulos y crres un color apartir de ese tema.
+Genera un color en formato hexadecimal, basandote en este título de un libro: ${bookTitle}. Lo que uiero es que analices ese titulo y crees un color apartir de ese tema. Crea colores alegres, si el tema es serio puedes usar el negro
 
 Crea el color como un hexadecimal de ese color 
-Solo responde con el hexadecimal. No responda con comillas
+Solo responde con el hexadecimal por ejemplo: #4CAF50, siempre son el # al iniciar. No responda con comillas
 no respondas más nada, solo el hexadecimal.`
 
   return PROMPT_GENERATE_COLOR_BOOK

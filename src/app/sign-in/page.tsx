@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import GoogleButton from '@/components/googleButton/GoogleButton'
 import Wrapper from '@/components/layouts/Wrapper'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -63,6 +64,7 @@ export default function SignIn() {
       setErrorInput(false)
     }
   }
+
   return (
     <Wrapper>
       <section className='mx-auto flex h-full max-w-sm flex-col py-4 md:pb-4 md:pt-6'>
@@ -73,9 +75,7 @@ export default function SignIn() {
             </CardTitle>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
-            {/* <Button variant='outline' className='mb-2 w-full rounded-full'>
-              Continuar con Google <GoogleIcon />
-            </Button> */}
+            <GoogleButton />
             <form className='grid gap-4' onSubmit={handleSubmit(onSubmit)}>
               <div className='flex items-center justify-center gap-2'>
                 <span className='w-full border-b dark:border-neutral-800' />
@@ -132,7 +132,7 @@ export default function SignIn() {
                 )}
               </Button>
               <Link
-                href={PATHNAMES['reset-password']}
+                href={PATHNAMES['forgot-password']}
                 className='text-center text-xs font-medium'
               >
                 Restablecer contraseña

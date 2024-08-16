@@ -13,7 +13,10 @@ const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Buucly',
-  description: 'A description...',
+  description: 'Crea un libro con el tema exacto que necesites con IA',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 if (process.env.NODE_ENV === 'development') {
@@ -28,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang='es' suppressHydrationWarning>
       <body className={onest.className}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
           <Header />
           <main>{children}</main>
           <Footer />

@@ -26,3 +26,7 @@ main {
 p {
   text-wrap: pretty;
 }
+
+.library-wrapper {
+  height: calc(100vh - theme('height.16'));
+}

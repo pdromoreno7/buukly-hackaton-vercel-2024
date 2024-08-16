@@ -2,6 +2,7 @@
 // import { UserType as UserLoginType } from '@/app/sign-in/page'
 // import { UserType } from '@/app/sign-up/page'
 import { PATHNAMES } from '@/conts'
+import { createClientSR } from '@/utils/supabase/client'
 import { createClientSSR } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -12,7 +13,7 @@ type UserLoginType = {
 }
 
 type UserType = {
-  name: string
+  full_name: string
   email: string
   password: string
 }
@@ -40,17 +41,46 @@ export async function signUpAction(formData: UserType) {
   const supabase = createClientSSR()
 
   const data = {
-    name: formData.name,
+    full_name: formData.full_name,
     email: formData.email,
     password: formData.password,
   }
 
-  const { error } = await supabase.auth.signUp(data)
+  const { error } = await supabase.auth.signUp({
+    email: data.email,
+    password: data.password,
+    options: {
+      data: {
+        name: data.full_name,
+      },
+    },
+  })
 
   if (error) {
-    redirect('/error')
+    // redirect('/error')
+    return { error: error?.message }
   }
 
   revalidatePath('/', 'layout')
   redirect(PATHNAMES['success-register'])
+}
+export async function signInWithGoogle() {
+  const supabase = createClientSR()
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      queryParams: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+        access_type: 'offline',
+        prompt: 'consent',
+      },
+    },
+  })
+  console.log('🚀 ~ signInWithGoogle ~ data:', data)
+
+  if (error) {
+    // redirect('/error')
+    return { error: error?.message }
+  }
+  redirect(data?.url)
 }
