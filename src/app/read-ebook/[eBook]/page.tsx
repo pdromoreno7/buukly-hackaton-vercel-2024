@@ -14,7 +14,6 @@ export default function BookView({ params }: { params: { eBook: string } }) {
   const { eBook: bookID } = params
   const [dataEbook, setBook] = useState<BookType | null>(null)
   const [chapters, setChapters] = useState<ChapterType[]>([])
-  console.log('🚀 ~ BookView ~ chapters:', chapters)
 
   const [currentPage, setCurrentPage] = useState<number>(1)
 
