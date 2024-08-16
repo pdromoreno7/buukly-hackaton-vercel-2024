@@ -1,12 +1,13 @@
-'use client'
+'use server'
 import { ChapterSaveType } from '@/interfaces/bookInterfaces'
-import { createClientSR } from '@/utils/supabase/client'
+// import { createClientSR } from '@/utils/supabase/client'
+import { createClientSSR } from '@/utils/supabase/server'
 
 export async function saveChaptersBook(
   bookId: string,
   chaptersWithContentResult: ChapterSaveType[],
 ) {
-  const supabase = createClientSR()
+  const supabase = createClientSSR()
   try {
     for (let i = 0; i < chaptersWithContentResult.length; i++) {
       const resultSaveChapter = await supabase.from('book_chapters').insert({

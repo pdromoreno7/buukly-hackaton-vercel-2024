@@ -1,9 +1,9 @@
-'use client'
+'use server'
 import { BookSaveTyp } from '@/interfaces/bookInterfaces'
-import { createClientSR } from '@/utils/supabase/client'
+import { createClientSSR } from '@/utils/supabase/server'
 
 export async function saveNewBook(dataSend: BookSaveTyp) {
-  const supabase = createClientSR()
+  const supabase = createClientSSR()
   try {
     const {
       data: { user },
