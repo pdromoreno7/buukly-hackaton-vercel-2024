@@ -3,9 +3,12 @@ import {
   generateColorBook,
   generateDataBookByTitle,
 } from '@/actions/generateObjetcContent'
+import { saveNewBook } from '@/actions/services/bookServices/saveNewBook'
 import { PATHNAMES } from '@/conts'
 import { useGenerateChapters } from '@/hooks/useGenerateChapters'
-import { useBookListStore, useBookStore } from '@/store'
+import { BookType } from '@/interfaces/bookInterfaces'
+import { useBookStore } from '@/store'
+import { createClientSR } from '@/utils/supabase/client'
 import Link from 'next/link'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
@@ -21,7 +24,20 @@ import Suggestions from '@/components/suggestions/Suggestions'
 import { Input } from '@/components/ui/input'
 
 export default function Generate() {
+  const supabase = createClientSR()
   const [showPreviewBook, setShowPreviewBook] = useState<boolean>(false)
+  const [bookResult, setBookResult] = useState<BookType>({
+    id: '',
+    user_id: '',
+    created_at: '',
+    book_title: '',
+    book_description: '',
+    chapters: [],
+    last_read_chapter: null,
+    is_favorite: false,
+    status: '',
+    color_cover: '',
+  })
   const [bookTitle, setBookTitle] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const {
@@ -31,7 +47,6 @@ export default function Generate() {
     counterChapters,
     totalChapters,
   } = useGenerateChapters()
-  const { addBookToList } = useBookListStore()
   const { dataEbook, setBookData, setChaptersWithContent } = useBookStore()
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -53,6 +68,7 @@ export default function Generate() {
         ...result?.recipe,
         colorCoverBook: trimmedColorBook,
       })
+
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)
     } catch (error) {
@@ -76,12 +92,34 @@ export default function Generate() {
       )
       setChaptersWithContent(chaptersWithContentResult)
 
-      const completeBook = {
-        ...dataEbook,
-        chaptersWithContent: chaptersWithContentResult,
+      // Guardar libro
+      const dataSend = {
+        book_title: dataEbook?.bookTitle,
+        book_description: dataEbook?.bookDescription,
+        chapters: dataEbook?.bookChapters,
+        color_cover: dataEbook?.colorCoverBook ?? '',
       }
-      // Añadir el libro completo a la lista
-      addBookToList(completeBook)
+      const { data, error } = await saveNewBook(dataSend)
+      setBookResult(data ?? {})
+
+      // Guardar capitulos
+      for (let i = 0; i < chaptersWithContentResult.length; i++) {
+        const { error: errorChapter } = await supabase
+          .from('book_chapters')
+          .insert({
+            book_id: data?.id,
+            chapter_title: chaptersWithContentResult[i].chapterTitle,
+            chapter_content: chaptersWithContentResult[i].text,
+            chapter_number: i + 1,
+          })
+
+        if (errorChapter) {
+          toast.error('Ocurrio un error al guardar los capitulos')
+        }
+      }
+      if (error) {
+        toast.error('Ocurrio un error al guardar libro')
+      }
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
@@ -92,7 +130,7 @@ export default function Generate() {
       setIsLoading(false)
     }
   }
-  if (progress === 100) return <BookResult />
+  if (progress === 100) return <BookResult dataEbook={bookResult} />
   if (progress > 0)
     return (
       <LoadingChaptersCreation
