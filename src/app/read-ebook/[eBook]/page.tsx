@@ -21,7 +21,6 @@ export default function BookView({ params }: { params: { eBook: string } }) {
     const { data, error } = await getBookById(bookID)
     const { data: dataChapters, error: errorChapters } =
       await getChaptersByBookId(bookID)
-    console.log('🚀 ~ getBookAndChapter ~ dataChapters:', dataChapters)
 
     if (error) {
       toast.error('Error al cargar el libro')

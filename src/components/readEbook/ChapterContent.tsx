@@ -1,3 +1,4 @@
+import { ChapterType } from '@/interfaces/bookInterfaces'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
 
 export default function ChapterContent({
@@ -24,16 +25,7 @@ export default function ChapterContent({
 }
 
 interface ChapterContentProps {
-  chapter: Chapter
+  chapter: ChapterType
   chapterIndex: number
   totalChapters: number
-}
-
-interface Chapter {
-  id: string
-  book_id: string
-  created_at: string
-  chapter_title: string
-  chapter_content: string
-  chapter_number: number
 }
