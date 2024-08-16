@@ -3,12 +3,12 @@ import {
   generateColorBook,
   generateDataBookByTitle,
 } from '@/actions/generateObjetcContent'
-import { saveChaptersBook } from '@/actions/services/bookServices/saveChaptersBook'
 import { saveNewBook } from '@/actions/services/bookServices/saveNewBook'
 import { PATHNAMES } from '@/conts'
 import { useGenerateChapters } from '@/hooks/useGenerateChapters'
 import { BookType } from '@/interfaces/bookInterfaces'
 import { useBookStore } from '@/store'
+import { createClientSR } from '@/utils/supabase/client'
 import Link from 'next/link'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
@@ -24,6 +24,7 @@ import Suggestions from '@/components/suggestions/Suggestions'
 import { Input } from '@/components/ui/input'
 
 export default function Generate() {
+  const supabase = createClientSR()
   const [showPreviewBook, setShowPreviewBook] = useState<boolean>(false)
   const [bookResult, setBookResult] = useState<BookType>({
     id: '',
@@ -100,10 +101,24 @@ export default function Generate() {
       }
       const { data, error } = await saveNewBook(dataSend)
       setBookResult(data ?? {})
+
       // Guardar capitulos
-      await saveChaptersBook(data?.id, chaptersWithContentResult)
+      for (let i = 0; i < chaptersWithContentResult.length; i++) {
+        const { error: errorChapter } = await supabase
+          .from('book_chapters')
+          .insert({
+            book_id: data?.id,
+            chapter_title: chaptersWithContentResult[i].chapterTitle,
+            chapter_content: chaptersWithContentResult[i].text,
+            chapter_number: i + 1,
+          })
+
+        if (errorChapter) {
+          toast.error('Ocurrio un error al guardar los capitulos')
+        }
+      }
       if (error) {
-        toast.error('O currio un error al guardar libro')
+        toast.error('Ocurrio un error al guardar libro')
       }
     } catch (error) {
       if (error instanceof Error) {

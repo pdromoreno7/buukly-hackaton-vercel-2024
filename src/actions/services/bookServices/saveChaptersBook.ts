@@ -1,3 +1,4 @@
+'use client'
 import { ChapterSaveType } from '@/interfaces/bookInterfaces'
 import { createClientSR } from '@/utils/supabase/client'
 

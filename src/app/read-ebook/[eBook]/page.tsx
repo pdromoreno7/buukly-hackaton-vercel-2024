@@ -14,6 +14,7 @@ export default function BookView({ params }: { params: { eBook: string } }) {
   const { eBook: bookID } = params
   const [dataEbook, setBook] = useState<BookType | null>(null)
   const [chapters, setChapters] = useState<ChapterType[]>([])
+  console.log('🚀 ~ BookView ~ chapters:', chapters)
 
   const [currentPage, setCurrentPage] = useState<number>(1)
 
@@ -21,6 +22,7 @@ export default function BookView({ params }: { params: { eBook: string } }) {
     const { data, error } = await getBookById(bookID)
     const { data: dataChapters, error: errorChapters } =
       await getChaptersByBookId(bookID)
+    console.log('🚀 ~ getBookAndChapter ~ dataChapters:', dataChapters)
 
     if (error) {
       toast.error('Error al cargar el libro')
@@ -41,7 +43,7 @@ export default function BookView({ params }: { params: { eBook: string } }) {
 
   useEffect(() => {
     getBookAndChapter()
-  }, [])
+  }, [bookID])
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page)

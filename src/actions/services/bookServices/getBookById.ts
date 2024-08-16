@@ -1,3 +1,4 @@
+'use client'
 import { createClientSR } from '@/utils/supabase/client'
 
 export async function getBookById(bookID: string) {

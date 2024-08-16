@@ -28,6 +28,7 @@ function LibraryPage() {
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await getBookList()
+      console.log('🚀 ~ fetchData ~ data:', data)
       if (error) {
         toast.error('Error al cargar la biblioteca')
       }
