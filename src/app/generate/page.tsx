@@ -3,9 +3,12 @@ import {
   generateColorBook,
   generateDataBookByTitle,
 } from '@/actions/generateObjetcContent'
+import { saveChaptersBook } from '@/actions/services/bookServices/saveChaptersBook'
+import { saveNewBook } from '@/actions/services/bookServices/saveNewBook'
 import { PATHNAMES } from '@/conts'
 import { useGenerateChapters } from '@/hooks/useGenerateChapters'
-import { useBookListStore, useBookStore } from '@/store'
+import { BookType } from '@/interfaces/bookInterfaces'
+import { useBookStore } from '@/store'
 import Link from 'next/link'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
@@ -22,6 +25,18 @@ import { Input } from '@/components/ui/input'
 
 export default function Generate() {
   const [showPreviewBook, setShowPreviewBook] = useState<boolean>(false)
+  const [bookResult, setBookResult] = useState<BookType>({
+    id: '',
+    user_id: '',
+    created_at: '',
+    book_title: '',
+    book_description: '',
+    chapters: [],
+    last_read_chapter: null,
+    is_favorite: false,
+    status: '',
+    color_cover: '',
+  })
   const [bookTitle, setBookTitle] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const {
@@ -31,7 +46,6 @@ export default function Generate() {
     counterChapters,
     totalChapters,
   } = useGenerateChapters()
-  const { addBookToList } = useBookListStore()
   const { dataEbook, setBookData, setChaptersWithContent } = useBookStore()
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -53,6 +67,7 @@ export default function Generate() {
         ...result?.recipe,
         colorCoverBook: trimmedColorBook,
       })
+
       setIsLoading(false)
       setShowPreviewBook(!showPreviewBook)
     } catch (error) {
@@ -76,12 +91,20 @@ export default function Generate() {
       )
       setChaptersWithContent(chaptersWithContentResult)
 
-      const completeBook = {
-        ...dataEbook,
-        chaptersWithContent: chaptersWithContentResult,
+      // Guardar libro
+      const dataSend = {
+        book_title: dataEbook?.bookTitle,
+        book_description: dataEbook?.bookDescription,
+        chapters: dataEbook?.bookChapters,
+        color_cover: dataEbook?.colorCoverBook ?? '',
       }
-      // Añadir el libro completo a la lista
-      addBookToList(completeBook)
+      const { data, error } = await saveNewBook(dataSend)
+      setBookResult(data ?? {})
+      // Guardar capitulos
+      await saveChaptersBook(data?.id, chaptersWithContentResult)
+      if (error) {
+        toast.error('O currio un error al guardar libro')
+      }
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
@@ -92,7 +115,7 @@ export default function Generate() {
       setIsLoading(false)
     }
   }
-  if (progress === 100) return <BookResult />
+  if (progress === 100) return <BookResult dataEbook={bookResult} />
   if (progress > 0)
     return (
       <LoadingChaptersCreation

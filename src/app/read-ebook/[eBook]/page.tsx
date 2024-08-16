@@ -1,6 +1,9 @@
 'use client'
-import { useBookListStore } from '@/store'
-import { useState, useMemo } from 'react'
+import { getBookById } from '@/actions/services/bookServices/getBookById'
+import { getChaptersByBookId } from '@/actions/services/bookServices/getChaptersByBookId'
+import { BookType, ChapterType } from '@/interfaces/bookInterfaces'
+import { useState, useEffect } from 'react'
+import { toast } from 'sonner'
 
 import BookPagination from '@/components/bookPagination/BookPagination'
 import ChapterContent from '@/components/readEbook/ChapterContent'
@@ -8,18 +11,37 @@ import CoverPage from '@/components/readEbook/CoverPage'
 import TableOfContents from '@/components/readEbook/TableOfContent'
 
 export default function BookView({ params }: { params: { eBook: string } }) {
-  const { eBook } = params
-  const bookTitle = decodeURIComponent(eBook)
+  const { eBook: bookID } = params
+  const [dataEbook, setBook] = useState<BookType | null>(null)
+  const [chapters, setChapters] = useState<ChapterType[]>([])
+
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const { booksList } = useBookListStore()
 
-  const dataEbook = booksList.find(book => book.bookTitle === bookTitle)
-  console.log('🚀 ~ BookView ~ dataEbook:', dataEbook)
+  const getBookAndChapter = async () => {
+    const { data, error } = await getBookById(bookID)
+    const { data: dataChapters, error: errorChapters } =
+      await getChaptersByBookId(bookID)
 
-  const totalPages = useMemo(
-    () => (dataEbook?.chaptersWithContent?.length ?? 0) + 2,
-    [dataEbook],
-  )
+    if (error) {
+      toast.error('Error al cargar el libro')
+    }
+
+    if (errorChapters) {
+      toast.error('Error al cargar los capitulos')
+    }
+
+    setBook(data ?? null)
+    setChapters(dataChapters ?? [])
+
+    if (errorChapters) {
+      console.error('Error fetching book:', errorChapters)
+      return null
+    }
+  }
+
+  useEffect(() => {
+    getBookAndChapter()
+  }, [])
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page)
@@ -30,26 +52,26 @@ export default function BookView({ params }: { params: { eBook: string } }) {
       case 1:
         return (
           <CoverPage
-            description={dataEbook?.bookDescription ?? ''}
-            title={dataEbook?.bookTitle ?? ''}
-            colorBookCover={dataEbook?.colorCoverBook ?? ''}
+            description={dataEbook?.book_description ?? ''}
+            title={dataEbook?.book_title ?? ''}
+            colorBookCover={dataEbook?.color_cover ?? ''}
           />
         )
       case 2:
         return (
           <TableOfContents
-            title={dataEbook?.bookTitle ?? ''}
-            chapters={dataEbook?.bookChapters ?? []}
+            title={dataEbook?.book_title ?? ''}
+            chapters={dataEbook?.chapters ?? []}
           />
         )
       default:
         const chapterIndex = currentPage - 3
-        if (!dataEbook?.chaptersWithContent) return null
+        if (!chapters) return null
         return (
           <ChapterContent
-            chapter={dataEbook?.chaptersWithContent[chapterIndex] ?? {}}
+            chapter={chapters[chapterIndex] ?? {}}
             chapterIndex={chapterIndex}
-            totalChapters={dataEbook?.chaptersWithContent?.length ?? 0}
+            totalChapters={chapters?.length ?? 0}
           />
         )
     }
@@ -65,7 +87,7 @@ export default function BookView({ params }: { params: { eBook: string } }) {
         <BookPagination
           currentPage={currentPage}
           handlePageChange={handlePageChange}
-          totalPages={totalPages}
+          totalPages={(chapters?.length ?? 0) + 2}
         />
       </footer>
     </div>

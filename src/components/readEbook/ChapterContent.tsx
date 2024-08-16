@@ -8,12 +8,12 @@ export default function ChapterContent({
   return (
     <div className='mx-auto max-w-lg py-3'>
       <h2 className='mb-8 text-pretty text-2xl font-bold'>
-        {chapter.chapterTitle}
+        {chapter.chapter_title}
       </h2>
       <ScrollArea className='mx-auto h-full max-w-3xl rounded-md'>
         <div
           className='text-pretty text-sm'
-          dangerouslySetInnerHTML={{ __html: chapter.text }}
+          dangerouslySetInnerHTML={{ __html: chapter.chapter_content }}
         />
       </ScrollArea>
       <div className='mb-4 mt-12 flex justify-center'>
@@ -30,6 +30,10 @@ interface ChapterContentProps {
 }
 
 interface Chapter {
-  chapterTitle: string
-  text: string
+  id: string
+  book_id: string
+  created_at: string
+  chapter_title: string
+  chapter_content: string
+  chapter_number: number
 }
