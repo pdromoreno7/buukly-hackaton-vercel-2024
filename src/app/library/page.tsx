@@ -56,11 +56,11 @@ function LibraryPage() {
           {booksList.map((book, index) => (
             <div
               key={index}
-              className='relative inline-flex min-h-60 w-full justify-center rounded-lg bg-slate-50 pt-6 dark:bg-neutral-900'
+              className='relative inline-flex w-full justify-center rounded-lg bg-slate-50 pt-6 dark:bg-neutral-900'
             >
               <Link href={`/read-ebook/${encodeURIComponent(book.id)}`}>
                 <div
-                  className={`flex h-full max-w-44 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 pt-3 shadow`}
+                  className={`flex h-72 max-w-56 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 pt-3 shadow md:h-56 md:max-w-44`}
                   style={{
                     background: `linear-gradient(145deg, #f6fbfc, ${book.color_cover})`,
                     borderLeft: `8px solid ${book.color_cover}`,
