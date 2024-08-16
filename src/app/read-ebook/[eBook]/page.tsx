@@ -69,7 +69,7 @@ export default function BookView({ params }: { params: { eBook: string } }) {
         if (!chapters) return null
         return (
           <ChapterContent
-            chapter={chapters[chapterIndex] ?? {}}
+            chapter={(chapters[chapterIndex] as ChapterType) ?? {}}
             chapterIndex={chapterIndex}
             totalChapters={chapters?.length ?? 0}
           />
