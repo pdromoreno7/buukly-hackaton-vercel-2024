@@ -103,11 +103,13 @@ export default function SignUp() {
           <CardContent className='px-0 pb-2'>
             {!isLinkedIn && <GoogleButton />}
             <form className='grid gap-3' onSubmit={handleSubmit(onSubmit)}>
-              <div className='flex items-center justify-center gap-2'>
-                <span className='w-full border-b dark:border-neutral-800' />
-                o
-                <span className='w-full border-b dark:border-neutral-800' />
-              </div>
+              {!isLinkedIn && (
+                <div className='flex items-center justify-center gap-2'>
+                  <span className='w-full border-b dark:border-neutral-800' />
+                  o
+                  <span className='w-full border-b dark:border-neutral-800' />
+                </div>
+              )}
 
               <div className='grid gap-2'>
                 <Label htmlFor='full_name' className='ml-2'>
