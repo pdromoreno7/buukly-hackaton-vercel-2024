@@ -12,6 +12,7 @@ import { createClientSR } from '@/utils/supabase/client'
 import Link from 'next/link'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
+import { Sparkles } from 'lucide-react'
 
 import BookPreview from '@/components/bookPreview/BookPreview'
 import BookResult from '@/components/bookResult/BookResult'
@@ -180,7 +181,7 @@ export default function Generate() {
               isLoading={isLoading}
               isDisabled={!bookTitle}
             >
-              Enviar ✨
+              Enviar <Sparkles className='ml-1 size-5' />
             </ButtonLoading>
           </div>
         </div>

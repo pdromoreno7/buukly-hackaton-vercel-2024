@@ -24,7 +24,7 @@ export function ButtonLoading({
       disabled={isLoading || isDisabled}
       onClick={onClick}
       className={cn(
-        `w-full rounded-2xl bg-emerald-500 font-semibold text-black`,
+        `w-full rounded-2xl bg-emerald-500 font-semibold text-black hover:bg-emerald-600`,
         className,
       )}
     >
