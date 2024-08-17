@@ -47,10 +47,10 @@ Visita [buucly.com](https://www.buucly.com) y descubre cómo esta herramienta pu
    Inicia sesión para pedir a Buccly que genere un libro sobre cualquier tema de tu interés. Luego de tu petición, podrás ver una vista previa del contenido y decidir si cambiar el tema o continuar para generar el libro final.
 
 2. **¿Puedo editar el contenido generado por la IA?**
-   Buucly está diseñada para ser rápida y eficiente, generando libros de hasta en solo unos minutos. Esto significa que podrás disfrutar de tu libro personalizado casi de inmediato, sin largas esperas.
+   Puedes revisar el contenido de tu libro antes de generarlo para asegurarte de que cumpla con tus expectativas y editar la petición si es necesario.
 
 3. **¿Cuánto tiempo tarda en generarse un libro?**
-   Puedes revisar el contenido de tu libro antes de generarlo para asegurarte de que cumpla con tus expectativas y editar la petición si es necesario.
+   Buucly está diseñada para ser rápida y eficiente, generando libros de hasta en solo unos minutos. Esto significa que podrás disfrutar de tu libro personalizado casi de inmediato, sin largas esperas.
 
 4. **¿Cómo puedo cambiar mi contraseña?**
    Para cambiar tu contraseña, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar contraseña.
