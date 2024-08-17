@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
 
+import { GithubButton } from '../commons/githubButton/GithubButton'
+
 export default function Footer() {
   const path = usePathname()
   const renderFooter =
@@ -22,12 +24,17 @@ export default function Footer() {
         alt='Buucly Logo'
         className='h-8'
       />
-      <Link
-        href={PATHNAMES['terms-privacy']}
-        className='text-sm text-neutral-600 transition-colors hover:text-black hover:underline dark:text-neutral-300'
-      >
-        Políticas de privacidad, Términos y Condiciones
-      </Link>
+
+      <div className='flex flex-col items-center gap-2 md:flex-row'>
+        <GithubButton link />
+
+        <Link
+          href={PATHNAMES['terms-privacy']}
+          className='text-sm text-neutral-600 transition-colors hover:text-black hover:underline dark:text-neutral-300'
+        >
+          Políticas de privacidad, Términos y Condiciones
+        </Link>
+      </div>
     </footer>
   )
 }

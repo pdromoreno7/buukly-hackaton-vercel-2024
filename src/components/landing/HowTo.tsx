@@ -11,7 +11,7 @@ export default function HowTo() {
           <h2 className='text-3xl font-semibold tracking-tight lg:text-5xl'>
             Crea un libro con el tema exacto que necesites
           </h2>
-          <span className='text-gray-600'>
+          <span className='text-neutral-600 dark:text-neutral-400'>
             Genera y almacena libros de todo tipo.
           </span>
         </div>
@@ -32,7 +32,9 @@ export default function HowTo() {
             </span>
             <div className='flex flex-col gap-2'>
               <span className='text-xl font-semibold'>{step.title}</span>
-              <p className='text-gray-600'>{step.description}</p>
+              <p className='text-neutral-600 dark:text-neutral-400'>
+                {step.description}
+              </p>
             </div>
           </div>
         ))}

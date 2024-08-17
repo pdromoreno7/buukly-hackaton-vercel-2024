@@ -24,7 +24,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const RegisterSchema = z.object({
-  name: z.string().min(1, { message: 'El nombre es requerido' }),
+  full_name: z.string().min(1, { message: 'El nombre es requerido' }),
   email: z.string().email({ message: 'Correo electrónico no válido' }),
   password: z
     .string()
@@ -105,16 +105,16 @@ export default function SignUp() {
               </div>
 
               <div className='grid gap-2'>
-                <Label htmlFor='name' className='ml-2'>
+                <Label htmlFor='full_name' className='ml-2'>
                   Nombre o apodo
                 </Label>
                 <Input
-                  id='name'
+                  id='full_name'
                   type='text'
                   placeholder='John Doe'
                   required
                   className='h-fit rounded-full py-2'
-                  {...register('name')}
+                  {...register('full_name')}
                 />
               </div>
               <div className='grid gap-2'>
@@ -133,6 +133,21 @@ export default function SignUp() {
                   <p className="text-red-500 text-xs">{errors.email.message}</p>
                 )} */}
               </div>
+              {/* <div className='grid gap-2'>
+                <Label htmlFor='confirmEmail' className='ml-2'>
+                  Repite tu correo electrónico
+                </Label>
+                <Input
+                  id='confirmEmail'
+                  type='email'
+                  placeholder='m@example.com'
+                  required
+                  className='h-fit rounded-full py-2'
+                  onPaste={(e) => e.preventDefault()}
+                  autoComplete='off'
+                  {...register('confirmEmail')}
+                />
+              </div> */}
               <div className='grid gap-2'>
                 <Label htmlFor='password' className='ml-2'>
                   Contraseña

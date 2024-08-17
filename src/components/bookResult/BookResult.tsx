@@ -1,4 +1,4 @@
-import { useBookStore } from '@/store'
+import { BookType } from '@/interfaces/bookInterfaces'
 import { useRouter } from 'next/navigation'
 
 import Wrapper from '@/components/layouts/Wrapper'
@@ -6,9 +6,8 @@ import Wrapper from '@/components/layouts/Wrapper'
 import CoverBook from '../readEbook/CoverBook'
 import { Button } from '../ui/button'
 
-function BookResult() {
+function BookResult({ dataEbook }: { dataEbook: BookType }) {
   const router = useRouter()
-  const dataEbook = useBookStore(state => state.dataEbook)
 
   return (
     <Wrapper className='py-10 lg:py-16'>
@@ -18,19 +17,14 @@ function BookResult() {
         </h1>
       </div>
       <div className='mx-auto h-[420px] max-w-72'>
-        <CoverBook
-          title={dataEbook.bookTitle}
-          color={dataEbook.colorCoverBook}
-        />
+        <CoverBook title={dataEbook.book_title} color={dataEbook.color_cover} />
       </div>
 
       <div className='mt-10 flex w-full flex-col items-center justify-center gap-2 md:mt-auto'>
         <Button
           className='w-fit rounded-full font-semibold'
           onClick={() =>
-            router.push(
-              `/read-ebook/${encodeURIComponent(dataEbook.bookTitle)}`,
-            )
+            router.push(`/read-ebook/${encodeURIComponent(dataEbook.id)}`)
           }
         >
           Ver libro

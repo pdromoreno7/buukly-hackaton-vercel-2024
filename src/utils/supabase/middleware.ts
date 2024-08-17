@@ -40,7 +40,12 @@ export async function updateSession(request: NextRequest) {
   // Esto se evalua obteniendo, como recomienda Supabase, la sesion del usuario
   // por medio de supabase.auth.getUser()
   const publicRoutes = ['/', '/sign-in', '/sign-up']
-  const restrictedRoutes = ['/generate', 'library', 'read-book']
+  const restrictedRoutes = [
+    '/generate',
+    '/library',
+    '/read-ebook',
+    '/ebook-pdf',
+  ]
 
   if (!user && restrictedRoutes.includes(request.nextUrl.pathname)) {
     const absoluteUrl = new URL(new URL('/sign-in', request.nextUrl.origin))
