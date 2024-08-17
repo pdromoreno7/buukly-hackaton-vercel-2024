@@ -18,7 +18,7 @@ export default function CoverBook({
       }}
     >
       <h4
-        className={`pb-auto truncate text-pretty px-3 text-base font-semibold leading-snug dark:text-neutral-900 ${size === 'big' ? 'md:text-2xl' : 'md:text-base'} `}
+        className={`pb-auto text-pretty px-3 text-base font-semibold leading-snug dark:text-neutral-900 ${size === 'big' ? 'md:text-2xl' : 'md:text-base'} `}
       >
         {title}.
       </h4>
