@@ -6,7 +6,6 @@ import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import { ThemeProvider } from '@/components/provider/ThemeProvider'
 import './globals.css'
-
 const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
