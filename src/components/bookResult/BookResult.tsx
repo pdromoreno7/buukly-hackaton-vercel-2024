@@ -16,8 +16,15 @@ function BookResult({ dataEbook }: { dataEbook: BookType }) {
           El libro se ha generado con exito!
         </h1>
       </div>
-      <div className='mx-auto h-[420px] max-w-72'>
-        <CoverBook title={dataEbook.book_title} color={dataEbook.color_cover} />
+      <div className='max-h-auto md:flex-column flex flex-col items-center justify-center gap-6 md:items-center'>
+        <div className='flex w-full items-center justify-center rounded-lg bg-gray-100 pt-6 shadow-sm md:w-2/4 md:px-[8rem]'>
+          <div className='mx-auto max-w-48'>
+            <CoverBook
+              title={dataEbook.book_title}
+              color={dataEbook.color_cover}
+            />
+          </div>
+        </div>
       </div>
 
       <div className='mt-10 flex w-full flex-col items-center justify-center gap-2 md:mt-auto'>
