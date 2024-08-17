@@ -1,4 +1,4 @@
-<h3 align='center'>Buucly</h3>
+<h1>Buucly</h1>
 
 Buucly es una plataforma innovadora que te permite crear libros personalizados al instante utilizando inteligencia artificial.
 
@@ -13,7 +13,7 @@ Buucly utiliza el modelo de IA GPT-4 de OpenAI para generar libros completos sob
 - Vista previa del contenido antes de la generación final
 - Opción de lectura en la app o descarga para lectores digitales
 
-[Visita Buucly.com y descubre cómo esta herramienta puede transformar tu forma de leer y aprender. 🌟](https://www.buucly.com)
+Visita [buucly.com](https://www.buucly.com) y descubre cómo esta herramienta puede transformar tu forma de leer y aprender. 🌟
 
 ## Cómo funciona
 
