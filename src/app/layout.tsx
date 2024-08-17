@@ -6,9 +6,6 @@ import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import { ThemeProvider } from '@/components/provider/ThemeProvider'
 import './globals.css'
-
-import { server } from '../mocks/server'
-
 const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,10 +14,6 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-}
-
-if (process.env.NODE_ENV === 'development') {
-  server.listen()
 }
 
 export default function RootLayout({
