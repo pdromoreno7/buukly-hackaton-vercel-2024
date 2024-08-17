@@ -11,10 +11,10 @@ export const PATHNAMES = {
 }
 
 export const MENU_ENTRIES = [
-  {
-    label: 'Mi cuenta',
-    href: '#',
-  },
+  // {
+  //   label: 'Mi cuenta',
+  //   href: '#',
+  // },
   {
     label: 'Generar libro',
     href: PATHNAMES.generate,
@@ -72,16 +72,16 @@ export const QUESTIONS = [
     content:
       'Para cambiar tu contraseña, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar contraseña.',
   },
-  {
-    title: '¿Cómo puedo cambiar mi nombre de usuario?',
-    content:
-      'Para cambiar tu nombre de usuario, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar nombre de usuario.',
-  },
-  {
-    title: '¿Cómo puedo cambiar mi foto de perfil?',
-    content:
-      'Para cambiar tu foto de perfil, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar foto de perfil.',
-  },
+  // {
+  //   title: '¿Cómo puedo cambiar mi nombre de usuario?',
+  //   content:
+  //     'Para cambiar tu nombre de usuario, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar nombre de usuario.',
+  // },
+  // {
+  //   title: '¿Cómo puedo cambiar mi foto de perfil?',
+  //   content:
+  //     'Para cambiar tu foto de perfil, ve a la sección de configuración de tu cuenta y selecciona la opción de cambiar foto de perfil.',
+  // },
 ]
 
 export const HOW_TO = [

@@ -2,21 +2,21 @@
 
 import { getBookList } from '@/actions/services/bookServices/getBookList'
 import { BookType } from '@/interfaces/bookInterfaces'
-import { Download, EllipsisVertical, Trash } from 'lucide-react'
+// import { Download, EllipsisVertical, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import Wrapper from '@/components/layouts/Wrapper'
 import { Button } from '@/components/ui/button'
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarShortcut,
-  MenubarTrigger,
-} from '@/components/ui/menubar'
+// import {
+//   Menubar,
+//   MenubarContent,
+//   MenubarItem,
+//   MenubarMenu,
+//   MenubarShortcut,
+//   MenubarTrigger,
+// } from '@/components/ui/menubar'
 
 import { cn } from '@/lib/utils'
 
@@ -75,7 +75,7 @@ function LibraryPage() {
                   </span>
                 </div>
               </Link>
-              <Options />
+              {/* <Options /> */}
             </div>
           ))}
         </div>
@@ -98,32 +98,32 @@ function LibraryPage() {
 
 export default LibraryPage
 
-function Options() {
-  return (
-    <Menubar className='absolute right-2 top-2 w-fit border-none bg-transparent dark:bg-transparent'>
-      <MenubarMenu>
-        <MenubarTrigger>
-          <EllipsisVertical />
-        </MenubarTrigger>
-        <MenubarContent
-          side='bottom'
-          align='end'
-          className='dark:bg-neutral-900'
-        >
-          <MenubarItem className='font-medium'>
-            Descargar{' '}
-            <MenubarShortcut>
-              <Download className='size-4' strokeWidth={2} />
-            </MenubarShortcut>
-          </MenubarItem>
-          <MenubarItem className='font-medium text-red-600 transition-colors focus:bg-red-100 focus:text-red-600 dark:focus:text-red-600'>
-            Eliminar{' '}
-            <MenubarShortcut>
-              <Trash className='size-4 text-red-600' strokeWidth={2} />
-            </MenubarShortcut>
-          </MenubarItem>
-        </MenubarContent>
-      </MenubarMenu>
-    </Menubar>
-  )
-}
+// function Options() {
+//   return (
+//     <Menubar className='absolute right-2 top-2 w-fit border-none bg-transparent dark:bg-transparent'>
+//       <MenubarMenu>
+//         <MenubarTrigger>
+//           <EllipsisVertical />
+//         </MenubarTrigger>
+//         <MenubarContent
+//           side='bottom'
+//           align='end'
+//           className='dark:bg-neutral-900'
+//         >
+//           <MenubarItem className='font-medium'>
+//             Descargar{' '}
+//             <MenubarShortcut>
+//               <Download className='size-4' strokeWidth={2} />
+//             </MenubarShortcut>
+//           </MenubarItem>
+//           <MenubarItem className='font-medium text-red-600 transition-colors focus:bg-red-100 focus:text-red-600 dark:focus:text-red-600'>
+//             Eliminar{' '}
+//             <MenubarShortcut>
+//               <Trash className='size-4 text-red-600' strokeWidth={2} />
+//             </MenubarShortcut>
+//           </MenubarItem>
+//         </MenubarContent>
+//       </MenubarMenu>
+//     </Menubar>
+//   )
+// }
