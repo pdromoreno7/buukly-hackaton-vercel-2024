@@ -56,6 +56,8 @@ const config = {
           '900': '#606159',
           '950': '#4e4f47',
         },
+        'gradient-kiwi-start': '#D7FAD1',
+        'gradient-kiwi-end': '#9DF6D1',
       },
       keyframes: {
         'accordion-down': {
