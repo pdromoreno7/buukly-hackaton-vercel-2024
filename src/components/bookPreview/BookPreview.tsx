@@ -41,7 +41,7 @@ function BookPreview({
       </div>
       <div className='max-h-auto md:flex-column flex flex-col items-center justify-center gap-6 md:items-center'>
         <div className='flex w-full items-center justify-center rounded-lg bg-gray-100 pt-6 shadow-sm md:w-2/4 md:px-[8rem]'>
-          <div className='mx-0 mx-auto h-56 max-h-56 max-w-48 max-w-72'>
+          <div className='mx-0 mx-auto h-56 max-h-56 max-w-48'>
             <CoverBook
               title={dataEbook.bookTitle}
               color={dataEbook.colorCoverBook}
