@@ -1,14 +1,14 @@
+import { PATHNAMES } from '@/conts'
 import { BookType } from '@/interfaces/bookInterfaces'
+import { ArrowRight, X } from 'lucide-react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, X, Download } from 'lucide-react'
 
 import Wrapper from '@/components/layouts/Wrapper'
 
-import CoverBook from '../readEbook/CoverBook'
-import { Button } from '../ui/button'
 import { ButtonLoading } from '../commons/buttonLoading/ButtonLoading'
-import Link from 'next/link'
-import { PATHNAMES } from '@/conts'
+import CoverBook from '../readEbook/CoverBook'
+// import { Button } from '../ui/button'
 
 function BookResult({ dataEbook }: { dataEbook: BookType }) {
   const router = useRouter()
@@ -42,7 +42,12 @@ function BookResult({ dataEbook }: { dataEbook: BookType }) {
           </div>
         </div>
         <div className='mx-auto h-full w-full rounded-lg border border-solid border-slate-200 p-4 dark:bg-white/5 dark:text-gray-200 md:mx-0 md:h-5/6 md:w-2/4'>
-          <div className='flex justify-between'>
+          <div
+            className='flex justify-between'
+            onClick={() => {
+              router.refresh()
+            }}
+          >
             <h2 className='mb-2 text-lg font-bold text-gray-900'>
               Explora otros temas:
             </h2>
@@ -64,7 +69,7 @@ function BookResult({ dataEbook }: { dataEbook: BookType }) {
             Leer ya
           </ButtonLoading>
         </div>
-        <div className='w-full md:w-2/4'>
+        {/* <div className='w-full md:w-2/4'>
           <Button
             className='w-full rounded-full font-semibold'
             variant='outline'
@@ -72,7 +77,7 @@ function BookResult({ dataEbook }: { dataEbook: BookType }) {
           >
             Descargar <Download className='ml-2' />
           </Button>
-        </div>
+        </div> */}
       </div>
       <div className='flex flex-col gap-2 text-center'>
         <span className='mt-3 text-center text-xs text-neutral-600 dark:text-neutral-300'>

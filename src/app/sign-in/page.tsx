@@ -83,11 +83,13 @@ export default function SignIn() {
             {!isLinkedIn && <GoogleButton />}
 
             <form className='grid gap-4' onSubmit={handleSubmit(onSubmit)}>
-              <div className='flex items-center justify-center gap-2'>
-                <span className='w-full border-b dark:border-neutral-800' />
-                o
-                <span className='w-full border-b dark:border-neutral-800' />
-              </div>
+              {!isLinkedIn && (
+                <div className='flex items-center justify-center gap-2'>
+                  <span className='w-full border-b dark:border-neutral-800' />
+                  o
+                  <span className='w-full border-b dark:border-neutral-800' />
+                </div>
+              )}
 
               <div className='grid gap-2'>
                 <Label htmlFor='email' className='ml-2'>
