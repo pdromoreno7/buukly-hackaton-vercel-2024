@@ -58,12 +58,12 @@ export const QUESTIONS = [
       'Inicia sesión para pedir a Buccly que genere un libro sobre cualquier tema de tu interés. Luego de tu petición, podrás ver una vista previa del contenido y decidir si cambiar el tema o continuar para generar el libro final.',
   },
   {
-    title: '¿Puedo editar el contenido generado por la IA?',
+    title: '¿Cuánto tiempo tarda en generarse un libro?',
     content:
       'Buucly está diseñada para ser rápida y eficiente, generando libros de hasta en solo unos minutos. Esto significa que podrás disfrutar de tu libro personalizado casi de inmediato, sin largas esperas.',
   },
   {
-    title: '¿Cuánto tiempo tarda en generarse un libro?',
+    title: '¿Puedo editar el contenido generado por la IA?',
     content:
       'Puedes revisar el contenido de tu libro antes de generarlo para asegurarte de que cumpla con tus expectativas y editar la petición si es necesario.',
   },
