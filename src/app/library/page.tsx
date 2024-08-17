@@ -20,15 +20,12 @@ import { Button } from '@/components/ui/button'
 
 import { cn } from '@/lib/utils'
 
-function LibraryPage() {
+export default function LibraryPage() {
   const [booksList, setbookList] = useState<BookType[]>([])
-
-  // const { booksList } = useBookListStore()
 
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await getBookList()
-      console.log('🚀 ~ fetchData ~ data:', data)
       if (error) {
         toast.error('Error al cargar la biblioteca')
       }
@@ -61,13 +58,13 @@ function LibraryPage() {
             >
               <Link href={`/read-ebook/${encodeURIComponent(book.id)}`}>
                 <div
-                  className={`flex h-72 max-w-56 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 pt-3 shadow md:h-56 md:max-w-44`}
+                  className={`flex h-72 w-56 flex-col justify-between rounded-tl-sm rounded-tr-lg border-l-4 border-emerald-600 pt-3 shadow md:h-56 md:max-w-44`}
                   style={{
                     background: `linear-gradient(145deg, #f6fbfc, ${book.color_cover})`,
                     borderLeft: `8px solid ${book.color_cover}`,
                   }}
                 >
-                  <h4 className='truncate text-pretty px-3 pb-4 font-semibold leading-snug dark:text-neutral-900'>
+                  <h4 className='text-pretty px-3 pb-4 font-semibold leading-snug dark:text-neutral-900'>
                     {book.book_title}
                   </h4>
                   <span className='bg-white pb-3 pt-8 text-center text-sm dark:bg-neutral-800/80'>
@@ -95,8 +92,6 @@ function LibraryPage() {
     </Wrapper>
   )
 }
-
-export default LibraryPage
 
 // function Options() {
 //   return (

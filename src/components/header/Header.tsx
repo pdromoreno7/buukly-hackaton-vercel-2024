@@ -3,7 +3,7 @@ import { getUserSSR } from '@/utils/session/getUser'
 import Wrapper from '@components/layouts/Wrapper'
 import Link from 'next/link'
 
-import { BuuclyLogo } from '../buuclyLogo/BuuclyLogo'
+import { BuuclyLogo, BuuclyLogoShortVariant } from '../buuclyLogo/BuuclyLogo'
 import { GithubButton } from '../commons/githubButton/GithubButton'
 import { LibraryButton } from '../commons/libraryButton/LibraryButton'
 import Profile from '../profile/Profile'
@@ -19,12 +19,19 @@ export default async function Header() {
       <Wrapper className='lg:max-w-full'>
         <nav className='flex flex-row items-center justify-between py-3'>
           <Link href='/'>
-            <BuuclyLogo />
-          </Link>
-          <div className={!renderAuthBtn ? 'inline-flex gap-2' : 'hidden'}>
             <div className='hidden sm:block'>
-              <GithubButton />
+              <BuuclyLogo />
             </div>
+            <div className='sm:hidden'>
+              <BuuclyLogoShortVariant />
+            </div>
+          </Link>
+          <div
+            className={
+              !renderAuthBtn ? 'inline-flex items-center gap-2' : 'hidden'
+            }
+          >
+            <GithubButton />
             <Button asChild variant='outline' className='rounded-full'>
               <Link href={PATHNAMES['sign-in']}>Inicia sesión</Link>
             </Button>
@@ -33,13 +40,15 @@ export default async function Header() {
             </Button>
           </div>
 
-          <div className={renderAuthBtn ? 'inline-flex gap-3' : 'hidden'}>
-            <div className='hidden sm:block'>
-              <GithubButton />
-            </div>
+          <div
+            className={
+              renderAuthBtn ? 'inline-flex items-center gap-3' : 'hidden'
+            }
+          >
             <Link href='/library'>
               <LibraryButton>Biblioteca</LibraryButton>
             </Link>
+            <GithubButton />
 
             <ToggleTheme />
             <Profile userData={userData!} />

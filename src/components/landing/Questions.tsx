@@ -26,7 +26,7 @@ export function Questions() {
             value={`item-${index}`}
             className='rounded-lg border-none bg-neutral-50/80 px-3 dark:bg-neutral-900'
           >
-            <AccordionTrigger className='hover:no-underline'>
+            <AccordionTrigger className='text-left hover:no-underline'>
               {question.title}
             </AccordionTrigger>
             <AccordionContent>{question.content}</AccordionContent>

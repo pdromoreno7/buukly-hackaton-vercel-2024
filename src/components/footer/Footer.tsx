@@ -25,15 +25,14 @@ export default function Footer() {
         className='h-8'
       />
 
-      <div className='flex flex-col items-center gap-2 md:flex-row'>
-        <GithubButton link />
-
+      <div className='flex flex-col items-center gap-6 md:flex-row'>
         <Link
           href={PATHNAMES['terms-privacy']}
-          className='text-sm text-neutral-600 transition-colors hover:text-black hover:underline dark:text-neutral-300'
+          className='text-sm text-neutral-600 transition-colors hover:text-black hover:underline dark:text-neutral-300 dark:hover:text-white'
         >
           Políticas de privacidad, Términos y Condiciones
         </Link>
+        <GithubButton link />
       </div>
     </footer>
   )
