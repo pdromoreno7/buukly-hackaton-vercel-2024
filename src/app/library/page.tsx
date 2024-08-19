@@ -1,40 +1,58 @@
 'use client'
 
+import { deleteBook } from '@/actions/services/bookServices/deleteBook'
 import { getBookList } from '@/actions/services/bookServices/getBookList'
 import { BookType } from '@/interfaces/bookInterfaces'
-// import { Download, EllipsisVertical, Trash } from 'lucide-react'
+import { EllipsisVertical, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import Wrapper from '@/components/layouts/Wrapper'
 import { Button } from '@/components/ui/button'
-// import {
-//   Menubar,
-//   MenubarContent,
-//   MenubarItem,
-//   MenubarMenu,
-//   MenubarShortcut,
-//   MenubarTrigger,
-// } from '@/components/ui/menubar'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarShortcut,
+  MenubarTrigger,
+} from '@/components/ui/menubar'
 
 import { cn } from '@/lib/utils'
 
-function LibraryPage() {
-  const [booksList, setbookList] = useState<BookType[]>([])
+interface DeleteBookDialogProps {
+  title: string
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+  onDelete: () => void
+}
 
-  // const { booksList } = useBookListStore()
+interface OptionsProps {
+  book: BookType
+  onBookDeletedRefresh: () => Promise<void>
+}
+
+function LibraryPage() {
+  const [booksList, setBooksList] = useState<BookType[]>([])
+
+  const fetchDataBookList = async () => {
+    const { data, error } = await getBookList()
+    if (error) {
+      toast.error('Error al cargar la biblioteca')
+    }
+    setBooksList(data ?? [])
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data, error } = await getBookList()
-      console.log('🚀 ~ fetchData ~ data:', data)
-      if (error) {
-        toast.error('Error al cargar la biblioteca')
-      }
-      setbookList(data ?? [])
-    }
-    fetchData()
+    fetchDataBookList()
   }, [])
 
   return (
@@ -75,7 +93,7 @@ function LibraryPage() {
                   </span>
                 </div>
               </Link>
-              {/* <Options /> */}
+              <Options book={book} onBookDeletedRefresh={fetchDataBookList} />
             </div>
           ))}
         </div>
@@ -98,32 +116,83 @@ function LibraryPage() {
 
 export default LibraryPage
 
-// function Options() {
-//   return (
-//     <Menubar className='absolute right-2 top-2 w-fit border-none bg-transparent dark:bg-transparent'>
-//       <MenubarMenu>
-//         <MenubarTrigger>
-//           <EllipsisVertical />
-//         </MenubarTrigger>
-//         <MenubarContent
-//           side='bottom'
-//           align='end'
-//           className='dark:bg-neutral-900'
-//         >
-//           <MenubarItem className='font-medium'>
-//             Descargar{' '}
-//             <MenubarShortcut>
-//               <Download className='size-4' strokeWidth={2} />
-//             </MenubarShortcut>
-//           </MenubarItem>
-//           <MenubarItem className='font-medium text-red-600 transition-colors focus:bg-red-100 focus:text-red-600 dark:focus:text-red-600'>
-//             Eliminar{' '}
-//             <MenubarShortcut>
-//               <Trash className='size-4 text-red-600' strokeWidth={2} />
-//             </MenubarShortcut>
-//           </MenubarItem>
-//         </MenubarContent>
-//       </MenubarMenu>
-//     </Menubar>
-//   )
-// }
+function Options({ book, onBookDeletedRefresh }: OptionsProps) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleDeleteBook = async () => {
+    const resultError = await deleteBook(book.id)
+    if (resultError) {
+      toast.error('Error al eliminar el libro')
+    } else {
+      toast.success('Libro eliminado exitosamente')
+      onBookDeletedRefresh()
+    }
+    setIsOpen(false)
+  }
+  return (
+    <Menubar className='absolute right-2 top-2 w-fit border-none bg-transparent dark:bg-transparent'>
+      <MenubarMenu>
+        <MenubarTrigger>
+          <EllipsisVertical />
+        </MenubarTrigger>
+        <MenubarContent
+          side='bottom'
+          align='end'
+          className='dark:bg-neutral-900'
+        >
+          {/* <MenubarItem className='font-medium'>
+            Descargar{' '}
+            <MenubarShortcut>
+              <Download className='size-4' strokeWidth={2} />
+            </MenubarShortcut>
+          </MenubarItem> */}
+          <MenubarItem
+            onClick={() => setIsOpen(true)}
+            className='cursor-pointer font-medium text-red-600 transition-colors focus:bg-red-100 focus:text-red-600 dark:focus:text-red-600'
+          >
+            Eliminar{' '}
+            <MenubarShortcut>
+              <Trash className='size-4 text-red-600' strokeWidth={2} />
+            </MenubarShortcut>
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <DeleteBookDialog
+        title={book?.book_title}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onDelete={handleDeleteBook}
+      />
+    </Menubar>
+  )
+}
+function DeleteBookDialog({
+  title,
+  isOpen,
+  setIsOpen,
+  onDelete,
+}: DeleteBookDialogProps) {
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>
+            ¿Estás seguro de que quieres eliminar este libro?
+          </DialogTitle>
+          <DialogDescription>
+            {` Estás a punto de eliminar ${title}. Esta acción no se puede deshacer. Si continúas, el libro se
+            eliminará de forma permanente.`}
+          </DialogDescription>
+        </DialogHeader>
+        <div className='mt-4 flex justify-end space-x-2'>
+          <Button variant='outline' onClick={() => setIsOpen(false)}>
+            No, cerrar
+          </Button>
+          <Button variant='destructive' onClick={onDelete}>
+            Si, eliminar
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
