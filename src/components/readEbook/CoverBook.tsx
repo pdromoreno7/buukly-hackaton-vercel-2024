@@ -23,7 +23,7 @@ export default function CoverBook({
         {title}.
       </h4>
       <div className='flex h-[4rem] items-end justify-center self-end bg-white pb-3 pt-8 text-center text-sm dark:bg-neutral-800/80'>
-        Generado por <strong>Buucly</strong>
+        Generado por&nbsp;<strong>Buucly</strong>
       </div>
     </div>
   )
