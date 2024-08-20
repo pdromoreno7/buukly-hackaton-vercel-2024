@@ -33,7 +33,7 @@ del libro electrónico llamado ${bookTitle} con las palabras clave ${keyWordsBoo
 Responde con el capítulo completo, EXCLUYENDO el título del capítulo. El texto el capitulo debe estar formateodo como HTML valido. 
 Utliza <br> para los saltos de linea, <b> para negrita, <i> para cursiva, <u> para subrayado, <code> para código, <a> para enlaces. los subtitulos deben usar la etiqueta <b> en negrita. 
 Si usas la etiqueta <code> para ejemplificar un codigo usa esta class de tailwind: <code class='bg-slate-900 p-1 text-lime-500'>.
-Despues de cada parrafo usa dos <br> <br> para generar un salto de linea.
+Despues de cada parrafo usa <br> para generar un salto de linea. No use ** para resaltar con negrita solo usa <b> para negrita.
 Debe incluir todas las citas relevantes que se utilizaron. Nunca uses la etiqueta HTML, body y H1, no uses ###, ni ** como formato markdown o otro elemento de este formato solo el texto con las etiquetas y no comiences con el titulo del capítulo.
 Proporciona solo el contenido del capítulo.
 `
