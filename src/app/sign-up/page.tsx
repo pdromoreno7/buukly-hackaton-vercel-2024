@@ -4,7 +4,7 @@ import { PATHNAMES } from '@/conts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Check, EyeIcon, EyeOffIcon, Loader2, X } from 'lucide-react'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -47,6 +47,7 @@ const RegisterSchema = z.object({
 export type UserType = z.infer<typeof RegisterSchema>
 
 export default function SignUp() {
+  const [isLinkedIn, setIsLinkedIn] = useState(false)
   const [isPopoverOpen, setPopoverOpen] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
@@ -81,6 +82,10 @@ export default function SignUp() {
   }
 
   const passwordValue = watch('password', '')
+  useEffect(() => {
+    const userAgent = navigator.userAgent
+    setIsLinkedIn(/LinkedIn/i.test(userAgent))
+  }, [])
 
   return (
     <Wrapper>
@@ -91,18 +96,20 @@ export default function SignUp() {
               Regístrate
             </CardTitle>
             <CardDescription>
-              Solicita libros sobre cualquier tema y se generarán al instante en
-              formato EPUB.
+              Solicita libros sobre cualquier tema y se generarán al instante
+              con IA.
             </CardDescription>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
-            <GoogleButton />
+            {!isLinkedIn && <GoogleButton />}
             <form className='grid gap-3' onSubmit={handleSubmit(onSubmit)}>
-              <div className='flex items-center justify-center gap-2'>
-                <span className='w-full border-b dark:border-neutral-800' />
-                o
-                <span className='w-full border-b dark:border-neutral-800' />
-              </div>
+              {!isLinkedIn && (
+                <div className='flex items-center justify-center gap-2'>
+                  <span className='w-full border-b dark:border-neutral-800' />
+                  o
+                  <span className='w-full border-b dark:border-neutral-800' />
+                </div>
+              )}
 
               <div className='grid gap-2'>
                 <Label htmlFor='full_name' className='ml-2'>

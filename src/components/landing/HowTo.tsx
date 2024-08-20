@@ -20,7 +20,7 @@ export default function HowTo() {
           asChild
           className='w-full cursor-pointer rounded-full bg-kiwi-500 p-0 px-4 font-semibold text-black hover:bg-kiwi-600 sm:w-fit'
         >
-          <Link href={PATHNAMES['sign-in']}>!Comienza, es gratis!</Link>
+          <Link href={PATHNAMES['sign-in']}>¡Comienza, es gratis!</Link>
         </Button>
       </div>
 

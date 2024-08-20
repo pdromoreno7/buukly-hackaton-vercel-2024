@@ -7,7 +7,7 @@ import { EyeIcon, EyeOffIcon, Loader2 } from 'lucide-react'
 // import { revalidatePath } from 'next/cache'
 // import { redirect } from 'next/dist/server/api-utils'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -34,6 +34,7 @@ const LoginSchema = z.object({
 export type UserType = z.infer<typeof LoginSchema>
 
 export default function SignIn() {
+  const [isLinkedIn, setIsLinkedIn] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [errorInput, setErrorInput] = useState(false)
 
@@ -64,6 +65,10 @@ export default function SignIn() {
       setErrorInput(false)
     }
   }
+  useEffect(() => {
+    const userAgent = navigator.userAgent
+    setIsLinkedIn(/LinkedIn/i.test(userAgent))
+  }, [])
 
   return (
     <Wrapper>
@@ -75,13 +80,16 @@ export default function SignIn() {
             </CardTitle>
           </CardHeader>
           <CardContent className='px-0 pb-2'>
-            <GoogleButton />
+            {!isLinkedIn && <GoogleButton />}
+
             <form className='grid gap-4' onSubmit={handleSubmit(onSubmit)}>
-              <div className='flex items-center justify-center gap-2'>
-                <span className='w-full border-b dark:border-neutral-800' />
-                o
-                <span className='w-full border-b dark:border-neutral-800' />
-              </div>
+              {!isLinkedIn && (
+                <div className='flex items-center justify-center gap-2'>
+                  <span className='w-full border-b dark:border-neutral-800' />
+                  o
+                  <span className='w-full border-b dark:border-neutral-800' />
+                </div>
+              )}
 
               <div className='grid gap-2'>
                 <Label htmlFor='email' className='ml-2'>

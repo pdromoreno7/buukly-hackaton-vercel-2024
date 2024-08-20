@@ -12,6 +12,7 @@ import { createClientSR } from '@/utils/supabase/client'
 import Link from 'next/link'
 import { useState, ChangeEvent } from 'react'
 import { toast } from 'sonner'
+import { Sparkles } from 'lucide-react'
 
 import BookPreview from '@/components/bookPreview/BookPreview'
 import BookResult from '@/components/bookResult/BookResult'
@@ -174,15 +175,17 @@ export default function Generate() {
             onChange={handleInputChange}
           />
 
-          <ButtonLoading
-            onClick={submitGenerateBook}
-            isLoading={isLoading}
-            isDisabled={!bookTitle}
-          >
-            ✨ Enviar
-          </ButtonLoading>
+          <div className=''>
+            <ButtonLoading
+              onClick={submitGenerateBook}
+              isLoading={isLoading}
+              isDisabled={!bookTitle}
+            >
+              Enviar <Sparkles className='ml-1 size-5' />
+            </ButtonLoading>
+          </div>
         </div>
-        <div className='flex flex-col gap-2 text-center'>
+        <div className='flex flex-col gap-2 self-end text-center'>
           <span className='mt-3 text-center text-xs text-neutral-600 dark:text-neutral-300'>
             Al hacer uso de esta app, acepta nuestros{' '}
             <Link
