@@ -41,13 +41,13 @@ function BookResult({ dataEbook }: { dataEbook: BookType }) {
             />
           </div>
         </div>
-        <div className='mx-auto h-full w-full rounded-lg border border-solid border-slate-200 p-4 dark:bg-white/5 dark:text-gray-200 md:mx-0 md:h-5/6 md:w-2/4'>
-          <div
-            className='flex justify-between'
-            onClick={() => {
-              router.refresh()
-            }}
-          >
+        <div
+          onClick={() => {
+            router.refresh()
+          }}
+          className='mx-auto h-full w-full cursor-pointer rounded-lg border border-solid border-slate-200 p-4 dark:bg-white/5 dark:text-gray-200 md:mx-0 md:h-5/6 md:w-2/4'
+        >
+          <div className='flex justify-between'>
             <h2 className='mb-2 text-lg font-bold text-gray-900'>
               Explora otros temas:
             </h2>
